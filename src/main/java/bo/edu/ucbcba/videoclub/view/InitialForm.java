@@ -27,6 +27,18 @@ public class InitialForm extends JFrame{
             }
         });
 
+        CustomersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                launchClientsForm();
+            }
+        });
+
+    }
+
+    private void launchClientsForm() {
+        ClientsForm form = new ClientsForm(this);
+        form.setVisible(true);
     }
 
     private void MoviesZone() {

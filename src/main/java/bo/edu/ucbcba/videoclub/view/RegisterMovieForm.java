@@ -31,8 +31,9 @@ public class RegisterMovieForm extends JDialog {
     RegisterMovieForm(MoviesForm parent) {
         super(parent, "Register Movie", true);
         setContentPane(rootPanel);
+        setSize(600, 400);
         pack();
-        setResizable(false);
+        setResizable(true);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
