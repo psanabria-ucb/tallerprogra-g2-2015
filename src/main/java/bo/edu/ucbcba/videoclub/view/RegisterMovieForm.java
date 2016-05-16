@@ -28,7 +28,7 @@ public class RegisterMovieForm extends JDialog {
     private int rating = 5;
     private MovieController controller;
 
-    RegisterMovieForm(JFrame parent) {
+    RegisterMovieForm(MoviesForm parent) {
         super(parent, "Register Movie", true);
         setContentPane(rootPanel);
         pack();
