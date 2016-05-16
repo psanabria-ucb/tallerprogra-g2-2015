@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class MoviesForm extends JFrame {
+public class MoviesForm extends JDialog {
     private JPanel rootPanel;
     private JTextField searchText;
     private JButton searchButton;
@@ -18,10 +18,11 @@ public class MoviesForm extends JFrame {
     private JButton createButton;
     private MovieController movieController;
 
-    public MoviesForm() {
-        super("Movies");
+    public MoviesForm(InitialForm parent) {
+        super(parent, "Movies", true);
         setContentPane(rootPanel);
         setSize(600, 400);
+        setResizable(false);
 
         createButton.addActionListener(new ActionListener() {
             @Override
@@ -39,9 +40,9 @@ public class MoviesForm extends JFrame {
         });
     }
 
+
     private void launchRegister() {
         RegisterMovieForm form = new RegisterMovieForm(this);
-
         form.setVisible(true);
         populateTable();
     }
@@ -105,5 +106,9 @@ public class MoviesForm extends JFrame {
      */
     public JComponent $$$getRootComponent$$$() {
         return rootPanel;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
