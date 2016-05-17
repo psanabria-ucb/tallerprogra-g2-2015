@@ -16,6 +16,33 @@ public class InitialForm extends JFrame {
     private JButton CustomersButton;
     private JButton GamesButton;
 
+    public InitialForm(HomeGamesForm parent) {
+        super("Welcome");
+        setContentPane(rootPanel);
+        setSize(600, 400);
+        MoviesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MoviesZone();
+            }
+        });
+
+        CustomersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                launchClientsForm();
+            }
+        });
+
+        GamesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                launchGames();
+            }
+        });
+
+    }
+
     public InitialForm() {
         super("Welcome");
         setContentPane(rootPanel);
@@ -44,7 +71,7 @@ public class InitialForm extends JFrame {
     }
 
     private void launchGames() {
-        GamesForm form = new GamesForm(this);
+        HomeGamesForm form = new HomeGamesForm(this);
         form.setVisible(true);
     }
 

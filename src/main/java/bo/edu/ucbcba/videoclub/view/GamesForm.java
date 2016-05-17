@@ -23,6 +23,28 @@ public class GamesForm extends JDialog {
     private JButton createButton;
     private GameController gameController;
 
+    public GamesForm(HomeGamesForm parent) {
+        super(parent, "Games", true);
+        setContentPane(rootPanel);
+        setSize(600, 400);
+        setResizable(false);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                launchRegister();
+            }
+        });
+        gameController = new GameController();
+        populateTable();
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                populateTable();
+            }
+        });
+    }
+
     public GamesForm(InitialForm parent) {
         super(parent, "Games", true);
         setContentPane(rootPanel);

@@ -28,6 +28,37 @@ public class RegisterGamesForm extends JDialog {
     private int rating = 5;
     private GameController controller;
 
+    RegisterGamesForm(HomeGamesForm parent) {
+        super(parent, "Register Game", true);
+        setContentPane(rootPanel);
+        pack();
+        setResizable(false);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveUser();
+            }
+        });
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cancel();
+            }
+        });
+        ActionListener ratingListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rating = Integer.parseInt(((JRadioButton) e.getSource()).getText());
+            }
+        };
+        rating1.addActionListener(ratingListener);
+        rating2.addActionListener(ratingListener);
+        rating3.addActionListener(ratingListener);
+        rating4.addActionListener(ratingListener);
+        rating5.addActionListener(ratingListener);
+        controller = new GameController();
+    }
+
     RegisterGamesForm(GamesForm parent) {
         super(parent, "Register Game", true);
         setContentPane(rootPanel);
