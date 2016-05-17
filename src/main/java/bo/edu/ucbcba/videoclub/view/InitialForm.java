@@ -19,7 +19,8 @@ public class InitialForm extends JFrame {
     public InitialForm(HomeGamesForm parent) {
         super("Welcome");
         setContentPane(rootPanel);
-        setSize(600, 400);
+        setBounds(200, 300, 800, 600);
+        //setSize(600, 400);
         MoviesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,31 +102,41 @@ public class InitialForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(2, 5, new Insets(2, 2, 2, 2), -1, -1));
-        rootPanel.setEnabled(false);
+        rootPanel.setLayout(new GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setBackground(new Color(-3090213));
+        rootPanel.setEnabled(true);
         rootPanel.setFont(new Font(rootPanel.getFont().getName(), rootPanel.getFont().getStyle(), rootPanel.getFont().getSize()));
+        rootPanel.setForeground(new Color(-3090213));
         rootPanel.putClientProperty("html.disable", Boolean.FALSE);
-        final JLabel label1 = new JLabel();
-        label1.setEnabled(false);
-        label1.setFont(new Font("Constantia", label1.getFont().getStyle(), 28));
-        label1.setText("SAKILA 2.0");
-        rootPanel.add(label1, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         GamesButton = new JButton();
-        GamesButton.setFont(new Font("Aharoni", GamesButton.getFont().getStyle(), 20));
+        GamesButton.setBackground(new Color(-12828863));
+        GamesButton.setFont(new Font("Courier New", GamesButton.getFont().getStyle(), 18));
+        GamesButton.setForeground(new Color(-4486332));
         GamesButton.setHideActionText(false);
         GamesButton.setText("Juegos");
-        rootPanel.add(GamesButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(GamesButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         MoviesButton = new JButton();
-        MoviesButton.setFont(new Font("Aharoni", MoviesButton.getFont().getStyle(), 20));
+        MoviesButton.setBackground(new Color(-12828863));
+        MoviesButton.setFont(new Font("Courier New", MoviesButton.getFont().getStyle(), 18));
+        MoviesButton.setForeground(new Color(-4486332));
         MoviesButton.setHorizontalTextPosition(11);
         MoviesButton.setText("Peliculas");
-        rootPanel.add(MoviesButton, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(MoviesButton, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         CustomersButton = new JButton();
+        CustomersButton.setBackground(new Color(-12828863));
         CustomersButton.setEnabled(true);
-        CustomersButton.setFont(new Font("Aharoni", CustomersButton.getFont().getStyle(), 20));
+        CustomersButton.setFont(new Font("Courier New", CustomersButton.getFont().getStyle(), 18));
+        CustomersButton.setForeground(new Color(-4486332));
         CustomersButton.setHideActionText(false);
         CustomersButton.setText("Clientes");
-        rootPanel.add(CustomersButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(CustomersButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setBackground(new Color(-12828863));
+        label1.setEnabled(true);
+        label1.setFont(new Font("Courier New", Font.BOLD, 28));
+        label1.setForeground(new Color(-4486332));
+        label1.setText("SAKILA 2.0");
+        rootPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
