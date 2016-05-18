@@ -6,6 +6,7 @@ import bo.edu.ucbcba.videoclub.model.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.Calendar;
 import java.util.List;
 
 public class MovieController {
@@ -17,16 +18,45 @@ public class MovieController {
                        String minutesLength) {
 
         Movie movie = new Movie();
-        movie.setTitle(title);
-        movie.setDescription(description);
-        if (releaseYear.matches("[0-9]+"))
+        //--------------------Validaciones de espacios en blanco
+
+        if (description.isEmpty()){
+            description = " ";
+        }
+        if (releaseYear.isEmpty()){
+            throw new ValidationException("Year can't be blank");
+        }
+
+        if (title.isEmpty()){
+            throw new ValidationException("Title can't be blank");
+        }
+
+        if (hoursLength.isEmpty()){
+            throw new ValidationException("Hours can't be blank");
+        }
+
+        if (minutesLength.isEmpty()){
+            throw new ValidationException("Minutes can't be blank");
+        }
+        //--------------------Validacion de Año
+        int year, currentYear;
+        year = Integer.parseInt(releaseYear);
+        currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        if (releaseYear.matches("[0-9]+")) {
             movie.setReleaseYear(Integer.parseInt(releaseYear));
-        else
+        }else {
             throw new ValidationException("Release year isn't a number");
-        movie.setRating(rating);
+        }
+
+        if (year < currentYear && year > 1887){
+            movie.setReleaseYear(Integer.parseInt(releaseYear));
+        }else{
+            throw new ValidationException("Year must be before " + String.valueOf(currentYear+1) + " and after 1887 ");
+        }
+
+        //-----------------------Validacion de Tiempo de duracion
 
         int hours, minutes;
-
         if (!hoursLength.matches("[0-9]+"))
             throw new ValidationException("Year isn't a number");
         hours = Integer.parseInt(hoursLength);
@@ -38,6 +68,17 @@ public class MovieController {
         if (minutes >= 60)
             throw new ValidationException("Minutes can't be greater than 59");
         movie.setLength(hours * 60 + minutes);
+
+        //-----------------Validacion Longitud de titulo
+
+        int length;
+        length = title.length();
+        if(length > 100)
+            throw new ValidationException("Tile is too long, must have less than 101 characters");
+
+        movie.setRating(rating);
+        movie.setTitle(title);
+        movie.setDescription(description);
         
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         entityManager.getTransaction().begin();
