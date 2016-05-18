@@ -23,7 +23,7 @@ public class DeleteClientForm extends JFrame {
     public DeleteClientForm(JFrame parent) {
         super("View Clients");
         setContentPane(rootPanel);
-        setSize(600, 400);
+        setSize(1000, 600);
         pack();
         setResizable(true);
         clientController = new ClientController();
@@ -117,9 +117,6 @@ public class DeleteClientForm extends JFrame {
         label1.setForeground(new Color(-4486332));
         label1.setText("Delete Client");
         rootPanel.add(label1, new GridConstraints(0, 2, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        clientsTable = new JTable();
-        clientsTable.setEnabled(false);
-        rootPanel.add(clientsTable, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
         deleteButton = new JButton();
         deleteButton.setBackground(new Color(-12828863));
         deleteButton.setFont(new Font("Courier New", deleteButton.getFont().getStyle(), 18));
@@ -127,7 +124,7 @@ public class DeleteClientForm extends JFrame {
         deleteButton.setText("Delete");
         rootPanel.add(deleteButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setFont(new Font("Courier New", label2.getFont().getStyle(), 18));
+        label2.setFont(new Font("Courier New", Font.BOLD, 18));
         label2.setForeground(new Color(-4486332));
         label2.setText("CI:");
         rootPanel.add(label2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -137,6 +134,11 @@ public class DeleteClientForm extends JFrame {
         rootPanel.add(spacer2, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(50, 50), null, new Dimension(50, 50), 0, false));
         final Spacer spacer3 = new Spacer();
         rootPanel.add(spacer3, new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(50, 50), null, new Dimension(50, 50), 0, false));
+        clientsTable = new JTable();
+        clientsTable.setEnabled(false);
+        clientsTable.setFont(new Font("Courier New", clientsTable.getFont().getStyle(), 16));
+        clientsTable.setForeground(new Color(-11948357));
+        rootPanel.add(clientsTable, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
     }
 
     /**

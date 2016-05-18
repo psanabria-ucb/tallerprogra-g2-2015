@@ -26,7 +26,7 @@ public class GamesForm extends JDialog {
     public GamesForm(HomeGamesForm parent) {
         super(parent, "Games", true);
         setContentPane(rootPanel);
-        setSize(800, 500);
+        setSize(1000, 600);
         setResizable(false);
 
         createButton.addActionListener(new ActionListener() {

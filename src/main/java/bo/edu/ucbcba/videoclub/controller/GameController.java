@@ -43,9 +43,9 @@ public class GameController {
         //--------------------Validacion de Año
 
         if (price.matches("[0-9]+")) {
-            game.setReleaseYear((releaseYear));
+            game.setPrice((price));
         } else {
-            throw new ValidationException("Price year isn't a number");
+            throw new ValidationException("Price isn't a number");
         }
 
         int year, currentYear;

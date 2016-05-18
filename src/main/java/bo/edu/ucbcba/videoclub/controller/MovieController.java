@@ -54,7 +54,7 @@ public class MovieController {
         }
 
         if (price.matches("[0-9]+")) {
-            movie.setReleaseYear(Integer.parseInt(releaseYear));
+            movie.setPrice(Integer.parseInt(price));
         }else {
             throw new ValidationException("Price year isn't a number");
         }
