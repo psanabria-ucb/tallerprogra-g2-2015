@@ -70,13 +70,13 @@
       </component>
       <component id="a2e61" class="javax.swing.JButton" binding="homePageButton" default-binding="true">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
-          <foreground color="-4486332"/>
-          <text value="Home Page"/>
+          <foreground color="-6836293"/>
+          <text value="Home"/>
         </properties>
       </component>
     </children>

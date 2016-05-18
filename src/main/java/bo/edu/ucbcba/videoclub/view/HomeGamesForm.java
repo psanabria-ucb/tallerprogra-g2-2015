@@ -76,7 +76,7 @@ public class HomeGamesForm extends JFrame {
     public void showNewGame() {
         RegisterGamesForm form = new RegisterGamesForm(this);
         form.setVisible(true);
-        
+
     }
 
     public void showHome() {
@@ -106,6 +106,7 @@ public class HomeGamesForm extends JFrame {
         rootPanel.setLayout(new GridLayoutManager(3, 5, new Insets(50, 50, 50, 60), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
+        rootPanel.putClientProperty("html.disable", Boolean.FALSE);
         listingGamesButton = new JButton();
         listingGamesButton.setBackground(new Color(-12828863));
         listingGamesButton.setFont(new Font("Courier New", listingGamesButton.getFont().getStyle(), 18));
@@ -134,9 +135,9 @@ public class HomeGamesForm extends JFrame {
         homePageButton = new JButton();
         homePageButton.setBackground(new Color(-12828863));
         homePageButton.setFont(new Font("Courier New", homePageButton.getFont().getStyle(), 18));
-        homePageButton.setForeground(new Color(-4486332));
-        homePageButton.setText("Home Page");
-        rootPanel.add(homePageButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        homePageButton.setForeground(new Color(-6836293));
+        homePageButton.setText("Home");
+        rootPanel.add(homePageButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

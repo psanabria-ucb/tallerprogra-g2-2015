@@ -31,7 +31,7 @@
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-10987432"/>
+          <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
           <text value="Register"/>
@@ -120,7 +120,7 @@
           <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-10987432"/>
+          <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
           <text value="Cancel"/>
@@ -131,7 +131,7 @@
           <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Courier New" size="22"/>
+          <font name="Courier New" size="22" style="1"/>
           <foreground color="-4486332"/>
           <text value="New Client "/>
         </properties>

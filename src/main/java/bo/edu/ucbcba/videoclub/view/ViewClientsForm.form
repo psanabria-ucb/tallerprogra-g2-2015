@@ -28,7 +28,11 @@
           </grid>
         </constraints>
         <properties>
+          <enabled value="false"/>
+          <focusable value="true"/>
           <foreground color="-11948357"/>
+          <updateSelectionOnSort value="false"/>
+          <verifyInputWhenFocusTarget value="true"/>
         </properties>
       </component>
       <component id="7c4e6" class="javax.swing.JTextField" binding="searchText">

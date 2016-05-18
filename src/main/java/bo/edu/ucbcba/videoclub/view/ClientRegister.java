@@ -50,13 +50,11 @@ public class ClientRegister extends JDialog {
                     firstname.getText(),
                     lastname.getText(),
                     address.getText());
-
+            JOptionPane.showMessageDialog(this, "Client created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            cancel();
         } catch (ValidationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Format error", JOptionPane.ERROR_MESSAGE);
         }
-
-        JOptionPane.showMessageDialog(this, "Client created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-        cancel();
     }
 
     private void cancel() {
@@ -92,7 +90,7 @@ public class ClientRegister extends JDialog {
         label1.setText("CI:");
         rootPanel.add(label1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         registerButton = new JButton();
-        registerButton.setBackground(new Color(-10987432));
+        registerButton.setBackground(new Color(-12828863));
         registerButton.setFont(new Font("Courier New", registerButton.getFont().getStyle(), 18));
         registerButton.setForeground(new Color(-4486332));
         registerButton.setText("Register");
@@ -127,13 +125,13 @@ public class ClientRegister extends JDialog {
         lastname.setFont(new Font("Courier New", lastname.getFont().getStyle(), 16));
         rootPanel.add(lastname, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         cancelButton = new JButton();
-        cancelButton.setBackground(new Color(-10987432));
+        cancelButton.setBackground(new Color(-12828863));
         cancelButton.setFont(new Font("Courier New", cancelButton.getFont().getStyle(), 18));
         cancelButton.setForeground(new Color(-4486332));
         cancelButton.setText("Cancel");
         rootPanel.add(cancelButton, new GridConstraints(8, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setFont(new Font("Courier New", label5.getFont().getStyle(), 22));
+        label5.setFont(new Font("Courier New", Font.BOLD, 22));
         label5.setForeground(new Color(-4486332));
         label5.setText("New Client ");
         rootPanel.add(label5, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
