@@ -94,7 +94,7 @@ public class RegisterMovieForm extends JDialog {
                     minutesLength.getText(),
                     price.getText(),
                     imageText.getText());
-            JOptionPane.showMessageDialog(this, "Game created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Movie created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             cancel();
         } catch (ValidationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Format error", JOptionPane.ERROR_MESSAGE);
@@ -137,9 +137,13 @@ public class RegisterMovieForm extends JDialog {
         label3.setText("Length");
         rootPanel.add(label3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         description = new JTextArea();
+        description.setAutoscrolls(false);
+        description.setEditable(true);
+        description.setEnabled(true);
+        description.setFocusTraversalPolicyProvider(false);
         description.setLineWrap(false);
         description.setRows(5);
-        rootPanel.add(description, new GridConstraints(2, 1, 1, 10, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        rootPanel.add(description, new GridConstraints(2, 1, 1, 10, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(600, 50), new Dimension(600, 50), new Dimension(600, 50), 0, false));
         hoursLength = new JTextField();
         hoursLength.setColumns(2);
         rootPanel.add(hoursLength, new GridConstraints(3, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));

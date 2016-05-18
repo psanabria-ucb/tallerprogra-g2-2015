@@ -25,6 +25,10 @@ public class MovieController {
             throw new ValidationException("Price can't be blank");
         }
 
+        if(nameImage.isEmpty()){
+            throw new ValidationException("Image can't be blank");
+        }
+
         if (description.isEmpty()){
             description = " ";
         }
