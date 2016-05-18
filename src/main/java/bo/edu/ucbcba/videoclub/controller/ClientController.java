@@ -18,8 +18,6 @@ public class ClientController {
                        String address) {
 
         Client client = new Client();
-
-
         client.setCi(ci);
         client.setFirstname(firstname);
         client.setLastname(lastname);

@@ -38,6 +38,7 @@ public class ViewClientsForm extends JFrame {
         });
     }
 
+
     private void populateTable() {
         List<Client> clients = clientController.searchClient(searchText.getText());
         DefaultTableModel model = new DefaultTableModel();
@@ -84,7 +85,11 @@ public class ViewClientsForm extends JFrame {
         label1.setText("Clients List");
         rootPanel.add(label1, new GridConstraints(0, 0, 1, 6, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clientsTable = new JTable();
+        clientsTable.setEnabled(false);
+        clientsTable.setFocusable(true);
         clientsTable.setForeground(new Color(-11948357));
+        clientsTable.setUpdateSelectionOnSort(false);
+        clientsTable.setVerifyInputWhenFocusTarget(true);
         rootPanel.add(clientsTable, new GridConstraints(3, 0, 1, 6, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
         searchText = new JTextField();
         searchText.setFont(new Font("Courier New", searchText.getFont().getStyle(), 16));
