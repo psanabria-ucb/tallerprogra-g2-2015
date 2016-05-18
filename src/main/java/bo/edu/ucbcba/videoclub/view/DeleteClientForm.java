@@ -111,18 +111,27 @@ public class DeleteClientForm extends JFrame {
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
         rootPanel.setLayout(new GridLayoutManager(4, 6, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setBackground(new Color(-3090213));
+        rootPanel.setForeground(new Color(-3090213));
         searchText = new JTextField();
         rootPanel.add(searchText, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
+        label1.setFont(new Font("Courier New", Font.BOLD, 20));
+        label1.setForeground(new Color(-4486332));
         label1.setText("Delete Client");
         rootPanel.add(label1, new GridConstraints(0, 2, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clientsTable = new JTable();
         clientsTable.setEnabled(false);
         rootPanel.add(clientsTable, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
         deleteButton = new JButton();
+        deleteButton.setBackground(new Color(-12828863));
+        deleteButton.setFont(new Font("Courier New", deleteButton.getFont().getStyle(), 18));
+        deleteButton.setForeground(new Color(-4486332));
         deleteButton.setText("Delete");
         rootPanel.add(deleteButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
+        label2.setFont(new Font("Courier New", label2.getFont().getStyle(), 18));
+        label2.setForeground(new Color(-4486332));
         label2.setText("CI:");
         rootPanel.add(label2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
