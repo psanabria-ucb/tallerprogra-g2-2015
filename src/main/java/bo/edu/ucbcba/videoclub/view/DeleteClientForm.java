@@ -41,11 +41,14 @@ public class DeleteClientForm extends JFrame {
     }
 
     private void deleteClient() {
-        if (clientController.deleteClient(searchText.getText())) {
-            JOptionPane.showMessageDialog(this, "Client Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else
+        if (searchText.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Invalid User CI ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-
+        } else {
+            if (clientController.deleteClient(searchText.getText())) {
+                JOptionPane.showMessageDialog(this, "Client Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else
+                JOptionPane.showMessageDialog(this, "Invalid User CI ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
 
@@ -114,6 +117,7 @@ public class DeleteClientForm extends JFrame {
         label1.setText("Delete Client");
         rootPanel.add(label1, new GridConstraints(0, 2, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clientsTable = new JTable();
+        clientsTable.setEnabled(false);
         rootPanel.add(clientsTable, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("Delete");
