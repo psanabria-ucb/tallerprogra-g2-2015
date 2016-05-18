@@ -16,6 +16,7 @@ public class GameController {
                         String description,
                         String releaseYear,
                         int rating,
+                        String price,
                         String company){
         Game game = new Game();
         //--------------------Validaciones de espacios en blanco
@@ -27,6 +28,10 @@ public class GameController {
             throw new ValidationException("Year can't be blank");
         }
 
+        if (price.isEmpty()){
+            throw new ValidationException("Price can't be blank");
+        }
+
         if (title.isEmpty()){
             throw new ValidationException("Title can't be blank");
         }
@@ -36,6 +41,13 @@ public class GameController {
         }
 
         //--------------------Validacion de Año
+
+        if (price.matches("[0-9]+")) {
+            game.setReleaseYear((releaseYear));
+        }else {
+            throw new ValidationException("Price year isn't a number");
+        }
+
         int year, currentYear;
         year = Integer.parseInt(releaseYear);
         currentYear = Calendar.getInstance().get(Calendar.YEAR);

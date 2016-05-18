@@ -93,15 +93,17 @@ public class GamesForm extends JDialog {
         model.addColumn("Year");
         model.addColumn("Company");
         model.addColumn("Rating");
+        model.addColumn("Price");
         gamesTable.setModel(model);
         for (Game g : games) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
 
             row[0] = g.getTitle();
             row[1] = g.getDescription();
             row[2] = g.getReleaseYear();
             row[3] = g.getCompany();
             row[4] = g.getRating();
+            row[5] = g.getPrice();
             model.addRow(row);
         }
     }

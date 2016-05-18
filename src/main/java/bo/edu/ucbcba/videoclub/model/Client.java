@@ -20,7 +20,6 @@ public class Client {
     @Column(length = 30)
     private String address; // In minutes
 
-
     public String getCi() {
         return ci;
     }

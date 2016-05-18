@@ -25,6 +25,7 @@ public class RegisterGamesForm extends JDialog {
     private JRadioButton rating5;
     private JButton saveButton;
     private JButton cancelButton;
+    private JTextField price;
     private int rating = 5;
     private GameController controller;
 
@@ -96,6 +97,7 @@ public class RegisterGamesForm extends JDialog {
                     description.getText(),
                     releaseYear.getText(),
                     rating,
+                    price.getText(),
                     company.getText());
             JOptionPane.showMessageDialog(this, "Game created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             cancel();
