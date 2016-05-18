@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="50" left="50" bottom="50" right="60"/>
     <constraints>
-      <xy x="20" y="20" width="618" height="400"/>
+      <xy x="20" y="20" width="640" height="400"/>
     </constraints>
     <properties>
       <background color="-3090213"/>
@@ -25,17 +25,6 @@
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
           <text value="Listing Games"/>
-        </properties>
-      </component>
-      <component id="27646" class="javax.swing.JButton" binding="addGameButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-12828863"/>
-          <font name="Courier New" size="18"/>
-          <foreground color="-4486332"/>
-          <text value="Add Game"/>
         </properties>
       </component>
       <hspacer id="a9773">
@@ -77,6 +66,28 @@
           <font name="Courier New" size="18"/>
           <foreground color="-6836293"/>
           <text value="Home"/>
+        </properties>
+      </component>
+      <component id="27646" class="javax.swing.JButton" binding="addGameButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <text value="Add Game"/>
+        </properties>
+      </component>
+      <component id="51c83" class="javax.swing.JButton" binding="deleteGameButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <text value="Delete Game"/>
         </properties>
       </component>
     </children>

@@ -166,7 +166,7 @@ public class InitialForm extends JFrame {
         CustomersButton.setFont(new Font("Courier New", CustomersButton.getFont().getStyle(), 18));
         CustomersButton.setForeground(new Color(-4486332));
         CustomersButton.setHideActionText(false);
-        CustomersButton.setText("Customers");
+        CustomersButton.setText("Clients");
         rootPanel.add(CustomersButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setBackground(new Color(-12828863));

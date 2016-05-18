@@ -50,7 +50,7 @@
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
           <hideActionText value="false"/>
-          <text value="Customers"/>
+          <text value="Clients"/>
         </properties>
       </component>
       <component id="183da" class="javax.swing.JLabel">
