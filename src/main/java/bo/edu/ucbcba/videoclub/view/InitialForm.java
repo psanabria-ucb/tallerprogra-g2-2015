@@ -2,7 +2,6 @@ package bo.edu.ucbcba.videoclub.view;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +14,7 @@ public class InitialForm extends JFrame {
     private JButton MoviesButton;
     private JButton CustomersButton;
     private JButton GamesButton;
+
     //Creo que es necesario que esta clase tenga un contructor propio para cada ventana, o almenos asi es como logre hacer
     //si logran hacerlo de una mejor forma y mas limpia le meten no mas
     public InitialForm(HomeGamesForm parent) {
@@ -44,6 +44,7 @@ public class InitialForm extends JFrame {
         });
         InitialForm form = new InitialForm();
     }
+
     public InitialForm(GamesForm parent) {
         super("Welcome");
         setContentPane(rootPanel);
@@ -116,10 +117,11 @@ public class InitialForm extends JFrame {
     }
 
     private void MoviesZone() {
-        MoviesForm form = new MoviesForm(this);
+        this.setVisible(false);
+        HomeMoviesForm form = new HomeMoviesForm(this);
         form.setVisible(true);
+        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
-
 
 
     {
