@@ -16,7 +16,8 @@ public class MovieController {
                        int rating,
                        String hoursLength,
                        String minutesLength,
-                       String price) {
+                       String price,
+                       String nameImage) {
 
         Movie movie = new Movie();
         //--------------------Validaciones de espacios en blanco
@@ -87,6 +88,7 @@ public class MovieController {
             throw new ValidationException("Tile is too long, must have less than 101 characters");
 
         movie.setRating(rating);
+        movie.setNameImage(nameImage);
         movie.setTitle(title);
         movie.setDescription(description);
         

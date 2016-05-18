@@ -14,6 +14,10 @@ public class Movie {
     private String title;
 
     @Lob
+    @Column(length = 100)
+    private String nameImage;
+
+    @Lob
     @Column(length = 500)
     private String description; // Lob will create as TEXT instead of VARCHAR
 
@@ -22,6 +26,14 @@ public class Movie {
     private int rating;
 
     private int price;
+
+    public String getNameImage() {
+        return nameImage;
+    }
+
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
+    }
 
     public int getId() {
         return id;

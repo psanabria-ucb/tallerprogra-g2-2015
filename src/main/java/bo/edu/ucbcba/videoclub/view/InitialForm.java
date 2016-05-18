@@ -151,14 +151,14 @@ public class InitialForm extends JFrame {
         GamesButton.setFont(new Font("Courier New", GamesButton.getFont().getStyle(), 18));
         GamesButton.setForeground(new Color(-4486332));
         GamesButton.setHideActionText(false);
-        GamesButton.setText("Juegos");
+        GamesButton.setText("Games");
         rootPanel.add(GamesButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         MoviesButton = new JButton();
         MoviesButton.setBackground(new Color(-12828863));
         MoviesButton.setFont(new Font("Courier New", MoviesButton.getFont().getStyle(), 18));
         MoviesButton.setForeground(new Color(-4486332));
         MoviesButton.setHorizontalTextPosition(11);
-        MoviesButton.setText("Peliculas");
+        MoviesButton.setText("Movies");
         rootPanel.add(MoviesButton, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         CustomersButton = new JButton();
         CustomersButton.setBackground(new Color(-12828863));
@@ -166,7 +166,7 @@ public class InitialForm extends JFrame {
         CustomersButton.setFont(new Font("Courier New", CustomersButton.getFont().getStyle(), 18));
         CustomersButton.setForeground(new Color(-4486332));
         CustomersButton.setHideActionText(false);
-        CustomersButton.setText("Clientes");
+        CustomersButton.setText("Customers");
         rootPanel.add(CustomersButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setBackground(new Color(-12828863));
