@@ -5,7 +5,10 @@
     <constraints>
       <xy x="20" y="20" width="1180" height="583"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-3090213"/>
+      <foreground color="-3090213"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="408b" class="javax.swing.JLabel">
@@ -13,6 +16,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Title"/>
         </properties>
       </component>
@@ -22,7 +27,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Courier New" size="16"/>
+        </properties>
       </component>
       <vspacer id="7ff00">
         <constraints>
@@ -34,6 +41,8 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Description"/>
         </properties>
       </component>
@@ -42,15 +51,17 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Length"/>
         </properties>
       </component>
       <component id="1c304" class="javax.swing.JTextArea" binding="description">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="10" vsize-policy="2" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <minimum-size width="600" height="50"/>
-            <preferred-size width="600" height="50"/>
-            <maximum-size width="600" height="50"/>
+          <grid row="2" column="1" row-span="1" col-span="10" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="700" height="50"/>
+            <preferred-size width="700" height="50"/>
+            <maximum-size width="700" height="50"/>
           </grid>
         </constraints>
         <properties>
@@ -58,6 +69,7 @@
           <editable value="true"/>
           <enabled value="true"/>
           <focusTraversalPolicyProvider value="false"/>
+          <font name="Courier New" size="16"/>
           <lineWrap value="false"/>
           <rows value="5"/>
         </properties>
@@ -70,6 +82,7 @@
         </constraints>
         <properties>
           <columns value="2"/>
+          <font name="Courier New" size="16"/>
         </properties>
       </component>
       <component id="ec44a" class="javax.swing.JLabel">
@@ -77,6 +90,8 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Release Year"/>
         </properties>
       </component>
@@ -86,7 +101,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Courier New" size="16"/>
+        </properties>
       </component>
       <hspacer id="4e948">
         <constraints>
@@ -98,6 +115,10 @@
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="1"/>
         </properties>
       </component>
@@ -106,6 +127,8 @@
           <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Rating"/>
         </properties>
       </component>
@@ -116,6 +139,7 @@
           </grid>
         </constraints>
         <properties>
+          <font name="Courier New" size="16"/>
           <text value=""/>
         </properties>
       </component>
@@ -124,6 +148,8 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Price"/>
         </properties>
       </component>
@@ -132,6 +158,10 @@
           <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="2"/>
         </properties>
       </component>
@@ -140,6 +170,10 @@
           <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="3"/>
         </properties>
       </component>
@@ -148,6 +182,10 @@
           <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="4"/>
         </properties>
       </component>
@@ -157,13 +195,19 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Courier New" size="16"/>
+        </properties>
       </component>
       <component id="efe9a" class="javax.swing.JRadioButton" binding="rating5">
         <constraints>
           <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <selected value="true"/>
           <text value="5"/>
         </properties>
@@ -173,6 +217,10 @@
           <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value=" Select"/>
         </properties>
       </component>
@@ -181,15 +229,9 @@
           <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Image"/>
-        </properties>
-      </component>
-      <component id="2e702" class="javax.swing.JLabel" binding="CoverFilm">
-        <constraints>
-          <grid row="6" column="7" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
         </properties>
       </component>
       <component id="4961d" class="javax.swing.JButton" binding="saveButton">
@@ -197,6 +239,10 @@
           <grid row="8" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="Save"/>
         </properties>
       </component>
@@ -205,6 +251,10 @@
           <grid row="8" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
+          <hideActionText value="false"/>
           <text value="Cancel"/>
         </properties>
       </component>
@@ -213,6 +263,8 @@
           <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Hours"/>
         </properties>
       </component>
@@ -224,6 +276,7 @@
         </constraints>
         <properties>
           <columns value="2"/>
+          <font name="Courier New" size="16"/>
         </properties>
       </component>
       <component id="4e45c" class="javax.swing.JLabel">
@@ -231,6 +284,8 @@
           <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Minutes"/>
         </properties>
       </component>
@@ -239,7 +294,17 @@
           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="20" style="1"/>
+          <foreground color="-4486332"/>
           <text value="Register Movie"/>
+        </properties>
+      </component>
+      <component id="2e702" class="javax.swing.JLabel" binding="CoverFilm">
+        <constraints>
+          <grid row="6" column="7" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
         </properties>
       </component>
     </children>

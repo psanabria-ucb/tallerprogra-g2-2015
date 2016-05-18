@@ -3,9 +3,12 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="8" column-count="11" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="654" height="400"/>
+      <xy x="20" y="20" width="785" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-3090213"/>
+      <foreground color="-3090213"/>
+    </properties>
     <border type="none"/>
     <children>
       <component id="bdfaf" class="javax.swing.JLabel">
@@ -13,6 +16,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Title"/>
         </properties>
       </component>
@@ -21,6 +26,8 @@
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Company"/>
         </properties>
       </component>
@@ -37,7 +44,9 @@
       <component id="bd664" class="javax.swing.JTextArea" binding="description">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="9" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
+            <minimum-size width="600" height="50"/>
+            <preferred-size width="600" height="50"/>
+            <maximum-size width="600" height="50"/>
           </grid>
         </constraints>
         <properties/>
@@ -57,6 +66,8 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Description"/>
         </properties>
       </component>
@@ -65,6 +76,8 @@
           <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Rating"/>
         </properties>
       </component>
@@ -73,6 +86,8 @@
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <foreground color="-4486332"/>
           <text value="1"/>
         </properties>
       </component>
@@ -81,6 +96,8 @@
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <foreground color="-4486332"/>
           <text value="2"/>
         </properties>
       </component>
@@ -89,6 +106,8 @@
           <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <foreground color="-4486332"/>
           <text value="3"/>
         </properties>
       </component>
@@ -97,6 +116,8 @@
           <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <foreground color="-4486332"/>
           <text value="4"/>
         </properties>
       </component>
@@ -105,6 +126,8 @@
           <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-3090213"/>
+          <foreground color="-4486332"/>
           <selected value="true"/>
           <text value="5"/>
         </properties>
@@ -114,6 +137,9 @@
           <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Save"/>
         </properties>
       </component>
@@ -122,6 +148,8 @@
           <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="20" style="1"/>
+          <foreground color="-4486332"/>
           <text value="Register Game"/>
         </properties>
       </component>
@@ -130,6 +158,8 @@
           <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Release Year"/>
         </properties>
       </component>
@@ -146,6 +176,9 @@
           <grid row="6" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-12828863"/>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Cancel"/>
         </properties>
       </component>
@@ -169,6 +202,8 @@
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font name="Courier New" size="18"/>
+          <foreground color="-4486332"/>
           <text value="Price"/>
         </properties>
       </component>
