@@ -65,6 +65,12 @@ public class GamesForm extends JDialog {
                 populateTable();
             }
         });
+        /*homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showHome();
+            }
+        });*/
     }
 
 
@@ -73,7 +79,11 @@ public class GamesForm extends JDialog {
         form.setVisible(true);
         populateTable();
     }
-
+   /* public void showHome() {
+        InitialForm form = new InitialForm(this);
+        form.setVisible(true);
+        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }*/
     private void populateTable() {
         List<Game> games = gameController.searchGames(searchText.getText());
         DefaultTableModel model = new DefaultTableModel();

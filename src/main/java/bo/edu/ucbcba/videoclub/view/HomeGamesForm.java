@@ -42,6 +42,32 @@ public class HomeGamesForm extends JFrame {
         });
     }
 
+    public HomeGamesForm() {
+        super("Home");
+        setContentPane(rootPanel);
+        pack();
+        setResizable(true);
+        listingGamesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showGames();
+            }
+        });
+        addGameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showNewGame();
+            }
+        });
+
+        homePageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showHome();
+            }
+        });
+    }
+
     public void showGames() {
         GamesForm form = new GamesForm(this);
         form.setVisible(true);
@@ -50,11 +76,14 @@ public class HomeGamesForm extends JFrame {
     public void showNewGame() {
         RegisterGamesForm form = new RegisterGamesForm(this);
         form.setVisible(true);
+        
     }
 
     public void showHome() {
-        InitialForm form = new InitialForm(this);
+        this.setVisible(false);
+        InitialForm form = new InitialForm();
         form.setVisible(true);
+        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
 

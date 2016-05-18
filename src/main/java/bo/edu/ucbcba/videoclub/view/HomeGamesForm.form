@@ -9,6 +9,9 @@
       <background color="-3090213"/>
       <foreground color="-3090213"/>
     </properties>
+    <clientProperties>
+      <html.disable class="java.lang.Boolean" value="false"/>
+    </clientProperties>
     <border type="none">
       <title-color color="-4473925"/>
     </border>
