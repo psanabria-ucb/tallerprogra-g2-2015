@@ -79,11 +79,12 @@ public class GamesForm extends JDialog {
         form.setVisible(true);
         populateTable();
     }
-   /* public void showHome() {
-        InitialForm form = new InitialForm(this);
-        form.setVisible(true);
-        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }*/
+
+    /* public void showHome() {
+         InitialForm form = new InitialForm(this);
+         form.setVisible(true);
+         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+     }*/
     private void populateTable() {
         List<Game> games = gameController.searchGames(searchText.getText());
         DefaultTableModel model = new DefaultTableModel();

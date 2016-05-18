@@ -1,7 +1,6 @@
 package bo.edu.ucbcba.videoclub;
 
 import bo.edu.ucbcba.videoclub.view.InitialForm;
-import bo.edu.ucbcba.videoclub.view.MoviesForm;
 
 import javax.swing.*;
 

@@ -76,7 +76,7 @@ public class HomeGamesForm extends JFrame {
     public void showNewGame() {
         RegisterGamesForm form = new RegisterGamesForm(this);
         form.setVisible(true);
-        
+
     }
 
     public void showHome() {
@@ -106,6 +106,7 @@ public class HomeGamesForm extends JFrame {
         rootPanel.setLayout(new GridLayoutManager(3, 5, new Insets(50, 50, 50, 60), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
+        rootPanel.putClientProperty("html.disable", Boolean.FALSE);
         listingGamesButton = new JButton();
         listingGamesButton.setBackground(new Color(-12828863));
         listingGamesButton.setFont(new Font("Courier New", listingGamesButton.getFont().getStyle(), 18));
