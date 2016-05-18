@@ -21,8 +21,18 @@ public class Movie {
     private int releaseYear;
     private int rating;
 
+    private int price;
+
     public int getId() {
         return id;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public void setId(int id) {

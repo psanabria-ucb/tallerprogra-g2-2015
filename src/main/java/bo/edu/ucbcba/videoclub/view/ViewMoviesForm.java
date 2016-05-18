@@ -24,7 +24,7 @@ public class ViewMoviesForm extends JDialog {
         super(parent, "Movies", true);
         setContentPane(rootPanel);
         setSize(600, 400);
-        setResizable(false);
+        setResizable(true);
         movieController = new MovieController();
         populateTable();
         searchButton.addActionListener(new ActionListener() {
@@ -44,16 +44,19 @@ public class ViewMoviesForm extends JDialog {
         model.addColumn("Rating");
         model.addColumn("Release Year");
         model.addColumn("Length");
+        model.addColumn("Price");
         moviesTable.setModel(model);
 
         for (Movie m : movies) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
 
             row[0] = m.getTitle();
             row[1] = m.getDescription();
             row[2] = m.getRating();
             row[3] = m.getReleaseYear();
-            row[4] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
+            row[4] = m.getPrice();
+            row[5] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
+
             model.addRow(row);
         }
     }

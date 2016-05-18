@@ -31,6 +31,7 @@ public class RegisterMovieForm extends JDialog {
     private JButton selectButton;
     private JTextField imageText;
     private JLabel CoverFilm;
+    private JTextField price;
 
     RegisterMovieForm(HomeMoviesForm parent) {
         super(parent, "Register Movie", true);
@@ -90,12 +91,13 @@ public class RegisterMovieForm extends JDialog {
                     releaseYear.getText(),
                     rating,
                     hoursLength.getText(),
-                    minutesLength.getText());
+                    minutesLength.getText(),
+                    price.getText());
+                    JOptionPane.showMessageDialog(this, "Game created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            cancel();
         } catch (ValidationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Format error", JOptionPane.ERROR_MESSAGE);
         }
-
-        cancel();
     }
 
     private void cancel() {

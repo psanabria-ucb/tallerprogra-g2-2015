@@ -13,9 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-/**
- * Created by privado on 18/05/2016.
- */
 public class DeleteClientForm extends JFrame {
     private JTextField searchText;
     private JTable clientsTable;

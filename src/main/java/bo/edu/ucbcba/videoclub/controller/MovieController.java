@@ -15,10 +15,14 @@ public class MovieController {
                        String releaseYear,
                        int rating,
                        String hoursLength,
-                       String minutesLength) {
+                       String minutesLength,
+                       String price) {
 
         Movie movie = new Movie();
         //--------------------Validaciones de espacios en blanco
+        if (price.isEmpty()){
+            throw new ValidationException("Price can't be blank");
+        }
 
         if (description.isEmpty()){
             description = " ";
@@ -48,7 +52,13 @@ public class MovieController {
             throw new ValidationException("Release year isn't a number");
         }
 
-        if (year < currentYear && year > 1887){
+        if (price.matches("[0-9]+")) {
+            movie.setReleaseYear(Integer.parseInt(releaseYear));
+        }else {
+            throw new ValidationException("Price year isn't a number");
+        }
+
+        if (year <= currentYear && year > 1887){
             movie.setReleaseYear(Integer.parseInt(releaseYear));
         }else{
             throw new ValidationException("Year must be before " + String.valueOf(currentYear+1) + " and after 1887 ");

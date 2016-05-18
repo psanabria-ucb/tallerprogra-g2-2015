@@ -39,13 +39,14 @@ public class GameController {
         int year, currentYear;
         year = Integer.parseInt(releaseYear);
         currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
         if (releaseYear.matches("[0-9]+")) {
             game.setReleaseYear((releaseYear));
         }else {
             throw new ValidationException("Release year isn't a number");
         }
 
-        if (year < currentYear && year > 1887){
+        if (year <= currentYear && year > 1887){
             game.setReleaseYear((releaseYear));
         }else{
             throw new ValidationException("Year must be before " + String.valueOf(currentYear+1) + " and after 1887 ");
@@ -58,9 +59,19 @@ public class GameController {
         length = title.length();
         if(length > 100)
             throw new ValidationException("Tile is too long, must have less than 101 characters");
+        else{
+            game.setTitle(title);
+        }
+
+        int lengthCompany;
+        lengthCompany = title.length();
+        if(lengthCompany > 100)
+            throw new ValidationException("Tile is too long, must have less than 101 characters");
+        else{
+            game.setCompany(company);
+        }
 
         game.setRating(rating);
-        game.setTitle(title);
         game.setDescription(description);
 
 
