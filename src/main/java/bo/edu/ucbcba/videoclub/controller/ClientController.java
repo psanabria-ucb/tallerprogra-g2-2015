@@ -23,26 +23,55 @@ public class ClientController {
         Client client = new Client();
         /*client.setCi(ci);
         */
+        //------------------Validacion blancos
+        if (ci.isEmpty()){
+            throw new ValidationException("Ci can't be blank");
+        }
+        if (firstname.isEmpty()){
+            throw new ValidationException("First Name can't be blank");
+        }
+        if (lastname.isEmpty()){
+            throw new ValidationException("Last Name can't be blank");
+        }
+        if (address.isEmpty()){
+            throw new ValidationException("Address can't be blank");
+        }
 
+        //-----------validacion de longitud
+
+        int length;
+        length = firstname.length();
+        if(length > 25)
+            throw new ValidationException("First Name is too long, must have less than 25 characters");
+
+        int lengthfn;
+        lengthfn = lastname.length();
+        if(lengthfn > 25)
+            throw new ValidationException("Last Name is too long, must have less than 25 characters");
+
+        int lengthadd;
+        lengthadd = address.length();
+        if(lengthadd > 100)
+            throw new ValidationException("Address is too long, must have less than 100 characters");
+
+        //-------------Validacion cliente
         if (ci.matches("[0-9]+")) {
             client.setCi(ci);
-            client.setFirstname(firstname);
-            client.setLastname(lastname);
-            client.setAddress(address);
-
-            EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-            entityManager.getTransaction().begin();
-            entityManager.persist(client);
-            entityManager.getTransaction().commit();
-            entityManager.close();
-
         }
         else {
             throw new ValidationException("Ci isn't a number");
-
         }
 
+        client.setFirstname(firstname);
+        client.setLastname(lastname);
+        client.setAddress(address);
 
+
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        entityManager.getTransaction().begin();
+        entityManager.persist(client);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
 

@@ -15,6 +15,7 @@ public class Game {
     private String description;
     private String releaseYear;
     private String company;
+    private String price;
     private int rating;
 
     public int getId() {
@@ -23,6 +24,14 @@ public class Game {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getTitle() {
