@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class RegisterMovieForm extends JDialog {
     private JPanel rootPanel;
@@ -27,6 +28,8 @@ public class RegisterMovieForm extends JDialog {
     private JRadioButton rating5;
     private int rating = 5;
     private MovieController controller;
+    private JButton selectButton;
+    private JTextField imageText;
 
     RegisterMovieForm(MoviesForm parent) {
         super(parent, "Register Movie", true);
@@ -34,6 +37,13 @@ public class RegisterMovieForm extends JDialog {
         setSize(600, 400);
         pack();
         setResizable(true);
+
+        selectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadImage();
+            }
+        });
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +68,17 @@ public class RegisterMovieForm extends JDialog {
         rating4.addActionListener(ratingListener);
         rating5.addActionListener(ratingListener);
         controller = new MovieController();
+    }
+
+    private  void loadImage()
+    {
+        JFileChooser chooser = new JFileChooser();
+        int search = chooser.showOpenDialog(null);
+        if(search == JFileChooser.APPROVE_OPTION)
+        {
+            File file = chooser.getSelectedFile();
+            imageText.setText(String.valueOf(file));
+        }
     }
 
     private void saveUser() {
