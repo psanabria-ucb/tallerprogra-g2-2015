@@ -7,6 +7,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,7 +74,10 @@ public class RegisterMovieForm extends JDialog {
     }
 
     private void loadImage() {
+
         JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
+        chooser.setFileFilter(filtroImagen);
         int search = chooser.showOpenDialog(null);
         if (search == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();
