@@ -21,6 +21,7 @@ public class ClientsForm extends JFrame {
     private JButton viewClientsButton;
     private JButton addClientsButton;
     private JPanel rootPanel;
+    private JButton homeButton;
 
     public ClientsForm(JFrame parent) {
         super("Clients");
@@ -42,9 +43,20 @@ public class ClientsForm extends JFrame {
                 viewClients();
             }
         });
-
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showHome();
+            }
+        });
     }
 
+    private void showHome(){
+        this.setVisible(false);
+        InitialForm form = new InitialForm();
+        form.setVisible(true);
+        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
     private void launchClientRegister() {
         ClientRegister form = new ClientRegister(this);
         form.setVisible(true);
