@@ -42,28 +42,30 @@ public class GameController {
 
         //--------------------Validacion de Año
 
-        if (price.matches("[0-9]+")) {
-            game.setPrice((price));
-        } else {
-            throw new ValidationException("Price isn't a number");
-        }
 
         int year, currentYear;
-        year = Integer.parseInt(releaseYear);
-        currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
         if (releaseYear.matches("[0-9]+")) {
-            game.setReleaseYear((releaseYear));
-        } else {
+            game.setReleaseYear(Integer.parseInt(releaseYear));
+        }else {
             throw new ValidationException("Release year isn't a number");
         }
 
-        if (year <= currentYear && year > 1887) {
-            game.setReleaseYear((releaseYear));
-        } else {
-            throw new ValidationException("Year must be before " + String.valueOf(currentYear + 1) + " and after 1887 ");
+        year = Integer.parseInt(releaseYear);
+        currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+
+        if (price.matches("[0-9]+")) {
+            game.setPrice(Integer.parseInt(price));
+        }else {
+            throw new ValidationException("Price isn't a number");
         }
 
+        if (year <= currentYear && year >= 1947){
+            game.setReleaseYear(Integer.parseInt(releaseYear));
+        }else{
+            throw new ValidationException("Year must be before " + String.valueOf(currentYear+1) + " and after 1946 ");
+        }
 
         //-----------------Validacion Longitud de titulo
 
@@ -74,7 +76,7 @@ public class GameController {
         else {
             game.setTitle(title);
         }
-
+        //-----------------Validacion Longitud de compañia
         int lengthCompany;
         lengthCompany = title.length();
         if (lengthCompany > 100)
@@ -83,8 +85,19 @@ public class GameController {
             game.setCompany(company);
         }
 
+        //-----------------Validacion Longitud de descripcion
+
+        int lengthDescription;
+        lengthDescription = description.length();
+        if (lengthDescription > 250)
+            throw
+                    new ValidationException("Description is too long, must have less than 251 characters");
+        else {
+            game.setDescription(description);
+        }
+
         game.setRating(rating);
-        game.setDescription(description);
+
 
 
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();

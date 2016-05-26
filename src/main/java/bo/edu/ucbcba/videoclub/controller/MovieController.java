@@ -49,18 +49,22 @@ public class MovieController {
         }
         //--------------------Validacion de Año
         int year, currentYear;
-        year = Integer.parseInt(releaseYear);
-        currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
         if (releaseYear.matches("[0-9]+")) {
             movie.setReleaseYear(Integer.parseInt(releaseYear));
         }else {
             throw new ValidationException("Release year isn't a number");
         }
 
+
+        year = Integer.parseInt(releaseYear);
+        currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+
         if (price.matches("[0-9]+")) {
             movie.setPrice(Integer.parseInt(price));
         }else {
-            throw new ValidationException("Price year isn't a number");
+            throw new ValidationException("Price isn't a number");
         }
 
         if (year <= currentYear && year > 1887){
@@ -90,6 +94,16 @@ public class MovieController {
         length = title.length();
         if(length > 100)
             throw new ValidationException("Tile is too long, must have less than 101 characters");
+
+        //-----------------Validacion Longitud de descripcion
+        int lengthDescription;
+        lengthDescription = description.length();
+        if (lengthDescription > 250)
+            throw
+                    new ValidationException("Description is too long, must have less than 251 characters");
+        else {
+            movie.setDescription(description);
+        }
 
         movie.setRating(rating);
         movie.setNameImage(nameImage);

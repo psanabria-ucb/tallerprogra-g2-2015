@@ -18,7 +18,7 @@ public class Movie {
     private String nameImage;
 
     @Lob
-    @Column(length = 500)
+    @Column(length = 250)
     private String description; // Lob will create as TEXT instead of VARCHAR
 
     private int length; // In minutes
