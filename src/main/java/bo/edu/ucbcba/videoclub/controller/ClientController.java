@@ -77,29 +77,44 @@ public class ClientController {
 
     public List<Client> searchClient(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.ci) like :ci", Client.class);
-        query.setParameter("ci", "%" + q.toLowerCase() + "%");
+        TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.lastname) like :lastname", Client.class);
+        query.setParameter("lastname", "%" + q.toLowerCase() + "%");
         List<Client> response = query.getResultList();
         entityManager.close();
         return response;
     }
 
-    public boolean deleteClient(String q){
+    public int deleteClient(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {
 
             entityManager.getTransaction().begin();
+            TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.ci) like :ci", Client.class);
+            query.setParameter("ci", q);
+            List<Client> response = query.getResultList();
 
-            TypedQuery<Client> query = entityManager.createQuery("delete from Client c WHERE lower(c.ci) like :ci", Client.class);
-            query.setParameter("ci", "%" + q.toLowerCase() + "%");
-            int response = query.executeUpdate();
-            entityManager.getTransaction().commit();
-            entityManager.close();
-            return true;
+
+            if(response.size() > 1){
+                entityManager.close();
+                return 3;
+            }
+            if(response.size() == 0){
+                entityManager.close();
+                return 4;
+            }
+            else{
+
+                query = entityManager.createQuery("delete from Client c WHERE lower(c.ci) like :ci", Client.class);
+                query.setParameter("ci", q);
+                query.executeUpdate();
+                entityManager.getTransaction().commit();
+                entityManager.close();
+                return 1;
+            }
+
         } catch(Exception ex) {
             entityManager.getTransaction().rollback();
-            return false; // let upper methods know this did not go well
-
+            return 2; // let upper methods know this did not go well
         }
     }
 
