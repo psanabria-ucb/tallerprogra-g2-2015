@@ -106,6 +106,12 @@ public class MovieController {
             movie.setDescription(description);
         }
 
+
+        if(ValidarM(title)>0)
+        {
+            throw new ValidationException("Movie already exists");
+        }
+
         movie.setRating(rating);
         movie.setNameImage(nameImage);
         movie.setTitle(title);
@@ -126,6 +132,16 @@ public class MovieController {
         List<Movie> response = query.getResultList();
         entityManager.close();
         return response;
+    }
+
+    public int ValidarM(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) = :title", Movie.class);
+        query.setParameter("title",q.toLowerCase());
+        List<Movie> response = query.getResultList();
+        int a=response.size();
+        entityManager.close();
+        return a;
     }
     public List<Movie> searchDirectors(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
