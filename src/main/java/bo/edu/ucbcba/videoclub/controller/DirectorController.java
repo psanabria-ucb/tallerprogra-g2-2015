@@ -42,9 +42,9 @@ public class DirectorController {
             throw new ValidationException("Last Name is too long, must have less than 25 characters");
         }
 
-      /*  if(Validar(Fname,Lname)>0) {
-            throw new ValidationException("validando");
-        }*/
+       if(Validar(Fname,Lname)>0) {
+            throw new ValidationException("director already exists");
+        }
         director.setFirstName(Fname);
         director.setLastName(Lname);
         em.persist(director);
@@ -55,7 +55,7 @@ public class DirectorController {
 
     public int Validar(String Fname , String Lname) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Director> query = entityManager.createQuery("SELECT c FROM Director c WHERE lower(c.lastname) = :lname AND lower(c.firstname) = :fname ", Director.class);
+        TypedQuery<Director> query = entityManager.createQuery("SELECT c FROM Director c WHERE lower(c.lastName) = :lname AND lower(c.firstName) = :fname ", Director.class);
         query.setParameter("fname", Fname.toLowerCase());
         query.setParameter("lname",Lname.toLowerCase());
         List<Director> response = query.getResultList();
