@@ -1,9 +1,6 @@
 package bo.edu.ucbcba.videoclub.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Game {
@@ -12,10 +9,13 @@ public class Game {
     private int id;
 
     private String title;
+
+    @Lob
+    @Column(length = 250)
     private String description;
-    private String releaseYear;
+    private int releaseYear;
     private String company;
-    private String price;
+    private int price;
     private int rating;
 
     public int getId() {
@@ -26,11 +26,11 @@ public class Game {
         this.id = id;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -50,11 +50,11 @@ public class Game {
         this.description = description;
     }
 
-    public String getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(String releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 

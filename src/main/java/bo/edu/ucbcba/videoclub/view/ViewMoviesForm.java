@@ -20,13 +20,16 @@ public class ViewMoviesForm extends JDialog {
     private JTable moviesTable;
     private JButton viewButton;
     private JTextField textField1;
+    private JRadioButton Titleradiobutton;
+    private JRadioButton Directorradiobutton;
     private MovieController movieController;
+    ButtonGroup group = new ButtonGroup();
 
     public ViewMoviesForm(HomeMoviesForm parent) {
         super(parent, "Movies", true);
         setContentPane(rootPanel);
-        setSize(600, 400);
-        setResizable(true);
+        setSize(700, 400);
+        setResizable(false);
         movieController = new MovieController();
         populateTable();
         searchButton.addActionListener(new ActionListener() {
@@ -41,6 +44,11 @@ public class ViewMoviesForm extends JDialog {
                 view();
             }
         });
+        Titleradiobutton.setSelected(true);
+        group.add(Titleradiobutton);
+        group.add(Directorradiobutton);
+
+
     }
 
     private void view() {
@@ -54,9 +62,15 @@ public class ViewMoviesForm extends JDialog {
     }
 
     private void populateTable() {
-        List<Movie> movies = movieController.searchMovies(searchText.getText());
+        List<Movie> movies;
+        if (Titleradiobutton.isSelected() == true) {
+            movies = movieController.searchMovies(searchText.getText());
+        } else {
+            movies = movieController.searchDirectors(searchText.getText());
+        }
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Title");
+        model.addColumn("Director");
         model.addColumn("Description");
         model.addColumn("Rating");
         model.addColumn("Release Year");
@@ -65,14 +79,15 @@ public class ViewMoviesForm extends JDialog {
         moviesTable.setModel(model);
 
         for (Movie m : movies) {
-            Object[] row = new Object[6];
+            Object[] row = new Object[7];
 
             row[0] = m.getTitle();
-            row[1] = m.getDescription();
-            row[2] = m.getRating();
-            row[3] = m.getReleaseYear();
-            row[4] = m.getPrice();
-            row[5] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
+            row[1] = m.getDirector();
+            row[2] = m.getDescription();
+            row[3] = m.getRating();
+            row[4] = m.getReleaseYear();
+            row[5] = m.getPrice();
+            row[6] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
 
             model.addRow(row);
         }
@@ -95,26 +110,38 @@ public class ViewMoviesForm extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
-        searchButton = new JButton();
-        searchButton.setText("Search");
-        rootPanel.add(searchButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.setLayout(new GridLayoutManager(6, 3, new Insets(0, 0, 0, 0), -1, -1));
         moviesTable = new JTable();
-        rootPanel.add(moviesTable, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        searchText = new JTextField();
-        searchText.setToolTipText("Search by name");
-        rootPanel.add(searchText, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        rootPanel.add(moviesTable, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         viewButton = new JButton();
         viewButton.setText("view");
-        rootPanel.add(viewButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(viewButton, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Title Movies");
-        rootPanel.add(label1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(label1, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         textField1 = new JTextField();
-        rootPanel.add(textField1, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        rootPanel.add(textField1, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("View Movies Details");
-        rootPanel.add(label2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(label2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.add(panel1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        Titleradiobutton = new JRadioButton();
+        Titleradiobutton.setText("Title");
+        panel1.add(Titleradiobutton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Directorradiobutton = new JRadioButton();
+        Directorradiobutton.setText("Director");
+        panel1.add(Directorradiobutton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label3 = new JLabel();
+        label3.setText("Search By:");
+        rootPanel.add(label3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        searchText = new JTextField();
+        searchText.setToolTipText("Search by name");
+        rootPanel.add(searchText, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        searchButton = new JButton();
+        searchButton.setText("Search");
+        rootPanel.add(searchButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

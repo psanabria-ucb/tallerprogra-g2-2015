@@ -18,7 +18,7 @@ public class Movie {
     private String nameImage;
 
     @Lob
-    @Column(length = 500)
+    @Column(length = 250)
     private String description; // Lob will create as TEXT instead of VARCHAR
 
     private int length; // In minutes
@@ -26,6 +26,16 @@ public class Movie {
     private int rating;
 
     private int price;
+    @ManyToOne
+    private Director director;
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
 
     public String getNameImage() {
         return nameImage;
