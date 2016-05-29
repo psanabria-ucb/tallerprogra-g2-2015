@@ -16,12 +16,13 @@ public class HomeMoviesForm extends JFrame {
     private JButton viewButton;
     private JButton addButton;
     private JButton homeButton;
+    private JButton addDirector;
 
     public HomeMoviesForm(InitialForm parent) {
         super("Home Movies");
         setContentPane(rootPanel);
-        setSize(400, 400);
-        setResizable(true);
+        setSize(600, 350);
+        setResizable(false);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,6 +43,17 @@ public class HomeMoviesForm extends JFrame {
                 showHome();
             }
         });
+        addDirector.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showdirector();
+            }
+        });
+    }
+
+    private void showdirector() {
+        RegisterDirector form = new RegisterDirector(this);
+        form.setVisible(true);
     }
 
     private void launchview() {
@@ -78,27 +90,9 @@ public class HomeMoviesForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
-        viewButton = new JButton();
-        viewButton.setBackground(new Color(-12828863));
-        viewButton.setFont(new Font("Courier New", viewButton.getFont().getStyle(), 18));
-        viewButton.setForeground(new Color(-4486332));
-        viewButton.setText("View");
-        rootPanel.add(viewButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        homeButton = new JButton();
-        homeButton.setBackground(new Color(-12828863));
-        homeButton.setFont(new Font("Courier New", homeButton.getFont().getStyle(), 18));
-        homeButton.setForeground(new Color(-6836293));
-        homeButton.setText("Home");
-        rootPanel.add(homeButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        addButton = new JButton();
-        addButton.setBackground(new Color(-12828863));
-        addButton.setFont(new Font("Courier New", addButton.getFont().getStyle(), 18));
-        addButton.setForeground(new Color(-4486332));
-        addButton.setText("Add");
-        rootPanel.add(addButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setFont(new Font("Courier New", Font.BOLD, 20));
         label1.setForeground(new Color(-4486332));
@@ -106,6 +100,30 @@ public class HomeMoviesForm extends JFrame {
         label1.setHorizontalTextPosition(0);
         label1.setText("MOVIES");
         rootPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        homeButton = new JButton();
+        homeButton.setBackground(new Color(-12828863));
+        homeButton.setFont(new Font("Courier New", homeButton.getFont().getStyle(), 18));
+        homeButton.setForeground(new Color(-6836293));
+        homeButton.setText("Home");
+        rootPanel.add(homeButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        viewButton = new JButton();
+        viewButton.setBackground(new Color(-12828863));
+        viewButton.setFont(new Font("Courier New", viewButton.getFont().getStyle(), 18));
+        viewButton.setForeground(new Color(-4486332));
+        viewButton.setText("View Movies");
+        rootPanel.add(viewButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addButton = new JButton();
+        addButton.setBackground(new Color(-12828863));
+        addButton.setFont(new Font("Courier New", addButton.getFont().getStyle(), 18));
+        addButton.setForeground(new Color(-4486332));
+        addButton.setText("Add Movie");
+        rootPanel.add(addButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addDirector = new JButton();
+        addDirector.setBackground(new Color(-12828863));
+        addDirector.setFont(new Font("Courier New", addDirector.getFont().getStyle(), 18));
+        addDirector.setForeground(new Color(-4486332));
+        addDirector.setText("Add Director");
+        rootPanel.add(addDirector, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

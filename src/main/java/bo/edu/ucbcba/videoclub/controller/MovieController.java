@@ -2,6 +2,7 @@ package bo.edu.ucbcba.videoclub.controller;
 
 import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
+import bo.edu.ucbcba.videoclub.model.Director;
 import bo.edu.ucbcba.videoclub.model.Movie;
 
 import javax.persistence.EntityManager;
@@ -17,7 +18,7 @@ public class MovieController {
                        String hoursLength,
                        String minutesLength,
                        String price,
-                       String nameImage) {
+                       String nameImage, Director d) {
 
         Movie movie = new Movie();
         //--------------------Validaciones de espacios en blanco
@@ -109,6 +110,7 @@ public class MovieController {
         movie.setNameImage(nameImage);
         movie.setTitle(title);
         movie.setDescription(description);
+        movie.setDirector(d);
         
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         entityManager.getTransaction().begin();
@@ -121,6 +123,15 @@ public class MovieController {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title", Movie.class);
         query.setParameter("title", "%" + q.toLowerCase() + "%");
+        List<Movie> response = query.getResultList();
+        entityManager.close();
+        return response;
+    }
+    public List<Movie> searchDirectors(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        //TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE (lower(m.director.firstName)+ SPACE(1) + lower(m.director.lastName)) like :direc", Movie.class);
+        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direc", Movie.class);
+        query.setParameter("direc", "%" + q.toLowerCase() + "%");
         List<Movie> response = query.getResultList();
         entityManager.close();
         return response;
