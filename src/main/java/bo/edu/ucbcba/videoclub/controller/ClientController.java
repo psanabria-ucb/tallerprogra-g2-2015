@@ -25,7 +25,7 @@ public class ClientController {
         */
         //------------------Validacion blancos
         if (ci.isEmpty()){
-            throw new ValidationException("Ci can't be blank");
+            throw new ValidationException("CI can't be blank");
         }
         if (firstname.isEmpty()){
             throw new ValidationException("First Name can't be blank");
@@ -39,39 +39,55 @@ public class ClientController {
 
         //-----------validacion de longitud
 
-        int length;
-        length = firstname.length();
-        if(length > 25)
+        if(firstname.length() > 25)
             throw new ValidationException("First Name is too long, must have less than 25 characters");
 
-        int lengthfn;
-        lengthfn = lastname.length();
-        if(lengthfn > 25)
+        if(lastname.length() > 25)
             throw new ValidationException("Last Name is too long, must have less than 25 characters");
 
-        int lengthadd;
-        lengthadd = address.length();
-        if(lengthadd > 100)
+        if(address.length() > 100)
             throw new ValidationException("Address is too long, must have less than 100 characters");
 
         //-------------Validacion cliente
-        if (ci.matches("[0-9]+")) {
-            client.setCi(ci);
-        }
-        else {
+        if (!ci.matches("[0-9]+")) {
             throw new ValidationException("Ci isn't a number");
         }
+        else{
+            if(firstname.matches("[0-9]+"))
+                throw new ValidationException("First name can't be a number");
+            else{
+                if(lastname.matches("[0-9]+")){
+                    throw new ValidationException("Last name can't be a number");
+                }
+                else{
+                    if(address.matches("[0-9]+"))
+                        throw new ValidationException("Address can't be only a number");
+                    else{
+                        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+                        TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.ci) like :ci", Client.class);
+                        query.setParameter("ci", ci);
+                        List<Client> response = query.getResultList();
 
-        client.setFirstname(firstname);
-        client.setLastname(lastname);
-        client.setAddress(address);
+                        if(response.size() == 0){
+                            client.setCi(ci);
+                            client.setFirstname(firstname);
+                            client.setLastname(lastname);
+                            client.setAddress(address);
 
+                            entityManager.getTransaction().begin();
+                            entityManager.persist(client);
+                            entityManager.getTransaction().commit();
+                            entityManager.close();
 
-        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        entityManager.getTransaction().begin();
-        entityManager.persist(client);
-        entityManager.getTransaction().commit();
-        entityManager.close();
+                        }else {
+                            entityManager.close();
+                            throw new ValidationException("Already exist a Client with CI: '" + ci +"'");
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
@@ -93,14 +109,15 @@ public class ClientController {
             query.setParameter("ci", q);
             List<Client> response = query.getResultList();
 
-
+/*
             if(response.size() > 1){
                 entityManager.close();
                 return 3;
             }
+            */
             if(response.size() == 0){
                 entityManager.close();
-                return 4;
+                return 2;
             }
             else{
 
