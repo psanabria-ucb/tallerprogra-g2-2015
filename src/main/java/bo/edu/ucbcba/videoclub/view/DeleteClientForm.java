@@ -38,13 +38,23 @@ public class DeleteClientForm extends JFrame {
     }
 
     private void deleteClient() {
+
         if (searchText.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Invalid User CI ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if (clientController.deleteClient(searchText.getText())) {
-                JOptionPane.showMessageDialog(this, "Client Deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            } else
-                JOptionPane.showMessageDialog(this, "Invalid User CI ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "User CI is empty ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            switch (clientController.deleteClient(searchText.getText())) {
+                case 1:
+                    JOptionPane.showMessageDialog(this, "Client Deleted successfully", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+
+                case 2:
+                    JOptionPane.showMessageDialog(this, "No client has the CI: '" + searchText.getText() + "'", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
