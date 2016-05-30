@@ -86,6 +86,11 @@ public class GameController {
             game.setDescription(description);
         }
 
+        if(validatePresence(title)>0)
+        {
+            throw new ValidationException("Game already exists");
+        }
+
         game.setRating(rating);
         game.setCompany(company);
 
@@ -106,6 +111,16 @@ public class GameController {
         return response;
     }
 
+    public int validatePresence(String q){
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(g.title) = :tile", Game.class);
+        query.setParameter("tile",q.toLowerCase());
+        List<Game> response = query.getResultList();
+        int a=response.size();
+        entityManager.close();
+        return a;
+    }
+
     public boolean deleteGame(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {
@@ -122,5 +137,14 @@ public class GameController {
             entityManager.getTransaction().rollback();
             return false; // let upper methods know this did not go well
         }
+    }
+
+    public List<Game> searchCompany(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp", Game.class);
+        query.setParameter("comp", "%" + q.toLowerCase() + "%");
+        List<Game> response = query.getResultList();
+        entityManager.close();
+        return response;
     }
 }

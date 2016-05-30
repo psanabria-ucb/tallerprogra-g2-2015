@@ -21,7 +21,10 @@ public class GamesForm extends JDialog {
     private JPanel rootPanel;
     private JTable gamesTable;
     private JButton createButton;
+    private JRadioButton nameRadioButton;
+    private JRadioButton companyRadioButton;
     private GameController gameController;
+    ButtonGroup group = new ButtonGroup();
 
     public GamesForm(HomeGamesForm parent) {
         super(parent, "Games", true);
@@ -43,6 +46,9 @@ public class GamesForm extends JDialog {
                 populateTable();
             }
         });
+
+        group.add(nameRadioButton);
+        group.add(companyRadioButton);
     }
 
     public GamesForm(InitialForm parent) {
@@ -87,6 +93,11 @@ public class GamesForm extends JDialog {
      }*/
     private void populateTable() {
         List<Game> games = gameController.searchGames(searchText.getText());
+        if (nameRadioButton.isSelected() == true) {
+            games = gameController.searchGames(searchText.getText());
+        } else {
+            games = gameController.searchCompany(searchText.getText());
+        }
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Title");
         model.addColumn("Description");

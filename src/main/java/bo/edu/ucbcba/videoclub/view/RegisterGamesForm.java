@@ -103,7 +103,7 @@ public class RegisterGamesForm extends JDialog {
     private void populateComboBox() {
         List<Company> companies = companyController.getAllCompanies();
         for (Company c : companies) {
-            CompanycomboBox.addItem(c.getName());
+            CompanycomboBox.addItem(c);
         }
     }
 
