@@ -101,7 +101,7 @@ public class GamesForm extends JDialog {
             row[0] = g.getTitle();
             row[1] = g.getDescription();
             row[2] = g.getReleaseYear();
-            row[3] = g.getCompany();
+            row[3] = g.getCompany().getName();
             row[4] = g.getRating();
             row[5] = g.getPrice();
             model.addRow(row);

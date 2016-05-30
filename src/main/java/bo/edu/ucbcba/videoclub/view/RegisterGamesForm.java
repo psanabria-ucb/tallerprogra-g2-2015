@@ -1,8 +1,10 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.CompanyController;
 import bo.edu.ucbcba.videoclub.controller.GameController;
 import bo.edu.ucbcba.videoclub.controller.MovieController;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
+import bo.edu.ucbcba.videoclub.model.Company;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -11,11 +13,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class RegisterGamesForm extends JDialog {
     private JPanel rootPanel;
     private JTextField title;
-    private JTextField company;
+
     private JTextField releaseYear;
     private JTextArea description;
     private JRadioButton rating1;
@@ -26,8 +29,10 @@ public class RegisterGamesForm extends JDialog {
     private JButton saveButton;
     private JButton cancelButton;
     private JTextField price;
+    private JComboBox CompanycomboBox;
     private int rating = 5;
     private GameController controller;
+    private final CompanyController companyController;
 
     RegisterGamesForm(HomeGamesForm parent) {
         super(parent, "Register Game", true);
@@ -58,6 +63,8 @@ public class RegisterGamesForm extends JDialog {
         rating4.addActionListener(ratingListener);
         rating5.addActionListener(ratingListener);
         controller = new GameController();
+        companyController = new CompanyController();
+        populateComboBox();
     }
 
     RegisterGamesForm(GamesForm parent) {
@@ -89,16 +96,25 @@ public class RegisterGamesForm extends JDialog {
         rating4.addActionListener(ratingListener);
         rating5.addActionListener(ratingListener);
         controller = new GameController();
+        companyController = new CompanyController();
+        populateComboBox();
+    }
+
+    private void populateComboBox() {
+        List<Company> companies = companyController.getAllCompanies();
+        for (Company c : companies) {
+            CompanycomboBox.addItem(c.getName());
+        }
     }
 
     private void saveUser() {
         try {
+            Company c = (Company) CompanycomboBox.getSelectedItem();
             controller.create(title.getText(),
                     description.getText(),
                     releaseYear.getText(),
                     rating,
-                    price.getText(),
-                    company.getText());
+                    price.getText(), c);
             JOptionPane.showMessageDialog(this, "Game created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
             cancel();
         } catch (ValidationException ex) {
@@ -140,9 +156,6 @@ public class RegisterGamesForm extends JDialog {
         label2.setForeground(new Color(-4486332));
         label2.setText("Company");
         rootPanel.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        company = new JTextField();
-        company.setText("");
-        rootPanel.add(company, new GridConstraints(3, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         description = new JTextArea();
         rootPanel.add(description, new GridConstraints(2, 1, 1, 9, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(600, 50), new Dimension(600, 50), new Dimension(600, 50), 0, false));
         title = new JTextField();
@@ -218,6 +231,8 @@ public class RegisterGamesForm extends JDialog {
         label7.setForeground(new Color(-4486332));
         label7.setText("Price");
         rootPanel.add(label7, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        CompanycomboBox = new JComboBox();
+        rootPanel.add(CompanycomboBox, new GridConstraints(3, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         ButtonGroup buttonGroup;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(rating1);

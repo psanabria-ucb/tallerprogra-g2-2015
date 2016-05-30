@@ -6,7 +6,10 @@
         <class>bo.edu.ucbcba.videoclub.model.Movie</class>
         <class>bo.edu.ucbcba.videoclub.model.Client</class>
         <class>bo.edu.ucbcba.videoclub.model.Game</class>
+        <class>bo.edu.ucbcba.videoclub.model.Company</class>
         <class>bo.edu.ucbcba.videoclub.model.Director</class>
+
+
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:derby:VideoClub;create=true"/>
             <property name="eclipselink.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>

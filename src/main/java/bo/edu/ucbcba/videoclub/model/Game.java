@@ -14,9 +14,19 @@ public class Game {
     @Column(length = 250)
     private String description;
     private int releaseYear;
-    private String company;
+
     private int price;
     private int rating;
+    @ManyToOne
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public int getId() {
         return id;
@@ -56,14 +66,6 @@ public class Game {
 
     public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public int getRating() {
