@@ -3,6 +3,7 @@ package bo.edu.ucbcba.videoclub.controller;
 import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Client;
+import bo.edu.ucbcba.videoclub.model.Company;
 import bo.edu.ucbcba.videoclub.model.Game;
 
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class GameController {
                        String releaseYear,
                        int rating,
                        String price,
-                       String company) {
+                       Company company) {
         Game game = new Game();
         //--------------------Validaciones de espacios en blanco
 
@@ -36,9 +37,6 @@ public class GameController {
             throw new ValidationException("Title can't be blank");
         }
 
-        if (company.isEmpty()) {
-            throw new ValidationException("Company can't be blank");
-        }
 
         //--------------------Validacion de Año
 
@@ -76,14 +74,6 @@ public class GameController {
         else {
             game.setTitle(title);
         }
-        //-----------------Validacion Longitud de compañia
-        int lengthCompany;
-        lengthCompany = title.length();
-        if (lengthCompany > 100)
-            throw new ValidationException("Tile is too long, must have less than 101 characters");
-        else {
-            game.setCompany(company);
-        }
 
         //-----------------Validacion Longitud de descripcion
 
@@ -96,8 +86,13 @@ public class GameController {
             game.setDescription(description);
         }
 
-        game.setRating(rating);
+        if(validatePresence(title)>0)
+        {
+            throw new ValidationException("Game already exists");
+        }
 
+        game.setRating(rating);
+        game.setCompany(company);
 
 
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
@@ -116,6 +111,16 @@ public class GameController {
         return response;
     }
 
+    public int validatePresence(String q){
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(g.title) = :tile", Game.class);
+        query.setParameter("tile",q.toLowerCase());
+        List<Game> response = query.getResultList();
+        int a=response.size();
+        entityManager.close();
+        return a;
+    }
+
     public boolean deleteGame(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {
@@ -132,5 +137,14 @@ public class GameController {
             entityManager.getTransaction().rollback();
             return false; // let upper methods know this did not go well
         }
+    }
+
+    public List<Game> searchCompany(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp", Game.class);
+        query.setParameter("comp", "%" + q.toLowerCase() + "%");
+        List<Game> response = query.getResultList();
+        entityManager.close();
+        return response;
     }
 }
