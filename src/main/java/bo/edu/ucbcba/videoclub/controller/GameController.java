@@ -9,6 +9,7 @@ import bo.edu.ucbcba.videoclub.model.Game;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.swing.*;
 import java.util.Calendar;
 import java.util.List;
 
@@ -121,7 +122,8 @@ public class GameController {
         return a;
     }
 
-    public boolean deleteGame(String q){
+    /*---------------------------------Borrar Dani-----------------------------------*/
+   /* public boolean deleteGame(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {
 
@@ -138,7 +140,7 @@ public class GameController {
             return false; // let upper methods know this did not go well
         }
     }
-
+    */
     public List<Game> searchCompany(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp", Game.class);
@@ -146,5 +148,16 @@ public class GameController {
         List<Game> response = query.getResultList();
         entityManager.close();
         return response;
+    }
+
+    public void delete(int id){
+        int confirmation = JOptionPane.showConfirmDialog(null, "Do you really want to delete this Game?", "Delete",  JOptionPane.YES_NO_OPTION);
+        if (confirmation == 0) {
+            EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.remove(entityManager.find(Game.class, id));
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        }
     }
 }

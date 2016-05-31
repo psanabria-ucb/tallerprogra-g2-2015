@@ -193,6 +193,7 @@ public class RegisterGamesForm extends JDialog {
         rootPanel.add(rating4, new GridConstraints(5, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         rating5 = new JRadioButton();
         rating5.setBackground(new Color(-3090213));
+        rating5.setEnabled(true);
         rating5.setForeground(new Color(-4486332));
         rating5.setSelected(true);
         rating5.setText("5");
