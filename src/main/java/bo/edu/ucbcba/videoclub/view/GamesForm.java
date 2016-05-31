@@ -26,6 +26,7 @@ public class GamesForm extends JDialog {
     private JRadioButton nameRadioButton;
     private JRadioButton companyRadioButton;
     private JButton deleteButton;
+    private JComboBox OrderComboBox;
     private GameController gameController;
     ButtonGroup group = new ButtonGroup();
 
@@ -54,6 +55,13 @@ public class GamesForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 delete();
+            }
+        });
+
+        OrderComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                order();
             }
         });
 
@@ -107,15 +115,20 @@ public class GamesForm extends JDialog {
         }
     }
 
+    public void order(){
+        populateTable();
+    }
+
     /* public void showHome() {
          InitialForm form = new InitialForm(this);
          form.setVisible(true);
          form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
      }*/
     private void populateTable() {
-        List<Game> games = gameController.searchGames(searchText.getText());
+        String option = (String) OrderComboBox.getSelectedItem();
+        List<Game> games = gameController.searchGames(searchText.getText(), option);
         if (nameRadioButton.isSelected()) {
-            games = gameController.searchGames(searchText.getText());
+            games = gameController.searchGames(searchText.getText(), option);
         } else {
             games = gameController.searchCompany(searchText.getText());
         }

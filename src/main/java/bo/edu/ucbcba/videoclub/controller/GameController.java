@@ -103,9 +103,22 @@ public class GameController {
         entityManager.close();
     }
 
-    public List<Game> searchGames(String q) {
+    public List<Game> searchGames(String q, String order) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title", Game.class);
+        TypedQuery<Game> query =  entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.title", Game.class);
+        if (order.equals("Year")){
+             query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.releaseYear", Game.class);
+        }
+        if (order.equals("Company")){
+            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.company", Game.class);
+        }
+        if (order.equals("Rating")){
+            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.rating", Game.class);
+        }
+        if (order.equals("Price")){
+            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.price", Game.class);
+        }
+
         query.setParameter("title", "%" + q.toLowerCase() + "%");
         List<Game> response = query.getResultList();
         entityManager.close();
