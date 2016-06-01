@@ -54,12 +54,19 @@ public class LogoutForm extends JFrame {
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
         rootPane.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        rootPane.setBackground(new Color(-3090213));
         final JLabel label1 = new JLabel();
-        label1.setText("You are Logged out of Sakila 2.0");
+        label1.setBackground(new Color(-9144455));
+        label1.setFont(new Font("Courier New", Font.BOLD, 24));
+        label1.setForeground(new Color(-4486332));
+        label1.setText("You are Logged out from Sakila 2.0");
         rootPane.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         loginButton = new JButton();
+        loginButton.setBackground(new Color(-12828863));
+        loginButton.setFont(new Font("Courier New", loginButton.getFont().getStyle(), 18));
+        loginButton.setForeground(new Color(-4486332));
         loginButton.setText("Login");
-        rootPane.add(loginButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(100, 20), null, new Dimension(100, 20), 0, false));
+        rootPane.add(loginButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(120, 30), null, new Dimension(120, 30), 0, false));
     }
 
     /**

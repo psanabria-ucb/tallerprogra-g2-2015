@@ -24,8 +24,9 @@ public class InitialForm extends JFrame {
     public InitialForm() {
         super("Welcome");
         setContentPane(rootPanel);
-        setSize(600, 400);
+        setSize(700, 500);
         //setSize(600, 400);
+        setResizable(false);
         userController = new UserController();
         MoviesButton.addActionListener(new ActionListener() {
             @Override
@@ -107,7 +108,7 @@ public class InitialForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(3, 4, new Insets(0, 10, 0, 10), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setEnabled(true);
         rootPanel.setFont(new Font(rootPanel.getFont().getName(), rootPanel.getFont().getStyle(), rootPanel.getFont().getSize()));
@@ -141,10 +142,13 @@ public class InitialForm extends JFrame {
         label1.setFont(new Font("Courier New", Font.BOLD, 28));
         label1.setForeground(new Color(-4486332));
         label1.setText("SAKILA 2.0");
-        rootPanel.add(label1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(label1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         logoutButton = new JButton();
+        logoutButton.setBackground(new Color(-12828863));
+        logoutButton.setFont(new Font("Courier New", logoutButton.getFont().getStyle(), 18));
+        logoutButton.setForeground(new Color(-4486332));
         logoutButton.setText("Logout");
-        rootPanel.add(logoutButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(logoutButton, new GridConstraints(0, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
