@@ -3,10 +3,12 @@ package bo.edu.ucbcba.videoclub.controller;
 import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Director;
+import bo.edu.ucbcba.videoclub.model.Game;
 import bo.edu.ucbcba.videoclub.model.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.swing.*;
 import java.util.Calendar;
 import java.util.List;
 
@@ -134,6 +136,15 @@ public class MovieController {
         return response;
     }
 
+    public List<Movie> searchMovies2(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) = :title", Movie.class);
+        query.setParameter("title",q.toLowerCase());
+        List<Movie> response = query.getResultList();
+        entityManager.close();
+        return response;
+    }
+
     public int ValidarM(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) = :title", Movie.class);
@@ -151,5 +162,18 @@ public class MovieController {
         List<Movie> response = query.getResultList();
         entityManager.close();
         return response;
+    }
+
+    public void delete(String q){
+        int confirmation = JOptionPane.showConfirmDialog(null, "Do you really want to delete this Game?", "Delete",  JOptionPane.YES_NO_OPTION);
+        if (confirmation == 0) {
+            EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+            entityManager.getTransaction().begin();
+            TypedQuery  query = entityManager.createQuery("select m.id from Movie m WHERE lower(m.title) like :codigo", Movie.class);
+            query.setParameter("codigo",q.toLowerCase());
+            entityManager.remove(entityManager.find(Movie.class, query.getSingleResult()));
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        }
     }
 }

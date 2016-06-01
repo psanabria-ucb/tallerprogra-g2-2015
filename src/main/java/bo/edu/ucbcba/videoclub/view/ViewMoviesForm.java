@@ -22,13 +22,14 @@ public class ViewMoviesForm extends JDialog {
     private JTextField textField1;
     private JRadioButton Titleradiobutton;
     private JRadioButton Directorradiobutton;
+    private JButton Deletebutton;
     private MovieController movieController;
     ButtonGroup group = new ButtonGroup();
 
     public ViewMoviesForm(HomeMoviesForm parent) {
         super(parent, "Movies", true);
         setContentPane(rootPanel);
-        setSize(700, 400);
+        setSize(900, 400);
         setResizable(false);
         movieController = new MovieController();
         populateTable();
@@ -44,6 +45,12 @@ public class ViewMoviesForm extends JDialog {
                 view();
             }
         });
+        Deletebutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delete();
+            }
+        });
         Titleradiobutton.setSelected(true);
         group.add(Titleradiobutton);
         group.add(Directorradiobutton);
@@ -53,12 +60,24 @@ public class ViewMoviesForm extends JDialog {
 
     private void view() {
         if (!(textField1.getText().equals(""))) {
-            List<Movie> movies = movieController.searchMovies(textField1.getText());
+            List<Movie> movies = movieController.searchMovies2(textField1.getText());
             for (Movie m : movies) {
                 ViewDetailsMovies form = new ViewDetailsMovies(this, m.getTitle(), m.getNameImage(), m.getDescription());
                 form.setVisible(true);
             }
         }
+    }
+
+    private void delete(){
+        DefaultTableModel tm = (DefaultTableModel) moviesTable.getModel();
+        if (moviesTable.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "You must select a row to delete");
+
+        } else {
+            String title = (String) tm.getValueAt(moviesTable.getSelectedRow(), 0);
+            movieController.delete(title);
+        }
+        populateTable();
     }
 
     private void populateTable() {
