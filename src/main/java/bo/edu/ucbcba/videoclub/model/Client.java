@@ -1,5 +1,7 @@
 package bo.edu.ucbcba.videoclub.model;
 
+import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
+
 import javax.persistence.*;
 /**
  * Created by privado on 16/05/2016.
@@ -33,6 +35,12 @@ public class Client {
     }
 
     public void setFirstname(String firstname) {
+        if (firstname == null)
+            throw new ValidationException("Null Firstname");
+        if (firstname.isEmpty())
+            throw new ValidationException("Firstname can't be empty");
+        if (firstname.length() > 255)
+            throw new ValidationException("Firstname is too long");
         this.firstname = firstname;
     }
 
