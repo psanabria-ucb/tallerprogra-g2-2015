@@ -89,6 +89,26 @@ public class UserController {
         return response;
     }
 
+    public int verifyExistenceofAdminAndStaff(){
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE u.username like :username", User.class);
+        query.setParameter("username", "admin");
+        List<User> response = query.getResultList();
+        TypedQuery<User> query2 = entityManager.createQuery("select u from User u WHERE u.username like :username", User.class);
+        query2.setParameter("username", "staff");
+        List<User> response2 = query.getResultList();
+        entityManager.close();
+        if(response.size()==0 && response2.size()==0 ){
+            return 1;
+        }
+        if(response.size()==1 && response2.size()==0){
+            return 2;
+        }
+        else{
+            return 3;
+        }
+    }
+
     public int deleteUser(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {

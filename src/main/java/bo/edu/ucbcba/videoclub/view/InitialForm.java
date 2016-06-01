@@ -65,11 +65,6 @@ public class InitialForm extends JFrame {
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    private void CreateUser() {
-        userController.create("staff", "staff123");
-        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     private void launchGames() {
         this.setVisible(false);
         HomeGamesForm form = new HomeGamesForm(this);

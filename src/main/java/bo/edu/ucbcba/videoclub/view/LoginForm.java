@@ -27,6 +27,23 @@ public class LoginForm extends JFrame {
         setSize(550, 300);
         setResizable(false);
         userController = new UserController();
+
+        switch (userController.verifyExistenceofAdminAndStaff()) {
+            case 1:
+                CreateUserAdmin();
+                CreateUserStaff();
+                break;
+            case 2:
+                CreateUserStaff();
+                break;
+            case 3:
+                CreateUserAdmin();
+                break;
+            default:
+                break;
+        }
+
+
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +60,16 @@ public class LoginForm extends JFrame {
         InitialForm form = new InitialForm();
         form.setVisible(true);
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private void CreateUserStaff() {
+        userController.create("staff", "staff123");
+        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void CreateUserAdmin() {
+        userController.create("admin", "admin123");
+        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void invalidUser() {
