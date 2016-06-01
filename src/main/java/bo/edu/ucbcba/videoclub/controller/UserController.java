@@ -17,12 +17,9 @@ public class UserController {
 
         User user = new User();
 
-
-
-
         //-----------validacion de longitud
 
-        if(username.length() > 25)
+        /*if(username.length() > 25)
             throw new ValidationException("Username is too long, must have less than 10 characters");
 
         if(username.length() < 4)
@@ -43,13 +40,14 @@ public class UserController {
         if(password.matches("a-zA-Z")){
             throw new ValidationException("Password can't be only a letters, must have numbers");
         }
-        else{
+        else{*/
             EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-            TypedQuery<User> query = entityManager.createQuery("select u from Client u WHERE u.username like :username", Client.class);
+            /*TypedQuery<User> query = entityManager.createQuery("select u from Client u WHERE u.username like :username", User.class);
             query.setParameter("username", username);
             List<User> response = query.getResultList();
 
-            if(response.size() == 0){
+            if(response.size() == 0){*/
+
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setUsertype(2);
@@ -59,28 +57,28 @@ public class UserController {
                 entityManager.persist(user);
                 entityManager.getTransaction().commit();
                 entityManager.close();
-
+/*
             }else {
                 entityManager.close();
-                throw new ValidationException("Already exist a Client with CI: '" + username +"'");
-
+                throw new ValidationException("Already exist a Username like: '" + username +"'");
             }
-        }
+        }*/
     }
 
     public boolean validateUser(String usr, String pswd){
+
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE u.username like :username AND u.password like :password", User.class);
         query.setParameter("username", usr);
         query.setParameter("password", pswd);
         List<User> response = query.getResultList();
         entityManager.close();
-        if(response.size() == 1){
+        if (response.size() == 1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+
     }
 
     public List<User> searchUser(String q) {

@@ -30,7 +30,10 @@ public class LoginForm extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ValidateUser();
+                if (ValidateUser()) {
+                    goInitialForm();
+                } else
+                    invalidUser();
             }
         });
     }
@@ -42,22 +45,24 @@ public class LoginForm extends JFrame {
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public void ValidateUser() {
+    public void invalidUser() {
+        JOptionPane.showMessageDialog(this, "Username or Password are not correct", "Authentication Error", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public boolean ValidateUser() {
         String usr = usernameField.getText();
         String pswd = passwordField.getText();
         if (!usr.isEmpty()) {
             if (!pswd.isEmpty()) {
                 if (userController.validateUser(usr, pswd))
-                    goInitialForm();
-                else {
-                    JOptionPane.showMessageDialog(this, "Username or Password is not correct", "Authentication Error", JOptionPane.INFORMATION_MESSAGE);
-                }
+                    return true;
             } else {
                 JOptionPane.showMessageDialog(this, "Password can't be blank", "Authentication Error", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Username can't be blank", "Authentication Error", JOptionPane.INFORMATION_MESSAGE);
         }
+        return false;
     }
 
     {
@@ -76,46 +81,23 @@ public class LoginForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
-        rootPane.setLayout(new GridLayoutManager(6, 4, new Insets(0, 0, 0, 0), -1, -1));
-        rootPane.setBackground(new Color(-3090213));
+        rootPane.setLayout(new GridLayoutManager(4, 4, new Insets(20, 40, 20, 40), -1, -1));
         final JLabel label1 = new JLabel();
-        label1.setFont(new Font("Courier New", Font.BOLD, 26));
-        label1.setForeground(new Color(-4486332));
-        label1.setText("Login Sakila 2.0");
-        rootPane.add(label1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        usernameField = new JTextField();
-        usernameField.setBackground(new Color(-9144455));
-        usernameField.setFont(new Font(usernameField.getFont().getName(), Font.BOLD, usernameField.getFont().getSize()));
-        usernameField.setForeground(new Color(-12504532));
-        rootPane.add(usernameField, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        passwordField = new JPasswordField();
-        passwordField.setBackground(new Color(-9144455));
-        passwordField.setForeground(new Color(-12504532));
-        rootPane.add(passwordField, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        label1.setText("Login");
+        rootPane.add(label1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setFont(new Font("Courier New", Font.BOLD, 18));
-        label2.setForeground(new Color(-4486332));
-        label2.setText("Username: ");
-        rootPane.add(label2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label2.setText("Username:");
+        rootPane.add(label2, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setFont(new Font("Courier New", Font.BOLD, 18));
-        label3.setForeground(new Color(-4486332));
-        label3.setText("Password: ");
-        rootPane.add(label3, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        rootPane.add(spacer1, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        rootPane.add(spacer2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        label3.setText("Password:");
+        rootPane.add(label3, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         loginButton = new JButton();
-        loginButton.setBackground(new Color(-12828863));
-        loginButton.setFont(new Font("Courier New", Font.BOLD, 16));
-        loginButton.setForeground(new Color(-4486332));
         loginButton.setText("Login");
-        rootPane.add(loginButton, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        rootPane.add(spacer3, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final Spacer spacer4 = new Spacer();
-        rootPane.add(spacer4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        rootPane.add(loginButton, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        usernameField = new JTextField();
+        rootPane.add(usernameField, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        passwordField = new JPasswordField();
+        rootPane.add(passwordField, new GridConstraints(2, 2, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**

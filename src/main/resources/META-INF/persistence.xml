@@ -8,7 +8,7 @@
         <class>bo.edu.ucbcba.videoclub.model.Game</class>
         <class>bo.edu.ucbcba.videoclub.model.Company</class>
         <class>bo.edu.ucbcba.videoclub.model.Director</class>
-
+        <class>bo.edu.ucbcba.videoclub.model.User</class>
 
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:derby:VideoClub;create=true"/>

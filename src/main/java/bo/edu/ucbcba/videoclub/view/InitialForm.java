@@ -1,5 +1,6 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.UserController;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -14,70 +15,18 @@ public class InitialForm extends JFrame {
     private JButton MoviesButton;
     private JButton CustomersButton;
     private JButton GamesButton;
+    private JButton addButton;
+    private UserController userController;
 
     //Creo que es necesario que esta clase tenga un contructor propio para cada ventana, o almenos asi es como logre hacer
     //si logran hacerlo de una mejor forma y mas limpia le meten no mas
-    public InitialForm(HomeGamesForm parent) {
-        super("Welcome");
-        setContentPane(rootPanel);
-        setSize(600, 400);
-        //setSize(600, 400);
-        MoviesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MoviesZone();
-            }
-        });
-
-        CustomersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                launchClientsForm();
-            }
-        });
-
-        GamesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                launchGames();
-            }
-        });
-        InitialForm form = new InitialForm();
-    }
-
-    public InitialForm(GamesForm parent) {
-        super("Welcome");
-        setContentPane(rootPanel);
-        setSize(600, 400);
-        //setSize(600, 400);
-        MoviesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MoviesZone();
-            }
-        });
-
-        CustomersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                launchClientsForm();
-            }
-        });
-
-        GamesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                launchGames();
-            }
-        });
-        InitialForm form = new InitialForm();
-    }
-
-
+    //HomeGamesForm parent
     public InitialForm() {
         super("Welcome");
         setContentPane(rootPanel);
         setSize(600, 400);
+        //setSize(600, 400);
+        userController = new UserController();
         MoviesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,9 +47,20 @@ public class InitialForm extends JFrame {
                 launchGames();
             }
         });
+        //InitialForm form = new InitialForm();
 
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreateUser();
+            }
+        });
     }
 
+    private void CreateUser() {
+        userController.create("staff", "staff123");
+        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     private void launchGames() {
         this.setVisible(false);
@@ -175,6 +135,9 @@ public class InitialForm extends JFrame {
         label1.setForeground(new Color(-4486332));
         label1.setText("SAKILA 2.0");
         rootPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addButton = new JButton();
+        addButton.setText("add");
+        rootPanel.add(addButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
