@@ -104,8 +104,11 @@ public class UserController {
         if(response.size()==1 && response2.size()==0){
             return 2;
         }
-        else{
+        if(response.size()==0 && response2.size()==1){
             return 3;
+        }
+        else{
+            return 4;
         }
     }
 

@@ -39,7 +39,7 @@ public class LoginForm extends JFrame {
             case 3:
                 CreateUserAdmin();
                 break;
-            default:
+            case 4:
                 break;
         }
 
