@@ -4,8 +4,19 @@ import bo.edu.ucbcba.videoclub.controller.UserController;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.metamodel.Metamodel;
 import javax.swing.*;
+import javax.swing.text.html.parser.Entity;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by privado on 01/06/2016.
@@ -17,6 +28,7 @@ public class ChangePasswordAdmin extends JFrame {
     private JPanel rootPane;
     private JButton saveChangesButton;
     private UserController userController;
+    private EntityManager entityManager;
 
     public ChangePasswordAdmin() {
         super("Changing Password");
@@ -25,6 +37,27 @@ public class ChangePasswordAdmin extends JFrame {
         //setSize(600, 400);
         setResizable(false);
         userController = new UserController();
+        saveChangesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validateChanges();
+            }
+        });
+    }
+
+    private void validateChanges() {
+
+        String npswd = newpasswordfield.getText();
+        String cpswd = confirmnewpasswordfield.getText();
+        JOptionPane.showMessageDialog(this, "Password: " + npswd + " confirm: " + cpswd, "Success", JOptionPane.INFORMATION_MESSAGE);
+        if (npswd.equals(cpswd)) {
+            if (userController.ChangePasswordAdmin(npswd) == 1) {
+                JOptionPane.showMessageDialog(this, "Password changed successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid Password", "Fail", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else
+            JOptionPane.showMessageDialog(this, "New password and Confirm Password are not equal", "New Passwords are not Equals", JOptionPane.INFORMATION_MESSAGE);
     }
 
     {
@@ -43,11 +76,16 @@ public class ChangePasswordAdmin extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
-        rootPane.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
+        rootPane.setLayout(new GridLayoutManager(5, 3, new Insets(20, 40, 20, 40), -1, -1));
+        rootPane.setBackground(new Color(-3090213));
         final JLabel label1 = new JLabel();
+        label1.setFont(new Font("Courier New", Font.BOLD, 24));
+        label1.setForeground(new Color(-4486332));
         label1.setText("Changing Password | Admin");
         rootPane.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
+        label2.setFont(new Font("Courier New", Font.BOLD, 16));
+        label2.setForeground(new Color(-4486332));
         label2.setText("Old Password:");
         rootPane.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         oldpasswordfield = new JPasswordField();
@@ -57,13 +95,20 @@ public class ChangePasswordAdmin extends JFrame {
         confirmnewpasswordfield = new JPasswordField();
         rootPane.add(confirmnewpasswordfield, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
+        label3.setFont(new Font("Courier New", Font.BOLD, 16));
+        label3.setForeground(new Color(-4486332));
         label3.setText("New Password:");
         rootPane.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
+        label4.setFont(new Font("Courier New", Font.BOLD, 16));
+        label4.setForeground(new Color(-4486332));
         label4.setText("Repeat New Password:");
         rootPane.add(label4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         saveChangesButton = new JButton();
-        saveChangesButton.setText("SaveChanges");
+        saveChangesButton.setBackground(new Color(-12828863));
+        saveChangesButton.setFont(new Font("Courier New", saveChangesButton.getFont().getStyle(), 18));
+        saveChangesButton.setForeground(new Color(-4486332));
+        saveChangesButton.setText("Save Changes");
         rootPane.add(saveChangesButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 

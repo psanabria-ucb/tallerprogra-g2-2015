@@ -113,6 +113,47 @@ public class UserController {
         }
     }
 
+    public void getPassword(String user){
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<User> query = entityManager.createQuery("select u.password FROM User u WHERE u.username like :usr", User.class);
+        query.setParameter("usr", user);
+        List<User> response = query.getResultList();
+        entityManager.close();
+        /*if (response.size() == 1) {
+            return response.get(2);
+        }else{
+            return 2;
+        }*/
+    }
+
+    public int ChangePasswordAdmin(String newpassword){
+        if(newpassword.length() > 25)
+            throw new ValidationException("Password is too long, must have less than 25 characters");
+
+        if(newpassword.length() < 6)
+            throw new ValidationException("Password is too short, must have more than 6 characters");
+        if(newpassword.matches("[0-9]+")){
+            throw new ValidationException("Password can't be only a number, must have letters");
+        }
+        else {
+            EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+            entityManager.getTransaction().begin();
+            TypedQuery<User> query = entityManager.createQuery("UPDATE User u SET u.password = :pswd WHERE u.username like :username ", User.class);
+            query.setParameter("pswd", newpassword);
+            query.setParameter("username", "admin");
+            if(query.executeUpdate()==1){
+                entityManager.getTransaction().commit();
+                entityManager.close();
+                return 1;
+            }
+            else
+                entityManager.close();
+                return 2;
+
+        }
+
+    }
+
     public int deleteUser(String q){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         try {
