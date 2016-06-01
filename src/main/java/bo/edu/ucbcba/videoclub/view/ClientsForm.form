@@ -56,7 +56,7 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
-          <text value="Add Clients"/>
+          <text value="Add Client"/>
         </properties>
       </component>
       <component id="8f27d" class="javax.swing.JButton" binding="homeButton" default-binding="true">

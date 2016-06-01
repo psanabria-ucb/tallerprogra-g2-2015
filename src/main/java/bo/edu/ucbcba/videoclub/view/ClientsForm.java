@@ -125,7 +125,7 @@ public class ClientsForm extends JFrame {
         addClientsButton.setBackground(new Color(-12828863));
         addClientsButton.setFont(new Font("Courier New", addClientsButton.getFont().getStyle(), 18));
         addClientsButton.setForeground(new Color(-4486332));
-        addClientsButton.setText("Add Clients");
+        addClientsButton.setText("Add Client");
         rootPanel.add(addClientsButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         homeButton = new JButton();
         homeButton.setBackground(new Color(-12828863));

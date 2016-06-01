@@ -41,8 +41,7 @@ public class DeleteClientForm extends JFrame {
 
         if (searchText.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "User CI is empty ", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-        }
-        else {
+        } else {
             switch (clientController.deleteClient(searchText.getText())) {
                 case 1:
                     JOptionPane.showMessageDialog(this, "Client Deleted successfully", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
@@ -117,7 +116,7 @@ public class DeleteClientForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(4, 6, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(4, 6, new Insets(20, 0, 0, 0), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
         searchText = new JTextField();

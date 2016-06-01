@@ -39,12 +39,20 @@ public class ClientController {
 
         //-----------validacion de longitud
 
+        if(ci.length() > 10)
+            throw new ValidationException("CI can't have more than 10 characters");
+        if(ci.length() < 7)
+            throw new ValidationException("CI can't have less than 7 characters");
+
         if(firstname.length() > 25)
             throw new ValidationException("First Name is too long, must have less than 25 characters");
+        if(firstname.length() < 2)
+            throw new ValidationException("First Name is too short, must have more than 2 characters");
 
         if(lastname.length() > 25)
             throw new ValidationException("Last Name is too long, must have less than 25 characters");
-
+        if(lastname.length() < 2)
+            throw new ValidationException("Last Name is too short, must have more than 2 characters");
         if(address.length() > 100)
             throw new ValidationException("Address is too long, must have less than 100 characters");
 
@@ -78,11 +86,9 @@ public class ClientController {
                             entityManager.persist(client);
                             entityManager.getTransaction().commit();
                             entityManager.close();
-
                         }else {
                             entityManager.close();
                             throw new ValidationException("Already exist a Client with CI: '" + ci +"'");
-
                         }
                     }
                 }
@@ -93,8 +99,8 @@ public class ClientController {
 
     public List<Client> searchClient(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.lastname) like :lastname", Client.class);
-        query.setParameter("lastname", "%" + q.toLowerCase() + "%");
+        TypedQuery<Client> query = entityManager.createQuery("select c from Client c WHERE lower(c.lastname) like :search OR lower(c.firstname) like :search", Client.class);
+        query.setParameter("search", "%" + q.toLowerCase() + "%");
         List<Client> response = query.getResultList();
         entityManager.close();
         return response;
