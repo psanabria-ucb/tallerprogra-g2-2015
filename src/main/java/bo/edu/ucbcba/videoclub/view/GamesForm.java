@@ -113,6 +113,7 @@ public class GamesForm extends JDialog {
             int ci = (Integer) tm.getValueAt(gamesTable.getSelectedRow(), 0);
             gameController.delete(ci);
         }
+        populateTable();
     }
 
     public void order() {

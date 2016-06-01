@@ -27,6 +27,8 @@ public class RegisterDirector extends JDialog {
     private JButton cancelButton;
     private JPanel rootPane;
     private JTable TableDirector;
+    private JButton searchButton;
+    private JTextField searchText;
     private DirectorController directorController;
 
     public RegisterDirector(HomeMoviesForm parent) {
@@ -49,6 +51,12 @@ public class RegisterDirector extends JDialog {
             }
         });
         controller = new DirectorController();
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                populateTable();
+            }
+        });
 
     }
 
@@ -71,7 +79,7 @@ public class RegisterDirector extends JDialog {
 
     private void populateTable() {
         List<Director> directors;
-        directors = directorController.searchDirector("");
+        directors = directorController.searchDirector(searchText.getText());
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("FirstName");
@@ -103,7 +111,7 @@ public class RegisterDirector extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
-        rootPane.setLayout(new GridLayoutManager(6, 3, new Insets(20, 20, 20, 20), -1, -1));
+        rootPane.setLayout(new GridLayoutManager(9, 3, new Insets(20, 20, 20, 20), -1, -1));
         rootPane.setBackground(new Color(-3090213));
         final JLabel label1 = new JLabel();
         label1.setFont(new Font("Courier New", label1.getFont().getStyle(), 20));
@@ -136,16 +144,32 @@ public class RegisterDirector extends JDialog {
         cancelButton.setText("Cancel");
         panel1.add(cancelButton);
         TableDirector = new JTable();
-        rootPane.add(TableDirector, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        rootPane.add(TableDirector, new GridConstraints(8, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        rootPane.add(panel2, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        rootPane.add(panel2, new GridConstraints(7, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("FirstName");
         panel2.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
         label5.setText("LastName");
         panel2.add(label5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        searchText = new JTextField();
+        searchText.setText("");
+        searchText.setToolTipText("Search by Firstname or Lastname");
+        rootPane.add(searchText, new GridConstraints(5, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        searchButton = new JButton();
+        searchButton.setBackground(new Color(-12828863));
+        searchButton.setForeground(new Color(-4486332));
+        searchButton.setText("Search");
+        rootPane.add(searchButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label6 = new JLabel();
+        label6.setText("Search Director");
+        rootPane.add(label6, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label7 = new JLabel();
+        label7.setForeground(new Color(-4486332));
+        label7.setText("Directors");
+        rootPane.add(label7, new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
