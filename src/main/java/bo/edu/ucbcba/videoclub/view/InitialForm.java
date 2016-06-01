@@ -15,7 +15,7 @@ public class InitialForm extends JFrame {
     private JButton MoviesButton;
     private JButton CustomersButton;
     private JButton GamesButton;
-    private JButton addButton;
+    private JButton logoutButton;
     private UserController userController;
 
     //Creo que es necesario que esta clase tenga un contructor propio para cada ventana, o almenos asi es como logre hacer
@@ -49,12 +49,19 @@ public class InitialForm extends JFrame {
         });
         //InitialForm form = new InitialForm();
 
-        addButton.addActionListener(new ActionListener() {
+        logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreateUser();
+                launchLogout();
             }
         });
+    }
+
+    private void launchLogout() {
+        this.setVisible(false);
+        LogoutForm form = new LogoutForm();
+        form.setVisible(true);
+        form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     private void CreateUser() {
@@ -100,7 +107,7 @@ public class InitialForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setEnabled(true);
         rootPanel.setFont(new Font(rootPanel.getFont().getName(), rootPanel.getFont().getStyle(), rootPanel.getFont().getSize()));
@@ -112,14 +119,14 @@ public class InitialForm extends JFrame {
         GamesButton.setForeground(new Color(-4486332));
         GamesButton.setHideActionText(false);
         GamesButton.setText("Games");
-        rootPanel.add(GamesButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(GamesButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         MoviesButton = new JButton();
         MoviesButton.setBackground(new Color(-12828863));
         MoviesButton.setFont(new Font("Courier New", MoviesButton.getFont().getStyle(), 18));
         MoviesButton.setForeground(new Color(-4486332));
         MoviesButton.setHorizontalTextPosition(11);
         MoviesButton.setText("Movies");
-        rootPanel.add(MoviesButton, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(MoviesButton, new GridConstraints(2, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         CustomersButton = new JButton();
         CustomersButton.setBackground(new Color(-12828863));
         CustomersButton.setEnabled(true);
@@ -127,17 +134,17 @@ public class InitialForm extends JFrame {
         CustomersButton.setForeground(new Color(-4486332));
         CustomersButton.setHideActionText(false);
         CustomersButton.setText("Clients");
-        rootPanel.add(CustomersButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(CustomersButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setBackground(new Color(-12828863));
         label1.setEnabled(true);
         label1.setFont(new Font("Courier New", Font.BOLD, 28));
         label1.setForeground(new Color(-4486332));
         label1.setText("SAKILA 2.0");
-        rootPanel.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        addButton = new JButton();
-        addButton.setText("add");
-        rootPanel.add(addButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(label1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        logoutButton = new JButton();
+        logoutButton.setText("Logout");
+        rootPanel.add(logoutButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

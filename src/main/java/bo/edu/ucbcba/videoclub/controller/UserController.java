@@ -78,7 +78,6 @@ public class UserController {
         } else {
             return false;
         }
-
     }
 
     public List<User> searchUser(String q) {
