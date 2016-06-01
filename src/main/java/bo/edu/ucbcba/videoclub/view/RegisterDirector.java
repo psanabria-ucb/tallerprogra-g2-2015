@@ -1,15 +1,20 @@
 package bo.edu.ucbcba.videoclub.view;
 
 import bo.edu.ucbcba.videoclub.controller.DirectorController;
+import bo.edu.ucbcba.videoclub.controller.MovieController;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
+import bo.edu.ucbcba.videoclub.model.Director;
+import bo.edu.ucbcba.videoclub.model.Movie;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by psanabria on 5/23/16.
@@ -21,27 +26,30 @@ public class RegisterDirector extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
     private JPanel rootPane;
+    private JTable TableDirector;
+    private DirectorController directorController;
 
     public RegisterDirector(HomeMoviesForm parent) {
         super(parent, "Register Director");
         setContentPane(rootPane);
-        setSize(300, 300);
+        setSize(500, 600);
         setResizable(false);
+        directorController = new DirectorController();
+        populateTable();
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveDirector();
             }
         });
-
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cancel();
             }
         });
-
         controller = new DirectorController();
+
     }
 
     private void cancel() {
@@ -55,9 +63,27 @@ public class RegisterDirector extends JDialog {
             String lName = lastName.getText();
             controller.saveDirector(fName, lName);
             JOptionPane.showMessageDialog(this, "Director created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-            cancel();
         } catch (ValidationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Format error", JOptionPane.ERROR_MESSAGE);
+        }
+        populateTable();
+    }
+
+    private void populateTable() {
+        List<Director> directors;
+        directors = directorController.searchDirector("");
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("FirstName");
+        model.addColumn("LastName");
+        TableDirector.setModel(model);
+
+        for (Director m : directors) {
+            Object[] row = new Object[2];
+
+            row[0] = m.getFirstName();
+            row[1] = m.getLastName();
+            model.addRow(row);
         }
     }
 
@@ -77,33 +103,49 @@ public class RegisterDirector extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
-        rootPane.setLayout(new GridLayoutManager(5, 2, new Insets(20, 20, 20, 20), -1, -1));
+        rootPane.setLayout(new GridLayoutManager(6, 3, new Insets(20, 20, 20, 20), -1, -1));
+        rootPane.setBackground(new Color(-3090213));
         final JLabel label1 = new JLabel();
-        label1.setFont(new Font(label1.getFont().getName(), Font.BOLD, 14));
+        label1.setFont(new Font("Courier New", label1.getFont().getStyle(), 20));
+        label1.setForeground(new Color(-4486332));
         label1.setHorizontalAlignment(0);
         label1.setText("Register Director");
-        rootPane.add(label1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPane.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("First Name");
-        rootPane.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPane.add(label2, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Last Name");
-        rootPane.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        rootPane.add(spacer1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        rootPane.add(label3, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         firstName = new JTextField();
-        rootPane.add(firstName, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        rootPane.add(firstName, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         lastName = new JTextField();
-        rootPane.add(lastName, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        rootPane.add(lastName, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        rootPane.add(panel1, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        rootPane.add(panel1, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         okButton = new JButton();
+        okButton.setBackground(new Color(-12828863));
+        okButton.setForeground(new Color(-4486332));
+        okButton.setHideActionText(false);
         okButton.setText("Ok");
         panel1.add(okButton);
         cancelButton = new JButton();
+        cancelButton.setBackground(new Color(-12828863));
+        cancelButton.setForeground(new Color(-4486332));
         cancelButton.setText("Cancel");
         panel1.add(cancelButton);
+        TableDirector = new JTable();
+        rootPane.add(TableDirector, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        rootPane.add(panel2, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label4 = new JLabel();
+        label4.setText("FirstName");
+        panel2.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label5 = new JLabel();
+        label5.setText("LastName");
+        panel2.add(label5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

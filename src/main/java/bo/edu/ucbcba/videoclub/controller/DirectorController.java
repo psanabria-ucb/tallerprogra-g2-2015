@@ -4,6 +4,7 @@ import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Client;
 import bo.edu.ucbcba.videoclub.model.Director;
+import bo.edu.ucbcba.videoclub.model.Movie;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -81,6 +82,14 @@ public class DirectorController {
         List<Director> list = query.getResultList();
         em.close();
         return list;
+    }
+    public List<Director> searchDirector(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Director> query = entityManager.createQuery("select m from Director m WHERE lower(m.firstName) like :title", Director.class);
+        query.setParameter("title", "%" + q.toLowerCase() + "%");
+        List<Director> response = query.getResultList();
+        entityManager.close();
+        return response;
     }
 }
 
