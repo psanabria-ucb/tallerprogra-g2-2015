@@ -103,23 +103,84 @@ public class GameController {
         entityManager.close();
     }
 
-    public List<Game> searchGames(String q, String order) {
+    public List<Game> searchGames(String q, String order, String sence) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<Game> query =  entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.title", Game.class);
         if (order.equals("Year")){
-             query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.releaseYear", Game.class);
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.releaseYear ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.releaseYear DESC", Game.class);
+            }
         }
         if (order.equals("Company")){
-            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.company", Game.class);
+            if(sence.equals("Ascendant")){
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.company ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.company DESC", Game.class);
+            }
         }
         if (order.equals("Rating")){
-            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.rating", Game.class);
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.rating ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.rating DESC", Game.class);
+            }
         }
         if (order.equals("Price")){
-            query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.price", Game.class);
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.price ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(g.title) like :title order by g.price DESC", Game.class);
+            }
         }
 
         query.setParameter("title", "%" + q.toLowerCase() + "%");
+        List<Game> response = query.getResultList();
+        entityManager.close();
+        return response;
+    }
+
+    public List<Game> searchCompany(String q, String order, String sence) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.title", Game.class);
+        if (order.equals("Year")){
+            if (sence.equals("Ascendant")){
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.releaseYear ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.releaseYear DESC", Game.class);
+            }
+        }
+        if (order.equals("Company")){
+            if (sence.equals("Ascendant")){
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.company ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.company DESC", Game.class);
+            }
+        }
+        if (order.equals("Rating")){
+            if (sence.equals("Ascendant")){
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.rating ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.rating DESC", Game.class);
+            }
+        }
+        if (order.equals("Price")){
+            if (sence.equals("Ascendant")){
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.price ASC", Game.class);
+            }
+            else{
+                query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp order by g.price DESC", Game.class);
+            }
+        }
+        query.setParameter("comp", "%" + q.toLowerCase() + "%");
         List<Game> response = query.getResultList();
         entityManager.close();
         return response;
@@ -154,14 +215,7 @@ public class GameController {
         }
     }
     */
-    public List<Game> searchCompany(String q) {
-        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Game> query = entityManager.createQuery("select g from Game g WHERE lower(concat(g.company.name,' ',g.company.country)) like :comp", Game.class);
-        query.setParameter("comp", "%" + q.toLowerCase() + "%");
-        List<Game> response = query.getResultList();
-        entityManager.close();
-        return response;
-    }
+
 
     public void delete(int id){
         int confirmation = JOptionPane.showConfirmDialog(null, "Do you really want to delete this Game?", "Delete",  JOptionPane.YES_NO_OPTION);
