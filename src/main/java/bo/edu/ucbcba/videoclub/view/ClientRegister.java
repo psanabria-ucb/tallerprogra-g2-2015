@@ -7,10 +7,14 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import bo.edu.ucbcba.videoclub.model.Client;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ClientRegister extends JDialog {
     private JTextField ci;
@@ -28,6 +32,7 @@ public class ClientRegister extends JDialog {
         setBounds(200, 300, 800, 600);
         pack();
         setResizable(true);
+        launchImage();
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +65,21 @@ public class ClientRegister extends JDialog {
     private void cancel() {
         setVisible(false);
         dispose();
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
 

@@ -4,8 +4,12 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by USER on 18/05/2016.
@@ -21,11 +25,27 @@ public class ViewDetailsMovies extends JDialog {
         setContentPane(rootPanel);
         setSize(800, 500);
         setResizable(true);
+        launchImage();
         Title.setText(t);
         Image image = getToolkit().createImage(i);
         image = image.getScaledInstance(300, 300, image.SCALE_DEFAULT);
         Image.setIcon(new ImageIcon(image));
         Description.setText(d);
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
     {

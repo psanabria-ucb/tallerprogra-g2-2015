@@ -6,11 +6,15 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ViewMoviesForm extends JDialog {
@@ -30,6 +34,7 @@ public class ViewMoviesForm extends JDialog {
         setContentPane(rootPanel);
         setSize(900, 400);
         setResizable(false);
+        launchImage();
         movieController = new MovieController();
         populateTable();
         searchButton.addActionListener(new ActionListener() {
@@ -114,6 +119,21 @@ public class ViewMoviesForm extends JDialog {
 
             model.addRow(row);
         }
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
     {

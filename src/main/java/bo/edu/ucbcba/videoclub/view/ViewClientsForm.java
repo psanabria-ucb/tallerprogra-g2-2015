@@ -5,11 +5,15 @@ import bo.edu.ucbcba.videoclub.model.Client;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,6 +32,7 @@ public class ViewClientsForm extends JFrame {
         setSize(600, 400);
         pack();
         setResizable(true);
+        launchImage();
         clientController = new ClientController();
         populateTable();
         searchButton.addActionListener(new ActionListener() {
@@ -36,6 +41,21 @@ public class ViewClientsForm extends JFrame {
                 populateTable();
             }
         });
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
 

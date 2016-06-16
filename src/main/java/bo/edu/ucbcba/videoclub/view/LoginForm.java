@@ -6,10 +6,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by privado on 29/05/2016.
@@ -53,6 +57,7 @@ public class LoginForm extends JFrame {
                     invalidUser();
             }
         });
+        launchImage();
     }
 
     public void goInitialForm() {
@@ -90,6 +95,21 @@ public class LoginForm extends JFrame {
             JOptionPane.showMessageDialog(this, "Username can't be blank", "Authentication Error", JOptionPane.INFORMATION_MESSAGE);
         }
         return false;
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
     {

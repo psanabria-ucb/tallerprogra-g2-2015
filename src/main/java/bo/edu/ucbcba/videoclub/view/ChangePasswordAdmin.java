@@ -4,6 +4,7 @@ import bo.edu.ucbcba.videoclub.controller.UserController;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
+import javax.imageio.ImageIO;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -15,6 +16,9 @@ import javax.swing.text.html.parser.Entity;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -36,6 +40,7 @@ public class ChangePasswordAdmin extends JFrame {
         setSize(700, 500);
         //setSize(600, 400);
         setResizable(false);
+        launchImage();
         userController = new UserController();
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +48,7 @@ public class ChangePasswordAdmin extends JFrame {
                 validateChanges();
             }
         });
+
     }
 
     private void validateChanges() {
@@ -58,6 +64,21 @@ public class ChangePasswordAdmin extends JFrame {
             }
         } else
             JOptionPane.showMessageDialog(this, "New password and Confirm Password are not equal", "New Passwords are not Equals", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void launchImage() {
+        BufferedImage myPicture = null;
+        try {
+            myPicture = ImageIO.read(new File("fondo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel label = new JLabel(new ImageIcon(myPicture));
+        ((JPanel) getContentPane()).setOpaque(false);
+        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
+        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
+
     }
 
     {
