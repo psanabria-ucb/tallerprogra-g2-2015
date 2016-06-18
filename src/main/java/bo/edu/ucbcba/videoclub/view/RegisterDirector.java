@@ -76,10 +76,13 @@ public class RegisterDirector extends JDialog {
             String lName = lastName.getText();
             controller.saveDirector(fName, lName);
             JOptionPane.showMessageDialog(this, "Director created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            firstName.setText("");
+            lastName.setText("");
         } catch (ValidationException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Format error", JOptionPane.ERROR_MESSAGE);
         }
         populateTable();
+
     }
 
     private void populateTable() {
@@ -103,7 +106,7 @@ public class RegisterDirector extends JDialog {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("fondoM.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,9 +143,11 @@ public class RegisterDirector extends JDialog {
         label1.setText("Register Director");
         rootPane.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
+        label2.setForeground(new Color(-4486332));
         label2.setText("First Name");
         rootPane.add(label2, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
+        label3.setForeground(new Color(-4486332));
         label3.setText("Last Name");
         rootPane.add(label3, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         firstName = new JTextField();
@@ -156,11 +161,13 @@ public class RegisterDirector extends JDialog {
         okButton.setBackground(new Color(-12828863));
         okButton.setForeground(new Color(-4486332));
         okButton.setHideActionText(false);
+        okButton.setIcon(new ImageIcon(getClass().getResource("/icons/addition-sign.png")));
         okButton.setText("Ok");
         panel1.add(okButton);
         cancelButton = new JButton();
         cancelButton.setBackground(new Color(-12828863));
         cancelButton.setForeground(new Color(-4486332));
+        cancelButton.setIcon(new ImageIcon(getClass().getResource("/icons/remove-symbol.png")));
         cancelButton.setText("Cancel");
         panel1.add(cancelButton);
         TableDirector = new JTable();
@@ -181,6 +188,7 @@ public class RegisterDirector extends JDialog {
         searchButton = new JButton();
         searchButton.setBackground(new Color(-12828863));
         searchButton.setForeground(new Color(-4486332));
+        searchButton.setIcon(new ImageIcon(getClass().getResource("/icons/magnifier.png")));
         searchButton.setText("Search");
         rootPane.add(searchButton, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();

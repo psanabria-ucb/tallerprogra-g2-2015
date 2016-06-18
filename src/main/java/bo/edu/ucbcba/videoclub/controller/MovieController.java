@@ -27,6 +27,17 @@ public class MovieController {
         if (price.isEmpty()){
             throw new ValidationException("Price can't be blank");
         }
+        if(releaseYear.length() > 5)
+            throw new ValidationException("Release Year can't have more than 5 characters");
+        if(price.length() > 7)
+            throw new ValidationException("Price can't have more than 7 characters");
+
+
+        if(minutesLength.length() > 4)
+            throw new ValidationException("Minutes  can't have more than 4 characters");
+        if(hoursLength.length() > 4)
+            throw new ValidationException("Hours can't have more than 4 characters");
+
 
         if(nameImage.isEmpty()){
             throw new ValidationException("Image can't be blank");

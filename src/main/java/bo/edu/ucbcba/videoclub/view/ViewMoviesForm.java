@@ -9,12 +9,16 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 
 public class ViewMoviesForm extends JDialog {
@@ -26,6 +30,8 @@ public class ViewMoviesForm extends JDialog {
     private JRadioButton Titleradiobutton;
     private JRadioButton Directorradiobutton;
     private JButton Deletebutton;
+    private JButton Export;
+    private JButton Print;
     private MovieController movieController;
     ButtonGroup group = new ButtonGroup();
 
@@ -58,6 +64,20 @@ public class ViewMoviesForm extends JDialog {
         Titleradiobutton.setSelected(true);
         group.add(Titleradiobutton);
         group.add(Directorradiobutton);
+        Export.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                excel(moviesTable);
+            }
+        });
+
+        Print.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                utilJTablePrint(moviesTable, "Movies", "End",
+                        true);
+            }
+        });
 
 
     }
@@ -124,7 +144,7 @@ public class ViewMoviesForm extends JDialog {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("fondoM.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,6 +154,89 @@ public class ViewMoviesForm extends JDialog {
         getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
         label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
 
+    }
+
+    public void excel(JTable table) {
+        {
+            JFileChooser fc = new JFileChooser();
+            int option = fc.showSaveDialog(table);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                String filename = fc.getSelectedFile().getName();
+                String path = fc.getSelectedFile().getParentFile().getPath();
+                int len = filename.length();
+                String ext = "";
+                String file = "";
+                if (len > 4) {
+                    ext = filename.substring(len - 4, len);
+                }
+                if (ext.equals(".xls")) {
+                    file = path + "\\" + filename;
+                } else {
+                    file = path + "\\" + filename + ".xls";
+                }
+                try {
+                    toExcel(table, new File(file));
+                    JOptionPane.showMessageDialog(this, "The table was exported successfully");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "\n" +
+                            "An error has occurred when exporting", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+    }
+
+
+    public void toExcel(JTable tabla, File ficheroXLS) throws IOException {
+        TableModel modelo = tabla.getModel();
+        FileWriter fichero = new FileWriter(ficheroXLS);
+
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            fichero.write(modelo.getColumnName(i) + "\t");
+        }
+        fichero.write("\n");
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            for (int j = 0; j < modelo.getColumnCount(); j++) {
+                fichero.write(modelo.getValueAt(i, j).toString() + "\t");
+            }
+            fichero.write("\n");
+        }
+        fichero.close();
+    }
+
+    public void utilJTablePrint(JTable jTable, String header, String footer, boolean showPrintDialog) {
+        boolean fitWidth = true;
+        boolean interactive = true;
+        // We define the print mode (Definimos el modo de impresión)
+        JTable.PrintMode mode = fitWidth ? JTable.PrintMode.FIT_WIDTH : JTable.PrintMode.NORMAL;
+        try {
+            // Print the table (Imprimo la <span id="IL_AD1" class="IL_AD">tabla</span>)
+            boolean complete = jTable.print(mode,
+                    new MessageFormat(header),
+                    new MessageFormat(footer),
+                    showPrintDialog,
+                    null,
+                    interactive);
+            if (complete) {
+                // Mostramos el mensaje de impresión existosa
+                JOptionPane.showMessageDialog(jTable,
+                        "Print complete",
+                        "Print result",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Mostramos un mensaje indicando que la impresión fue cancelada
+                JOptionPane.showMessageDialog(jTable,
+                        "Print canceled",
+                        "Print result",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (PrinterException pe) {
+            JOptionPane.showMessageDialog(jTable,
+                    "Print fail " + pe.getMessage(),
+                    "Print result ",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     {
@@ -152,13 +255,13 @@ public class ViewMoviesForm extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(7, 4, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(6, 4, new Insets(0, 0, 0, 0), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         moviesTable = new JTable();
-        rootPanel.add(moviesTable, new GridConstraints(4, 0, 3, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        rootPanel.add(moviesTable, new GridConstraints(3, 0, 3, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
-        rootPanel.add(panel1, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        rootPanel.add(panel1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         Titleradiobutton = new JRadioButton();
         Titleradiobutton.setText("Title");
         panel1.add(Titleradiobutton, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -171,56 +274,66 @@ public class ViewMoviesForm extends JDialog {
         panel1.add(label1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         searchText = new JTextField();
         searchText.setToolTipText("Search by name");
-        rootPanel.add(searchText, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        rootPanel.add(searchText, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         searchButton = new JButton();
         searchButton.setBackground(new Color(-12828863));
         searchButton.setForeground(new Color(-4486332));
+        searchButton.setIcon(new ImageIcon(getClass().getResource("/icons/magnifier.png")));
         searchButton.setText("Search");
-        rootPanel.add(searchButton, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        label2.setFont(new Font("Courier New", label2.getFont().getStyle(), 20));
-        label2.setForeground(new Color(-4486332));
-        label2.setText("MOVIES");
-        rootPanel.add(label2, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(searchButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 7, new Insets(0, 0, 0, 0), -1, -1));
-        rootPanel.add(panel2, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        rootPanel.add(panel2, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        label2.setHorizontalAlignment(0);
+        label2.setHorizontalTextPosition(0);
+        label2.setText("Title");
+        panel2.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setHorizontalAlignment(0);
-        label3.setHorizontalTextPosition(0);
-        label3.setText("Title");
-        panel2.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label3.setText("Length");
+        panel2.add(label3, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Length");
-        panel2.add(label4, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label4.setText("Year");
+        panel2.add(label4, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setText("Year");
-        panel2.add(label5, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label5.setText("Rating");
+        panel2.add(label5, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();
-        label6.setText("Rating");
-        panel2.add(label6, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label6.setText("Description");
+        panel2.add(label6, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label7 = new JLabel();
-        label7.setText("Description");
-        panel2.add(label7, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label7.setText("Director");
+        panel2.add(label7, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label8 = new JLabel();
-        label8.setText("Director");
-        panel2.add(label8, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label9 = new JLabel();
-        label9.setText("Price");
-        panel2.add(label9, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label8.setText("Price");
+        panel2.add(label8, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        rootPanel.add(panel3, new GridConstraints(4, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel3.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.add(panel3, new GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         Deletebutton = new JButton();
         Deletebutton.setBackground(new Color(-12828863));
         Deletebutton.setForeground(new Color(-4486332));
+        Deletebutton.setIcon(new ImageIcon(getClass().getResource("/icons/minus-sign.png")));
         Deletebutton.setText("Delete");
         panel3.add(Deletebutton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         viewButton = new JButton();
         viewButton.setBackground(new Color(-12828863));
         viewButton.setForeground(new Color(-4486332));
-        viewButton.setText("view");
-        panel3.add(viewButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        viewButton.setIcon(new ImageIcon(getClass().getResource("/icons/correct-symbol.png")));
+        viewButton.setText("View");
+        panel3.add(viewButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Export = new JButton();
+        Export.setBackground(new Color(-12828863));
+        Export.setForeground(new Color(-4486332));
+        Export.setIcon(new ImageIcon(getClass().getResource("/icons/spreadsheet-cell-row.png")));
+        Export.setText(" Export to excel");
+        panel3.add(Export, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Print = new JButton();
+        Print.setBackground(new Color(-12828863));
+        Print.setForeground(new Color(-4486332));
+        Print.setIcon(new ImageIcon(getClass().getResource("/icons/printer.png")));
+        Print.setText("Print");
+        panel3.add(Print, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

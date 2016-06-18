@@ -85,7 +85,7 @@ public class DirectorController {
     }
     public List<Director> searchDirector(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Director> query = entityManager.createQuery("select m from Director m WHERE lower(m.firstName) like :title", Director.class);
+        TypedQuery<Director> query = entityManager.createQuery("select m from Director m WHERE lower(concat(m.firstName,m.lastName)) like :title", Director.class);
         query.setParameter("title", "%" + q.toLowerCase() + "%");
         List<Director> response = query.getResultList();
         entityManager.close();
