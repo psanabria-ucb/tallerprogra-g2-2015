@@ -274,7 +274,7 @@
           <grid row="8" column="1" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-3090213"/>
+          <background color="-12828863"/>
         </properties>
         <border type="none"/>
         <children>
@@ -283,7 +283,7 @@
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-3090213"/>
+              <background color="-12828863"/>
               <font name="Courier New" size="18"/>
               <foreground color="-4486332"/>
               <hideActionText value="false"/>
@@ -296,7 +296,7 @@
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-3090213"/>
+              <background color="-12828863"/>
               <font name="Courier New" size="18"/>
               <foreground color="-4486332"/>
               <hideActionText value="false"/>
@@ -308,7 +308,7 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-3090213"/>
+              <background color="-12828863"/>
               <font name="Courier New" size="18"/>
               <foreground color="-4486332"/>
               <hideActionText value="false"/>
@@ -320,7 +320,7 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-3090213"/>
+              <background color="-12828863"/>
               <font name="Courier New" size="18"/>
               <foreground color="-4486332"/>
               <hideActionText value="false"/>
@@ -332,7 +332,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-3090213"/>
+              <background color="-12828863"/>
               <font name="Courier New" size="18"/>
               <foreground color="-4486332"/>
               <hideActionText value="false"/>

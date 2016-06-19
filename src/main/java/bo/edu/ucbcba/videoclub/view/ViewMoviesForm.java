@@ -40,7 +40,6 @@ public class ViewMoviesForm extends JDialog {
         setContentPane(rootPanel);
         setSize(900, 400);
         setResizable(false);
-        launchImage();
         movieController = new MovieController();
         populateTable();
         searchButton.addActionListener(new ActionListener() {
@@ -119,7 +118,6 @@ public class ViewMoviesForm extends JDialog {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Title");
         model.addColumn("Director");
-        model.addColumn("Description");
         model.addColumn("Rating");
         model.addColumn("Release Year");
         model.addColumn("Length");
@@ -127,34 +125,20 @@ public class ViewMoviesForm extends JDialog {
         moviesTable.setModel(model);
 
         for (Movie m : movies) {
-            Object[] row = new Object[7];
+            Object[] row = new Object[6];
 
             row[0] = m.getTitle();
             row[1] = m.getDirector();
-            row[2] = m.getDescription();
-            row[3] = m.getRating();
-            row[4] = m.getReleaseYear();
+            row[2] = m.getRating();
+            row[3] = m.getReleaseYear();
+            row[4] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
             row[5] = m.getPrice();
-            row[6] = String.format("%s:%s", m.getLength() / 60, m.getLength() % 60);
+
 
             model.addRow(row);
         }
     }
 
-    private void launchImage() {
-        BufferedImage myPicture = null;
-        try {
-            myPicture = ImageIO.read(new File("fondoM.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        JLabel label = new JLabel(new ImageIcon(myPicture));
-        ((JPanel) getContentPane()).setOpaque(false);
-        getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
-        label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
-
-    }
 
     public void excel(JTable table) {
         {
@@ -256,20 +240,24 @@ public class ViewMoviesForm extends JDialog {
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
         rootPanel.setLayout(new GridLayoutManager(6, 4, new Insets(0, 0, 0, 0), -1, -1));
-        rootPanel.setBackground(new Color(-3090213));
-        moviesTable = new JTable();
-        rootPanel.add(moviesTable, new GridConstraints(3, 0, 3, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        rootPanel.setBackground(new Color(-12828863));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setBackground(new Color(-12828863));
         rootPanel.add(panel1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         Titleradiobutton = new JRadioButton();
+        Titleradiobutton.setBackground(new Color(-12828863));
+        Titleradiobutton.setForeground(new Color(-4486332));
         Titleradiobutton.setText("Title");
         panel1.add(Titleradiobutton, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         Directorradiobutton = new JRadioButton();
+        Directorradiobutton.setBackground(new Color(-12828863));
+        Directorradiobutton.setForeground(new Color(-4486332));
         Directorradiobutton.setText("Director");
         panel1.add(Directorradiobutton, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setForeground(new Color(-12828863));
+        label1.setBackground(new Color(-12828863));
+        label1.setForeground(new Color(-4486332));
         label1.setText("Search By:");
         panel1.add(label1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         searchText = new JTextField();
@@ -282,7 +270,7 @@ public class ViewMoviesForm extends JDialog {
         searchButton.setText("Search");
         rootPanel.add(searchButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(1, 7, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
         rootPanel.add(panel2, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setHorizontalAlignment(0);
@@ -290,25 +278,23 @@ public class ViewMoviesForm extends JDialog {
         label2.setText("Title");
         panel2.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("Length");
-        panel2.add(label3, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label3.setText("Year");
+        panel2.add(label3, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Year");
-        panel2.add(label4, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label4.setText("Rating");
+        panel2.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setText("Rating");
-        panel2.add(label5, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label5.setText("Director");
+        panel2.add(label5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();
-        label6.setText("Description");
-        panel2.add(label6, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label6.setText("Price");
+        panel2.add(label6, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label7 = new JLabel();
-        label7.setText("Director");
-        panel2.add(label7, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label8 = new JLabel();
-        label8.setText("Price");
-        panel2.add(label8, new GridConstraints(0, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label7.setText("Length");
+        panel2.add(label7, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setBackground(new Color(-12828863));
         rootPanel.add(panel3, new GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         Deletebutton = new JButton();
         Deletebutton.setBackground(new Color(-12828863));
@@ -334,6 +320,9 @@ public class ViewMoviesForm extends JDialog {
         Print.setIcon(new ImageIcon(getClass().getResource("/icons/printer.png")));
         Print.setText("Print");
         panel3.add(Print, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        moviesTable = new JTable();
+        moviesTable.setToolTipText("");
+        rootPanel.add(moviesTable, new GridConstraints(3, 0, 3, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 
     /**
