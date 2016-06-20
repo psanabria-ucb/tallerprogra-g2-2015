@@ -138,9 +138,71 @@ public class MovieController {
         entityManager.close();
     }
 
-    public List<Movie> searchMovies(String q) {
+    public List<Movie> searchMovies(String q ,String sence ,String order) {
+
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title", Movie.class);
+        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.title ASC", Movie.class);
+        if(order.equals("Title")) {
+            if (sence.equals("Ascendant")) {
+                 query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.title ASC", Movie.class);
+            }
+            else{
+                 query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.title DESC", Movie.class);
+
+            }
+        }
+
+        if(order.equals("Rating")){
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.rating ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.rating DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Year"))
+        {
+            if (sence.equals("Ascendant")) {
+                 query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.releaseYear ASC", Movie.class);
+            }
+            else{
+               query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.releaseYear DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Price"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.price ASC", Movie.class);
+            }
+            else{
+               query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.price DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Length"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.length ASC", Movie.class);
+            }
+            else{
+               query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.length DESC", Movie.class);
+
+            }
+        }
+
+        if(order.equals("Director"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.director ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(m.title) like :title order by m.director DESC", Movie.class);
+
+            }
+        }
+
         query.setParameter("title", "%" + q.toLowerCase() + "%");
         List<Movie> response = query.getResultList();
         entityManager.close();
@@ -165,11 +227,77 @@ public class MovieController {
         entityManager.close();
         return a;
     }
-    public List<Movie> searchDirectors(String q) {
+    public List<Movie> searchDirectors(String q ,String sence ,String order) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        //TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE (lower(m.director.firstName)+ SPACE(1) + lower(m.director.lastName)) like :direc", Movie.class);
-        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direc", Movie.class);
-        query.setParameter("direc", "%" + q.toLowerCase() + "%");
+        TypedQuery<Movie> query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct", Movie.class);
+        if(order.equals("Title")) {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.title ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.title DESC", Movie.class);
+
+            }
+        }
+
+        if(order.equals("Rating")){
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.rating ASC", Movie.class);
+
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.rating DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Year"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.releaseYear ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.releaseYear DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Price"))
+        {
+            if (sence.equals("Ascendant")) {
+
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.price ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.price DESC", Movie.class);
+
+            }
+        }
+        if(order.equals("Length"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.length ASC", Movie.class);
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.length DESC", Movie.class);
+
+            }
+        }
+
+        if(order.equals("Director"))
+        {
+            if (sence.equals("Ascendant")) {
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.director ASC", Movie.class);
+
+            }
+            else{
+                query = entityManager.createQuery("select m from Movie m WHERE lower(concat(m.director.firstName,' ',m.director.lastName)) like :direct order by m.director DESC", Movie.class);
+
+            }
+        }
+
+
+
+
+        query.setParameter("direct", "%" + q.toLowerCase() + "%");
         List<Movie> response = query.getResultList();
         entityManager.close();
         return response;

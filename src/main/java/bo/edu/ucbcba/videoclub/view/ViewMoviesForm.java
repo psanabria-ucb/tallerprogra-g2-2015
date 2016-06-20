@@ -32,6 +32,8 @@ public class ViewMoviesForm extends JDialog {
     private JButton Deletebutton;
     private JButton Export;
     private JButton Print;
+    private JComboBox Sence;
+    private JComboBox Order;
     private MovieController movieController;
     ButtonGroup group = new ButtonGroup();
 
@@ -77,8 +79,24 @@ public class ViewMoviesForm extends JDialog {
                         true);
             }
         });
+       Sence.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               loading();
+           }
+       });
+        Order.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loading();
+            }
+        });
 
+    }
 
+    private void loading()
+    {
+        populateTable();
     }
 
     private void view() {
@@ -110,10 +128,12 @@ public class ViewMoviesForm extends JDialog {
 
     private void populateTable() {
         List<Movie> movies;
+        String option = (String) Order.getSelectedItem();
+        String sense = (String) Sence.getSelectedItem();
         if (Titleradiobutton.isSelected() == true) {
-            movies = movieController.searchMovies(searchText.getText());
+            movies = movieController.searchMovies(searchText.getText(),sense,option);
         } else {
-            movies = movieController.searchDirectors(searchText.getText());
+            movies = movieController.searchDirectors(searchText.getText(),sense,option);
         }
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Title");

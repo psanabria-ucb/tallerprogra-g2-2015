@@ -83,12 +83,13 @@ public class RegisterMovieForm extends JDialog {
         directorController = new DirectorController();
         populateComboBox();
         if (directorComboBox.getItemCount() == 0) {
-            JOptionPane.showMessageDialog(this, "First, register a Director", "Alert", JOptionPane.ERROR_MESSAGE);
             title.setEditable(false);
             description.setEditable(false);
             hoursLength.setEditable(false);
             minutesLength.setEditable(false);
             price.setEditable(false);
+            JOptionPane.showMessageDialog(this, "First, register a Director", "Alert", JOptionPane.ERROR_MESSAGE);
+
         }
 
     }
