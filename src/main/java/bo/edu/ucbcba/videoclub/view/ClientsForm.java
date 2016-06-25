@@ -1,6 +1,7 @@
 package bo.edu.ucbcba.videoclub.view;
 
 import bo.edu.ucbcba.videoclub.controller.ClientController;
+import bo.edu.ucbcba.videoclub.controller.Session;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Client;
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -49,6 +50,12 @@ public class ClientsForm extends JFrame {
                 viewClients();
             }
         });
+
+        if (Session.getSession().getUtype() == 1) {
+            deleteClientButton.setVisible(true);
+        } else {
+            deleteClientButton.setVisible(false);
+        }
 
         deleteClientButton.addActionListener(new ActionListener() {
             @Override

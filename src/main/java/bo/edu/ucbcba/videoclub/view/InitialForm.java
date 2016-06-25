@@ -1,5 +1,6 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.Session;
 import bo.edu.ucbcba.videoclub.controller.UserController;
 import com.intellij.uiDesigner.core.DimensionInfo;
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -63,6 +64,11 @@ public class InitialForm extends JFrame {
             }
         });
         launchImage();
+        if (Session.getSession().getUtype() == 2) {
+            changePasswordAdminButton.setVisible(false);
+        } else {
+            changePasswordAdminButton.setVisible(true);
+        }
         changePasswordAdminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,6 +79,7 @@ public class InitialForm extends JFrame {
 
     private void launchLogout() {
         this.setVisible(false);
+        Session.getSession().Logout();
         LogoutForm form = new LogoutForm();
         form.setVisible(true);
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -109,7 +116,7 @@ public class InitialForm extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("probando2.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

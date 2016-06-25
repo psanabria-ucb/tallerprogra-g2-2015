@@ -69,7 +69,7 @@ public class ChangePasswordAdmin extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("mountain2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

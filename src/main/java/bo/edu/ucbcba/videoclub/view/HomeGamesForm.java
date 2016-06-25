@@ -1,5 +1,6 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.Session;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -33,6 +34,7 @@ public class HomeGamesForm extends JFrame {
                 showGames();
             }
         });
+
         addGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,7 +172,7 @@ public class HomeGamesForm extends JFrame {
         listingGamesButton.setBackground(new Color(-12828863));
         listingGamesButton.setFont(new Font("Courier New", listingGamesButton.getFont().getStyle(), 18));
         listingGamesButton.setForeground(new Color(-4486332));
-        listingGamesButton.setText("View/Delete Games");
+        listingGamesButton.setText("Add | Delete Game");
         rootPanel.add(listingGamesButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addGameButton = new JButton();
         addGameButton.setBackground(new Color(-12828863));

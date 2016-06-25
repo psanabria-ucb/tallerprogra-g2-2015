@@ -1,6 +1,7 @@
 package bo.edu.ucbcba.videoclub.view;
 
 import bo.edu.ucbcba.videoclub.controller.GameController;
+import bo.edu.ucbcba.videoclub.controller.Session;
 import bo.edu.ucbcba.videoclub.exceptions.ControllerException;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Game;
@@ -55,6 +56,17 @@ public class GamesForm extends JDialog {
                 populateTable();
             }
         });
+
+        if (Session.getSession().getUtype() == 1) {
+            deleteButton.setVisible(true);
+        } else {
+            deleteButton.setVisible(false);
+        }
+        if (Session.getSession().getUtype() == 1) {
+            deleteButton.setVisible(true);
+        } else {
+            deleteButton.setVisible(false);
+        }
 
         deleteButton.addActionListener(new ActionListener() {
             @Override

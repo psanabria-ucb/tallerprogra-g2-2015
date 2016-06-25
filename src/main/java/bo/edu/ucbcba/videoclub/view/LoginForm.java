@@ -1,7 +1,9 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.Session;
 import bo.edu.ucbcba.videoclub.controller.UserController;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
+import bo.edu.ucbcba.videoclub.model.User;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -51,7 +53,12 @@ public class LoginForm extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int a;
+                a = userController.getUsertype(usernameField.getText());
                 if (ValidateUser()) {
+                    Session.getSession().setUsername(usernameField.getText());
+                    Session.getSession().setUsertype(a);
+                    //Mensaje("El tipo de usuario es: " + Session.getSession().getUsername() + " Con tipo de usuario: " + Session.getSession().getUtype());
                     goInitialForm();
                 } else
                     invalidUser();
@@ -67,14 +74,18 @@ public class LoginForm extends JFrame {
         form.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    private void Mensaje(String s) {
+        JOptionPane.showMessageDialog(this, s, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     private void CreateUserStaff() {
-        userController.create("staff", "staff123");
-        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        userController.create("staff", "staff123", 2);
+        //JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void CreateUserAdmin() {
-        userController.create("admin", "admin123");
-        JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        userController.create("admin", "admin123", 1);
+        //JOptionPane.showMessageDialog(this, "User created successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void invalidUser() {
@@ -100,7 +111,7 @@ public class LoginForm extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("probando4.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

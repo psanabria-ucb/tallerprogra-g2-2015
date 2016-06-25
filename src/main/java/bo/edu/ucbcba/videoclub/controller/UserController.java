@@ -6,6 +6,7 @@ import bo.edu.ucbcba.videoclub.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.metamodel.Type;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class UserController {
     public void create(String username,
-                       String password) {
+                       String password,int type) {
 
         User user = new User();
 
@@ -50,8 +51,8 @@ public class UserController {
 
                 user.setUsername(username);
                 user.setPassword(password);
-                user.setUsertype(2);
-                user.setIsAuthenticated(0);
+                user.setUsertype(type);
+
 
                 entityManager.getTransaction().begin();
                 entityManager.persist(user);
@@ -64,6 +65,35 @@ public class UserController {
             }
         }*/
     }
+
+    public int getUsertype(String q) {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<User> query = entityManager.createQuery("select u.usertype from User u WHERE u.username = :username AND u.usertype = :usertype", User.class);
+        query.setParameter("username",q);
+        query.setParameter("usertype",1);
+        List<User> response = query.getResultList();
+        if(response.size()==1){
+            entityManager.close();
+            return 1;
+        }
+        query.setParameter("username",q);
+        query.setParameter("usertype",2);
+        response = query.getResultList();
+        if(response.size()==1){
+            entityManager.close();
+            return 2;
+        }
+        entityManager.close();
+        return 0;
+    }
+
+
+
+
+
+
+
+
 
     public boolean validateUser(String usr, String pswd){
 
@@ -82,7 +112,7 @@ public class UserController {
 
     public List<User> searchUser(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<User> query = entityManager.createQuery("select u from Client u WHERE lower(u.username) like :username", User.class);
+        TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE lower(u.username) like :username", User.class);
         query.setParameter("username", "%" + q.toLowerCase() + "%");
         List<User> response = query.getResultList();
         entityManager.close();
@@ -112,7 +142,7 @@ public class UserController {
             return 4;
         }
     }
-
+/*
     public void getPassword(String user){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
         TypedQuery<User> query = entityManager.createQuery("select u.password FROM User u WHERE u.username like :usr", User.class);
@@ -123,8 +153,8 @@ public class UserController {
             return response.get(2);
         }else{
             return 2;
-        }*/
-    }
+        }
+    }*/
 
     public int ChangePasswordAdmin(String newpassword){
         if(newpassword.length() > 25)

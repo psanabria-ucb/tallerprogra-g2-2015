@@ -18,9 +18,6 @@ public class User {
     @Column
     private int usertype;
 
-    @Column
-    private int isAuthenticated;
-
     public String getUsername() {
         return username;
     }
@@ -45,11 +42,4 @@ public class User {
         this.usertype = usertype;
     }
 
-    public int getIsAuthenticated() {
-        return isAuthenticated;
-    }
-
-    public void setIsAuthenticated(int isAuthenticated) {
-        this.isAuthenticated = isAuthenticated;
-    }
 }
