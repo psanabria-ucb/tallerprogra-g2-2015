@@ -25,7 +25,7 @@ public class HomeGamesForm extends JFrame {
     public HomeGamesForm(JFrame parent) {
         super("Games");
         setContentPane(rootPanel);
-        pack();
+        setSize(1000, 600);
         setResizable(false);
         launchImage();
         listingGamesButton.addActionListener(new ActionListener() {
@@ -61,7 +61,7 @@ public class HomeGamesForm extends JFrame {
     public HomeGamesForm() {
         super("Home");
         setContentPane(rootPanel);
-        pack();
+        setSize(1000, 600);
         setResizable(true);
         listingGamesButton.addActionListener(new ActionListener() {
             @Override
@@ -159,7 +159,7 @@ public class HomeGamesForm extends JFrame {
         homePageButton = new JButton();
         homePageButton.setBackground(new Color(-12828863));
         homePageButton.setFont(new Font("Courier New", homePageButton.getFont().getStyle(), 18));
-        homePageButton.setForeground(new Color(-6836293));
+        homePageButton.setForeground(new Color(-4420796));
         homePageButton.setText("Home");
         rootPanel.add(homePageButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addCompanyButton = new JButton();
@@ -172,7 +172,7 @@ public class HomeGamesForm extends JFrame {
         listingGamesButton.setBackground(new Color(-12828863));
         listingGamesButton.setFont(new Font("Courier New", listingGamesButton.getFont().getStyle(), 18));
         listingGamesButton.setForeground(new Color(-4486332));
-        listingGamesButton.setText("Add | Delete Game");
+        listingGamesButton.setText("View Games");
         rootPanel.add(listingGamesButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addGameButton = new JButton();
         addGameButton.setBackground(new Color(-12828863));
