@@ -25,7 +25,7 @@ public class HomeMoviesForm extends JFrame {
     public HomeMoviesForm(InitialForm parent) {
         super("Home Movies");
         setContentPane(rootPanel);
-        setSize(600, 350);
+        setSize(1000, 600);
         setResizable(false);
         launchImage();
         addButton.addActionListener(new ActionListener() {
@@ -81,7 +81,7 @@ public class HomeMoviesForm extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("fondoM.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
