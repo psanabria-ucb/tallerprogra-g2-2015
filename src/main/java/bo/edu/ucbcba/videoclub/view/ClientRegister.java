@@ -31,7 +31,7 @@ public class ClientRegister extends JDialog {
         setContentPane(rootPanel);
         setBounds(200, 300, 800, 600);
         pack();
-        setResizable(true);
+        setResizable(false);
         launchImage();
         registerButton.addActionListener(new ActionListener() {
             @Override
@@ -79,7 +79,6 @@ public class ClientRegister extends JDialog {
         ((JPanel) getContentPane()).setOpaque(false);
         getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
         label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
-
     }
 
 

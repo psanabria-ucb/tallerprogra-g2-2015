@@ -30,7 +30,7 @@ public class LoginForm extends JFrame {
     public LoginForm() {
         super("Login | Sakila 2.0");
         setContentPane(rootPane);
-        setSize(550, 300);
+        setSize(650, 320);
         setResizable(false);
         userController = new UserController();
 
@@ -139,42 +139,52 @@ public class LoginForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPane = new JPanel();
-        rootPane.setLayout(new GridLayoutManager(4, 4, new Insets(20, 40, 20, 40), -1, -1));
+        rootPane.setLayout(new GridLayoutManager(7, 4, new Insets(40, 100, 40, 60), -1, -1));
         rootPane.setBackground(new Color(-3090213));
         final JLabel label1 = new JLabel();
         label1.setBackground(new Color(-12828863));
         label1.setFont(new Font("Courier New", Font.BOLD, 28));
-        label1.setForeground(new Color(-4486332));
-        label1.setText("Login");
-        rootPane.add(label1, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        label1.setForeground(new Color(-4477584));
+        label1.setText("Login Yourself");
+        rootPane.add(label1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setBackground(new Color(-12828863));
         label2.setFont(new Font("Courier New", Font.BOLD, 18));
         label2.setForeground(new Color(-4486332));
         label2.setText("Username:");
-        rootPane.add(label2, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPane.add(label2, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setBackground(new Color(-12828863));
         label3.setFont(new Font("Courier New", Font.BOLD, 18));
         label3.setForeground(new Color(-4486332));
         label3.setText("Password:");
-        rootPane.add(label3, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPane.add(label3, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         usernameField = new JTextField();
         usernameField.setBackground(new Color(-4477584));
         usernameField.setFont(new Font("Courier New", usernameField.getFont().getStyle(), 16));
         usernameField.setForeground(new Color(-12504532));
-        rootPane.add(usernameField, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(350, 30), null, 0, false));
+        rootPane.add(usernameField, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(350, 30), null, 0, false));
         passwordField = new JPasswordField();
         passwordField.setBackground(new Color(-4477584));
         passwordField.setFont(new Font("Courier New", passwordField.getFont().getStyle(), 16));
         passwordField.setForeground(new Color(-12504532));
-        rootPane.add(passwordField, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(350, 30), null, 0, false));
+        rootPane.add(passwordField, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(350, 30), null, 0, false));
         loginButton = new JButton();
         loginButton.setBackground(new Color(-12828863));
         loginButton.setFont(new Font("Courier New", loginButton.getFont().getStyle(), 18));
         loginButton.setForeground(new Color(-4486332));
         loginButton.setText("Login");
-        rootPane.add(loginButton, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(120, 30), null, new Dimension(120, 30), 0, false));
+        rootPane.add(loginButton, new GridConstraints(6, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(120, 30), null, new Dimension(120, 30), 0, false));
+        final JLabel label4 = new JLabel();
+        label4.setBackground(new Color(-12828863));
+        label4.setFont(new Font("Courier New", Font.BOLD, 32));
+        label4.setForeground(new Color(-8692948));
+        label4.setText("Welcome to Sakila 2.0");
+        rootPane.add(label4, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        rootPane.add(spacer1, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(20, 20), new Dimension(20, 20), new Dimension(20, 20), 0, false));
+        final Spacer spacer2 = new Spacer();
+        rootPane.add(spacer2, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(10, 10), new Dimension(10, 10), new Dimension(10, 10), 0, false));
     }
 
     /**

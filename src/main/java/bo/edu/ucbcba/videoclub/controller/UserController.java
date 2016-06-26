@@ -20,7 +20,12 @@ public class UserController {
 
         //-----------validacion de longitud
 
-        /*if(username.length() > 25)
+        if(username.isEmpty())
+            throw new ValidationException("Username can't be blank");
+
+        if(password.isEmpty())
+            throw new ValidationException("Password can't be blank");
+        if(username.length() > 25)
             throw new ValidationException("Username is too long, must have less than 10 characters");
 
         if(username.length() < 4)
@@ -38,32 +43,30 @@ public class UserController {
         if(password.matches("[0-9]+")){
             throw new ValidationException("Password can't be only a number, must have letters");
         }
-        if(password.matches("a-zA-Z")){
+        if(password.matches("[a-zA-Z]")){
             throw new ValidationException("Password can't be only a letters, must have numbers");
         }
-        else{*/
+        else{
             EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-            /*TypedQuery<User> query = entityManager.createQuery("select u from Client u WHERE u.username like :username", User.class);
+            TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE u.username like :username", User.class);
             query.setParameter("username", username);
             List<User> response = query.getResultList();
 
-            if(response.size() == 0){*/
+            if(response.size() == 0){
 
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setUsertype(type);
-
-
                 entityManager.getTransaction().begin();
                 entityManager.persist(user);
                 entityManager.getTransaction().commit();
                 entityManager.close();
-/*
+
             }else {
                 entityManager.close();
-                throw new ValidationException("Already exist a Username like: '" + username +"'");
+                throw new ValidationException("Username already exist");
             }
-        }*/
+        }
     }
 
     public int getUsertype(String q) {
@@ -87,14 +90,6 @@ public class UserController {
         return 0;
     }
 
-
-
-
-
-
-
-
-
     public boolean validateUser(String usr, String pswd){
 
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
@@ -112,7 +107,7 @@ public class UserController {
 
     public List<User> searchUser(String q) {
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
-        TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE lower(u.username) like :username", User.class);
+        TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE lower(u.username) like :username AND u.usertype = 2", User.class);
         query.setParameter("username", "%" + q.toLowerCase() + "%");
         List<User> response = query.getResultList();
         entityManager.close();
@@ -142,6 +137,9 @@ public class UserController {
             return 4;
         }
     }
+
+
+
 /*
     public void getPassword(String user){
         EntityManager entityManager = VideoClubEntityManager.createEntityManager();
@@ -179,9 +177,7 @@ public class UserController {
             else
                 entityManager.close();
                 return 2;
-
         }
-
     }
 
     public int deleteUser(String q){
@@ -189,7 +185,7 @@ public class UserController {
         try {
 
             entityManager.getTransaction().begin();
-            TypedQuery<User> query = entityManager.createQuery("select u from Client u WHERE lower(u.username) like :username", User.class);
+            TypedQuery<User> query = entityManager.createQuery("select u from User u WHERE u.username = :username", User.class);
             query.setParameter("username", q);
             List<User> response = query.getResultList();
 
@@ -205,7 +201,7 @@ public class UserController {
             }
             else{
 
-                query = entityManager.createQuery("delete from User u WHERE lower(u.username) like :username", User.class);
+                query = entityManager.createQuery("delete from User u WHERE u.username = :username", User.class);
                 query.setParameter("username", q);
                 query.executeUpdate();
                 entityManager.getTransaction().commit();

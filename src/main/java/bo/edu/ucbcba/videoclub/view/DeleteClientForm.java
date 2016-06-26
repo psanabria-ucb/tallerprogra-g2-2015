@@ -38,6 +38,7 @@ public class DeleteClientForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 deleteClient();
                 populateTable("");
+                searchText.setText("");
             }
         });
     }

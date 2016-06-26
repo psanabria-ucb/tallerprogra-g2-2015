@@ -31,7 +31,7 @@ public class ViewClientsForm extends JFrame {
         setContentPane(rootPanel);
         setSize(600, 400);
         pack();
-        setResizable(true);
+        setResizable(false);
         launchImage();
         clientController = new ClientController();
         populateTable();
@@ -55,7 +55,6 @@ public class ViewClientsForm extends JFrame {
         ((JPanel) getContentPane()).setOpaque(false);
         getLayeredPane().add(label, JLayeredPane.FRAME_CONTENT_LAYER);
         label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
-
     }
 
 
