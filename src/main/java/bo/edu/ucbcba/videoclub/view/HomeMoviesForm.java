@@ -57,7 +57,7 @@ public class HomeMoviesForm extends JFrame {
     }
 
     private void showdirector() {
-        RegisterDirector form = new RegisterDirector(this);
+        RegisterDirector form = new RegisterDirector();
         form.setVisible(true);
     }
 

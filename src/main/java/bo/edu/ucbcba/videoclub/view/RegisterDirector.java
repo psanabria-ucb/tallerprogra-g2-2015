@@ -2,6 +2,7 @@ package bo.edu.ucbcba.videoclub.view;
 
 import bo.edu.ucbcba.videoclub.controller.DirectorController;
 import bo.edu.ucbcba.videoclub.controller.MovieController;
+import bo.edu.ucbcba.videoclub.controller.Session;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Director;
 import bo.edu.ucbcba.videoclub.model.Movie;
@@ -28,7 +29,7 @@ import java.util.List;
 /**
  * Created by psanabria on 5/23/16.
  */
-public class RegisterDirector extends JDialog {
+public class RegisterDirector extends JFrame {
     private final DirectorController controller;
     private JTextField firstName;
     private JTextField lastName;
@@ -40,10 +41,11 @@ public class RegisterDirector extends JDialog {
     private JTextField searchText;
     private JButton Export;
     private JButton Print;
+    private JButton Editbutton;
     private DirectorController directorController;
 
-    public RegisterDirector(HomeMoviesForm parent) {
-        super(parent, "Register Director");
+    public RegisterDirector() {
+        super("Register Director");
         setContentPane(rootPane);
         setSize(500, 600);
         setResizable(false);
@@ -83,6 +85,33 @@ public class RegisterDirector extends JDialog {
                         true);
             }
         });
+
+        Editbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                edit();
+            }
+        });
+
+        if (Session.getSession().getUtype() == 1) {
+            Editbutton.setVisible(true);
+        } else {
+            Editbutton.setVisible(false);
+        }
+    }
+
+    private void edit() {
+        DefaultTableModel tm = (DefaultTableModel) TableDirector.getModel();
+        if (TableDirector.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "You must select a row to Edit");
+
+        } else {
+            String name = (String) tm.getValueAt(TableDirector.getSelectedRow(), 0);
+            String lastname = (String) tm.getValueAt(TableDirector.getSelectedRow(), 1);
+            this.setVisible(false);
+            EditDirectorForm form = new EditDirectorForm(this, directorController.getDirector(name, lastname), directorController);
+            form.setVisible(true);
+        }
 
     }
 
@@ -138,6 +167,7 @@ public class RegisterDirector extends JDialog {
         label.setBounds(0, 0, myPicture.getWidth(), myPicture.getHeight());
 
     }
+
     public void excel(JTable table) {
         {
             JFileChooser fc = new JFileChooser();
@@ -303,7 +333,7 @@ public class RegisterDirector extends JDialog {
         label7.setText("Directors");
         rootPane.add(label7, new GridConstraints(6, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel3.setBackground(new Color(-12828863));
         panel3.setForeground(new Color(-12828863));
         rootPane.add(panel3, new GridConstraints(9, 0, 2, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -312,13 +342,19 @@ public class RegisterDirector extends JDialog {
         Export.setForeground(new Color(-4486332));
         Export.setIcon(new ImageIcon(getClass().getResource("/icons/spreadsheet-cell-row.png")));
         Export.setText(" Export to excel");
-        panel3.add(Export, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(Export, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         Print = new JButton();
         Print.setBackground(new Color(-12828863));
         Print.setForeground(new Color(-4486332));
         Print.setIcon(new ImageIcon(getClass().getResource("/icons/printer.png")));
         Print.setText("Print");
-        panel3.add(Print, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel3.add(Print, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        Editbutton = new JButton();
+        Editbutton.setBackground(new Color(-12828863));
+        Editbutton.setForeground(new Color(-4486332));
+        Editbutton.setIcon(new ImageIcon(getClass().getResource("/icons/quill-drawing-a-line.png")));
+        Editbutton.setText("Edit");
+        panel3.add(Editbutton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

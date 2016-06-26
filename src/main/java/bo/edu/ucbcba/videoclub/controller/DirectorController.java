@@ -2,15 +2,10 @@ package bo.edu.ucbcba.videoclub.controller;
 
 import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
-import bo.edu.ucbcba.videoclub.model.Client;
 import bo.edu.ucbcba.videoclub.model.Director;
-import bo.edu.ucbcba.videoclub.model.Movie;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.metamodel.Type;
-import javax.validation.constraints.AssertFalse;
 import java.util.List;
 
 /**
@@ -90,6 +85,55 @@ public class DirectorController {
         List<Director> response = query.getResultList();
         entityManager.close();
         return response;
+    }
+
+    public Director getDirector(String Fname , String Lname)
+    {
+            EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+            TypedQuery query = entityManager.createQuery("select m.id from Director m WHERE lower(m.firstName) like :codigo and lower(m.lastName) like :lastname", Director.class);
+            query.setParameter("codigo",Fname.toLowerCase());
+            query.setParameter("lastname",Lname.toLowerCase());
+            entityManager.getTransaction().begin();
+            Director response = entityManager.find(Director.class,query.getSingleResult());
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return response;
+    }
+
+    public void update(int id,String Fname,String Lname)
+    {
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        entityManager.getTransaction().begin();
+        Director director = entityManager.find(Director.class, id);
+
+        if(Fname.isEmpty())
+        {
+            throw new ValidationException("First Name can't be blank");
+        }
+
+        if(Lname.isEmpty())
+        {
+            throw new ValidationException("Last Name can't be blank");
+        }
+        // valiadcion de longitud
+
+        if (Fname.length() > 25)
+        {
+            throw new ValidationException("First Name is too long, must have less than 25 characters");
+        }
+        if (Lname.length() > 25)
+        {
+            throw new ValidationException("Last Name is too long, must have less than 25 characters");
+        }
+
+        if(Validar(Fname,Lname)>0) {
+            throw new ValidationException("director already exists");
+        }
+        director.setFirstName(Fname);
+        director.setLastName(Lname);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
     }
 }
 
