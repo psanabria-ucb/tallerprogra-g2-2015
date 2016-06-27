@@ -70,7 +70,7 @@ public class ClientRegister extends JDialog {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("probando9.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,13 +98,13 @@ public class ClientRegister extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(10, 4, new Insets(20, 20, 50, 20), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(10, 4, new Insets(30, 20, 50, 20), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
         final Spacer spacer1 = new Spacer();
         rootPanel.add(spacer1, new GridConstraints(5, 1, 5, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setFont(new Font("Courier New", label1.getFont().getStyle(), 18));
+        label1.setFont(new Font("Courier New", Font.BOLD, 20));
         label1.setForeground(new Color(-4486332));
         label1.setText("CI:");
         rootPanel.add(label1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -115,7 +115,7 @@ public class ClientRegister extends JDialog {
         registerButton.setText("Register");
         rootPanel.add(registerButton, new GridConstraints(7, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setFont(new Font("Courier New", label2.getFont().getStyle(), 18));
+        label2.setFont(new Font("Courier New", Font.BOLD, 20));
         label2.setForeground(new Color(-4486332));
         label2.setText("Last Name:");
         rootPanel.add(label2, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -125,7 +125,7 @@ public class ClientRegister extends JDialog {
         ci.setText("");
         rootPanel.add(ci, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setFont(new Font("Courier New", label3.getFont().getStyle(), 18));
+        label3.setFont(new Font("Courier New", Font.BOLD, 20));
         label3.setForeground(new Color(-4486332));
         label3.setText("First Name:");
         rootPanel.add(label3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -136,7 +136,7 @@ public class ClientRegister extends JDialog {
         address.setFont(new Font("Courier New", address.getFont().getStyle(), 16));
         rootPanel.add(address, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setFont(new Font("Courier New", label4.getFont().getStyle(), 18));
+        label4.setFont(new Font("Courier New", Font.BOLD, 20));
         label4.setForeground(new Color(-4486332));
         label4.setText("Address:");
         rootPanel.add(label4, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -150,8 +150,8 @@ public class ClientRegister extends JDialog {
         cancelButton.setText("Cancel");
         rootPanel.add(cancelButton, new GridConstraints(8, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setFont(new Font("Courier New", Font.BOLD, 22));
-        label5.setForeground(new Color(-4486332));
+        label5.setFont(new Font("Courier New", Font.BOLD, 36));
+        label5.setForeground(new Color(-4477584));
         label5.setText("New Client ");
         rootPanel.add(label5, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();

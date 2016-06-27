@@ -29,7 +29,7 @@ public class DeleteClientForm extends JFrame {
         setContentPane(rootPanel);
         setSize(1000, 600);
         pack();
-        setResizable(true);
+        setResizable(false);
         launchImage();
         clientController = new ClientController();
         populateTable();
@@ -113,7 +113,7 @@ public class DeleteClientForm extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("probando10.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,18 +148,19 @@ public class DeleteClientForm extends JFrame {
         searchText = new JTextField();
         rootPanel.add(searchText, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setFont(new Font("Courier New", Font.BOLD, 20));
-        label1.setForeground(new Color(-4486332));
+        label1.setFont(new Font("Courier New", Font.BOLD, 30));
+        label1.setForeground(new Color(-4477584));
         label1.setText("Delete Client");
-        rootPanel.add(label1, new GridConstraints(0, 2, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(label1, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deleteButton = new JButton();
         deleteButton.setBackground(new Color(-12828863));
-        deleteButton.setFont(new Font("Courier New", deleteButton.getFont().getStyle(), 18));
+        deleteButton.setFont(new Font("Courier New", Font.BOLD, 18));
         deleteButton.setForeground(new Color(-4486332));
+        deleteButton.setIcon(new ImageIcon(getClass().getResource("/icons/minus-sign.png")));
         deleteButton.setText("Delete");
         rootPanel.add(deleteButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setFont(new Font("Courier New", Font.BOLD, 18));
+        label2.setFont(new Font("Courier New", Font.BOLD, 20));
         label2.setForeground(new Color(-4486332));
         label2.setText("CI:");
         rootPanel.add(label2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -171,8 +172,9 @@ public class DeleteClientForm extends JFrame {
         rootPanel.add(spacer3, new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(50, 50), null, new Dimension(50, 50), 0, false));
         clientsTable = new JTable();
         clientsTable.setEnabled(false);
-        clientsTable.setFont(new Font("Courier New", clientsTable.getFont().getStyle(), 16));
+        clientsTable.setFont(new Font("Courier New", clientsTable.getFont().getStyle(), 18));
         clientsTable.setForeground(new Color(-11948357));
+        clientsTable.setRowHeight(20);
         rootPanel.add(clientsTable, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(800, 300), null, 0, false));
     }
 

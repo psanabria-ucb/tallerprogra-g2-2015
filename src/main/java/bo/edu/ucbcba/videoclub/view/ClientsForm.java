@@ -32,10 +32,10 @@ public class ClientsForm extends JFrame {
     public ClientsForm(JFrame parent) {
         super("Clients");
         setContentPane(rootPanel);
-        setSize(600, 400);
+        setSize(800, 600);
         //setBounds(200, 300, 600, 400);
         pack();
-        setResizable(true);
+        setResizable(false);
         launchImage();
         addClientsButton.addActionListener(new ActionListener() {
             @Override
@@ -97,7 +97,7 @@ public class ClientsForm extends JFrame {
     private void launchImage() {
         BufferedImage myPicture = null;
         try {
-            myPicture = ImageIO.read(new File("fondo.jpg"));
+            myPicture = ImageIO.read(new File("probando9.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,12 +130,13 @@ public class ClientsForm extends JFrame {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(5, 3, new Insets(40, 20, 40, 20), -1, -1));
         rootPanel.setBackground(new Color(-3090213));
         rootPanel.setForeground(new Color(-3090213));
         final JLabel label1 = new JLabel();
-        label1.setFont(new Font("Courier New", Font.BOLD, 26));
-        label1.setForeground(new Color(-4486332));
+        label1.setBackground(new Color(-4486332));
+        label1.setFont(new Font("Courier New", Font.BOLD, 48));
+        label1.setForeground(new Color(-4477584));
         label1.setText("Clients");
         rootPanel.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         viewClientsButton = new JButton();
@@ -143,7 +144,7 @@ public class ClientsForm extends JFrame {
         viewClientsButton.setFont(new Font("Courier New", viewClientsButton.getFont().getStyle(), 18));
         viewClientsButton.setForeground(new Color(-4486332));
         viewClientsButton.setText("View Clients");
-        rootPanel.add(viewClientsButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(viewClientsButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 35), new Dimension(-1, 35), new Dimension(-1, 35), 0, false));
         final Spacer spacer1 = new Spacer();
         rootPanel.add(spacer1, new GridConstraints(1, 2, 4, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(100, 200), null, new Dimension(100, 200), 0, false));
         final Spacer spacer2 = new Spacer();
@@ -153,19 +154,19 @@ public class ClientsForm extends JFrame {
         addClientsButton.setFont(new Font("Courier New", addClientsButton.getFont().getStyle(), 18));
         addClientsButton.setForeground(new Color(-4486332));
         addClientsButton.setText("Add Client");
-        rootPanel.add(addClientsButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(addClientsButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 35), new Dimension(-1, 35), new Dimension(-1, 35), 0, false));
         homeButton = new JButton();
         homeButton.setBackground(new Color(-12828863));
         homeButton.setFont(new Font("Courier New", Font.BOLD, 20));
         homeButton.setForeground(new Color(-6836293));
         homeButton.setText("Home");
-        rootPanel.add(homeButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(homeButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 35), new Dimension(-1, 35), new Dimension(-1, 35), 0, false));
         deleteClientButton = new JButton();
         deleteClientButton.setBackground(new Color(-12828863));
         deleteClientButton.setFont(new Font("Courier New", deleteClientButton.getFont().getStyle(), 18));
         deleteClientButton.setForeground(new Color(-4486332));
         deleteClientButton.setText("Delete Client");
-        rootPanel.add(deleteClientButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        rootPanel.add(deleteClientButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 35), new Dimension(-1, 35), new Dimension(-1, 35), 0, false));
     }
 
     /**

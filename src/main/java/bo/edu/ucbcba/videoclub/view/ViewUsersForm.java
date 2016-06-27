@@ -59,7 +59,7 @@ public class ViewUsersForm extends JFrame {
         Print.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                utilJTablePrint(usersTable, "Movies", "End",
+                utilJTablePrint(usersTable, "Users", "End",
                         true);
             }
         });
