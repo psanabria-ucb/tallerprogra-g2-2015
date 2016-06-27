@@ -53,7 +53,7 @@
         <properties>
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
-          <foreground color="-6836293"/>
+          <foreground color="-4420796"/>
           <text value="Home"/>
         </properties>
       </component>
@@ -76,7 +76,7 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
-          <text value="Add | Delete Game"/>
+          <text value="View Games"/>
         </properties>
       </component>
       <component id="27646" class="javax.swing.JButton" binding="addGameButton" default-binding="true">

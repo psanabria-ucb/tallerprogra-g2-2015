@@ -41,7 +41,7 @@ public class ViewMoviesForm extends JDialog {
     public ViewMoviesForm(HomeMoviesForm parent) {
         super(parent, "Movies", true);
         setContentPane(rootPanel);
-        setSize(900, 400);
+        setSize(1000, 600);
         setResizable(false);
         movieController = new MovieController();
         populateTable();

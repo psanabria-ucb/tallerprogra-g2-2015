@@ -13,12 +13,16 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 
 
@@ -33,6 +37,8 @@ public class GamesForm extends JDialog {
     private JButton deleteButton;
     private JComboBox OrderComboBox;
     private JComboBox SenseComboBox;
+    private JButton exportButton;
+    private JButton printButton;
     private GameController gameController;
     ButtonGroup group = new ButtonGroup();
 
@@ -74,7 +80,19 @@ public class GamesForm extends JDialog {
                 delete();
             }
         });
-
+        exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                export(gamesTable);
+            }
+        });
+        printButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                utilJTablePrint(gamesTable, "Movies", "End",
+                        true);
+            }
+        });
         OrderComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -193,6 +211,88 @@ public class GamesForm extends JDialog {
 
     }
 
+    public void export(JTable table) {
+        {
+            JOptionPane.showMessageDialog(null, "Select the folder where you want to save it" + "\n" + "and enter the name of the new file");
+            JFileChooser fc = new JFileChooser();
+            int option = fc.showSaveDialog(table);
+            if (option == JFileChooser.APPROVE_OPTION) {
+                String filename = fc.getSelectedFile().getName();
+                String path = fc.getSelectedFile().getParentFile().getPath();
+                int len = filename.length();
+                String ext = "";
+                String file = "";
+                if (len > 4) {
+                    ext = filename.substring(len - 4, len);
+                }
+                if (ext.equals(".xls")) {
+                    file = path + "\\" + filename;
+                } else {
+                    file = path + "\\" + filename + ".xls";
+                }
+                try {
+                    toExcel(table, new File(file));
+                    JOptionPane.showMessageDialog(this, "The table was exported successfully");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "\n" +
+                            "An error has occurred when exporting", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+    }
+
+    public void toExcel(JTable tabla, File ficheroXLS) throws IOException {
+        TableModel modelo = tabla.getModel();
+        FileWriter fichero = new FileWriter(ficheroXLS);
+
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            fichero.write(modelo.getColumnName(i) + "\t");
+        }
+        fichero.write("\n");
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            for (int j = 0; j < modelo.getColumnCount(); j++) {
+                fichero.write(modelo.getValueAt(i, j).toString() + "\t");
+            }
+            fichero.write("\n");
+        }
+        fichero.close();
+    }
+
+    public void utilJTablePrint(JTable jTable, String header, String footer, boolean showPrintDialog) {
+        boolean fitWidth = true;
+        boolean interactive = true;
+        // We define the print mode (Definimos el modo de impresión)
+        JTable.PrintMode mode = fitWidth ? JTable.PrintMode.FIT_WIDTH : JTable.PrintMode.NORMAL;
+        try {
+            // Print the table (Imprimo la <span id="IL_AD1" class="IL_AD">tabla</span>)
+            boolean complete = jTable.print(mode,
+                    new MessageFormat(header),
+                    new MessageFormat(footer),
+                    showPrintDialog,
+                    null,
+                    interactive);
+            if (complete) {
+                // Mostramos el mensaje de impresión existosa
+                JOptionPane.showMessageDialog(jTable,
+                        "Print complete",
+                        "Print result",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Mostramos un mensaje indicando que la impresión fue cancelada
+                JOptionPane.showMessageDialog(jTable,
+                        "Print canceled",
+                        "Print result",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (PrinterException pe) {
+            JOptionPane.showMessageDialog(jTable,
+                    "Print fail " + pe.getMessage(),
+                    "Print result ",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     {
 // GUI initializer generated by IntelliJ IDEA GUI Designer
@@ -217,12 +317,6 @@ public class GamesForm extends JDialog {
         searchText.setText("");
         searchText.setToolTipText("Search Game");
         rootPanel.add(searchText, new GridConstraints(2, 1, 1, 10, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        searchButton = new JButton();
-        searchButton.setBackground(new Color(-12828863));
-        searchButton.setFont(new Font("Courier New", searchButton.getFont().getStyle(), 18));
-        searchButton.setForeground(new Color(-4486332));
-        searchButton.setText("Search");
-        rootPanel.add(searchButton, new GridConstraints(2, 13, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         gamesTable = new JTable();
         gamesTable.setEnabled(true);
         gamesTable.setFont(new Font("Courier New", gamesTable.getFont().getStyle(), 16));
@@ -298,12 +392,6 @@ public class GamesForm extends JDialog {
         panel2.add(spacer4, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
         panel2.add(spacer5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        deleteButton = new JButton();
-        deleteButton.setBackground(new Color(-12828863));
-        deleteButton.setFont(new Font("Courier New", deleteButton.getFont().getStyle(), 18));
-        deleteButton.setForeground(new Color(-4486332));
-        deleteButton.setText("Delete");
-        rootPanel.add(deleteButton, new GridConstraints(3, 13, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label10 = new JLabel();
         label10.setText("Order by:");
         rootPanel.add(label10, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -330,6 +418,34 @@ public class GamesForm extends JDialog {
         defaultComboBoxModel2.addElement("Descendant");
         SenseComboBox.setModel(defaultComboBoxModel2);
         rootPanel.add(SenseComboBox, new GridConstraints(3, 9, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        deleteButton = new JButton();
+        deleteButton.setBackground(new Color(-12828863));
+        deleteButton.setFont(new Font("Courier New", deleteButton.getFont().getStyle(), 18));
+        deleteButton.setForeground(new Color(-4486332));
+        deleteButton.setIcon(new ImageIcon(getClass().getResource("/icons/remove-symbol.png")));
+        deleteButton.setText("Delete");
+        rootPanel.add(deleteButton, new GridConstraints(3, 11, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        searchButton = new JButton();
+        searchButton.setBackground(new Color(-12828863));
+        searchButton.setFont(new Font("Courier New", searchButton.getFont().getStyle(), 18));
+        searchButton.setForeground(new Color(-4486332));
+        searchButton.setIcon(new ImageIcon(getClass().getResource("/icons/magnifier.png")));
+        searchButton.setText("Search");
+        rootPanel.add(searchButton, new GridConstraints(2, 11, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        exportButton = new JButton();
+        exportButton.setBackground(new Color(-12828863));
+        exportButton.setFont(new Font("Courier New", exportButton.getFont().getStyle(), 18));
+        exportButton.setForeground(new Color(-4486332));
+        exportButton.setIcon(new ImageIcon(getClass().getResource("/icons/spreadsheet-cell-row.png")));
+        exportButton.setText("Export");
+        rootPanel.add(exportButton, new GridConstraints(2, 14, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        printButton = new JButton();
+        printButton.setBackground(new Color(-12828863));
+        printButton.setFont(new Font("Courier New", printButton.getFont().getStyle(), 18));
+        printButton.setForeground(new Color(-4486332));
+        printButton.setIcon(new ImageIcon(getClass().getResource("/icons/printer.png")));
+        printButton.setText("Print");
+        rootPanel.add(printButton, new GridConstraints(3, 14, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

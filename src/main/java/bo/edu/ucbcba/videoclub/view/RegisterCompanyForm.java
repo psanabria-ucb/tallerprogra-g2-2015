@@ -118,9 +118,15 @@ public class RegisterCompanyForm extends JDialog {
         final Spacer spacer4 = new Spacer();
         rootPanel.add(spacer4, new GridConstraints(4, 8, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         saveButton = new JButton();
+        saveButton.setBackground(new Color(-12828863));
+        saveButton.setForeground(new Color(-4420796));
+        saveButton.setIcon(new ImageIcon(getClass().getResource("/icons/add.png")));
         saveButton.setText("Save");
         rootPanel.add(saveButton, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cancelButton = new JButton();
+        cancelButton.setBackground(new Color(-12828863));
+        cancelButton.setForeground(new Color(-4420796));
+        cancelButton.setIcon(new ImageIcon(getClass().getResource("/icons/remove-symbol.png")));
         cancelButton.setText("Cancel");
         rootPanel.add(cancelButton, new GridConstraints(4, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         CountrycomboBox = new JComboBox();
