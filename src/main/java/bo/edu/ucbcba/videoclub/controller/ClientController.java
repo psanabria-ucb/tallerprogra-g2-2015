@@ -21,8 +21,7 @@ public class ClientController {
                        String address) {
 
         Client client = new Client();
-        /*client.setCi(ci);
-        */
+
         //------------------Validacion blancos
         if (ci.isEmpty()){
             throw new ValidationException("CI can't be blank");
@@ -115,12 +114,6 @@ public class ClientController {
             query.setParameter("ci", q);
             List<Client> response = query.getResultList();
 
-/*
-            if(response.size() > 1){
-                entityManager.close();
-                return 3;
-            }
-            */
             if(response.size() == 0){
                 entityManager.close();
                 return 2;

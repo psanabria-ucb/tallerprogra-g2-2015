@@ -67,11 +67,9 @@ public class InitialForm extends JFrame {
         });
         launchImage();
         if (Session.getSession().getUtype() == 2) {
-            changePasswordAdminButton.setVisible(false);
             addUserButton.setVisible(false);
             viewUsersButton.setVisible(false);
         } else {
-            changePasswordAdminButton.setVisible(true);
             addUserButton.setVisible(true);
             viewUsersButton.setVisible(true);
         }
