@@ -3,6 +3,8 @@ package bo.edu.ucbcba.videoclub.controller;
 import bo.edu.ucbcba.videoclub.dao.VideoClubEntityManager;
 import bo.edu.ucbcba.videoclub.exceptions.ValidationException;
 import bo.edu.ucbcba.videoclub.model.Company;
+import bo.edu.ucbcba.videoclub.model.Director;
+import bo.edu.ucbcba.videoclub.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -65,10 +67,24 @@ public class CompanyController {
     }
 
     public List<Company> getAllCompanies(){
-        EntityManager em = VideoClubEntityManager.createEntityManager();
-        TypedQuery<Company> query = em.createQuery("select c from Company c order by c.name", Company.class);
-        List<Company> list = query.getResultList();
-        em.close();
-        return list;
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Company> query = entityManager.createQuery("select c from Company c order by c.name", Company.class);
+        List<Company> response = query.getResultList();;
+        entityManager.close();
+        return response;
+    }
+
+    public boolean aCompanyExists(){
+        EntityManager entityManager = VideoClubEntityManager.createEntityManager();
+        TypedQuery<Company> query = entityManager.createQuery("select c from Company c order by c.name", Company.class);
+        List<Company> response = query.getResultList();;
+        entityManager.close();
+        if(response.size()==0) {
+            return false;
+        }
+        else{
+
+            return true;
+        }
     }
 }

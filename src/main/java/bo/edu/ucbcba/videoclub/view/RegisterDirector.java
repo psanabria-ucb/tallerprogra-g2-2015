@@ -45,9 +45,10 @@ public class RegisterDirector extends JFrame {
     private DirectorController directorController;
 
     public RegisterDirector() {
-        super("Register Director");
+        super("Directors");
         setContentPane(rootPane);
         setSize(500, 600);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         launchImage();
         directorController = new DirectorController();

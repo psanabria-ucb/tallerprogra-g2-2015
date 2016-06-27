@@ -1,5 +1,7 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.DirectorController;
+import bo.edu.ucbcba.videoclub.model.Director;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -11,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by USER on 17/05/2016.
@@ -21,11 +25,14 @@ public class HomeMoviesForm extends JFrame {
     private JButton addButton;
     private JButton homeButton;
     private JButton addDirector;
+    private final DirectorController directorController;
 
     public HomeMoviesForm(InitialForm parent) {
         super("Home Movies");
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
+        directorController = new DirectorController();
         setResizable(false);
         launchImage();
         addButton.addActionListener(new ActionListener() {
@@ -67,8 +74,17 @@ public class HomeMoviesForm extends JFrame {
     }
 
     private void launchRegister() {
-        RegisterMovieForm form = new RegisterMovieForm(this);
-        form.setVisible(true);
+
+        List<Director> directors = directorController.getAlldirectors();
+        if (directors.size() == 0) {
+            JOptionPane.showMessageDialog(this, "First, register a Director", "Alert", JOptionPane.ERROR_MESSAGE);
+            RegisterDirector form = new RegisterDirector();
+            form.setVisible(true);
+
+        } else {
+            RegisterMovieForm form = new RegisterMovieForm();
+            form.setVisible(true);
+        }
     }
 
     public void showHome() {
@@ -124,25 +140,29 @@ public class HomeMoviesForm extends JFrame {
         homeButton.setBackground(new Color(-12828863));
         homeButton.setFont(new Font("Courier New", homeButton.getFont().getStyle(), 18));
         homeButton.setForeground(new Color(-6836293));
+        homeButton.setIcon(new ImageIcon(getClass().getResource("/icons/home.png")));
         homeButton.setText("Home");
         rootPanel.add(homeButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         viewButton = new JButton();
         viewButton.setBackground(new Color(-12828863));
         viewButton.setFont(new Font("Courier New", viewButton.getFont().getStyle(), 18));
         viewButton.setForeground(new Color(-4486332));
+        viewButton.setIcon(new ImageIcon(getClass().getResource("/icons/viewM.png")));
         viewButton.setText("View Movies");
         rootPanel.add(viewButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addButton = new JButton();
         addButton.setBackground(new Color(-12828863));
         addButton.setFont(new Font("Courier New", addButton.getFont().getStyle(), 18));
         addButton.setForeground(new Color(-4486332));
+        addButton.setIcon(new ImageIcon(getClass().getResource("/icons/movies.png")));
         addButton.setText("Add Movie");
         rootPanel.add(addButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addDirector = new JButton();
         addDirector.setBackground(new Color(-12828863));
         addDirector.setFont(new Font("Courier New", addDirector.getFont().getStyle(), 18));
         addDirector.setForeground(new Color(-4486332));
-        addDirector.setText("Add Director");
+        addDirector.setIcon(new ImageIcon(getClass().getResource("/icons/director.png")));
+        addDirector.setText("Directors");
         rootPanel.add(addDirector, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 

@@ -31,6 +31,7 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-6836293"/>
+          <icon value="icons/home.png"/>
           <text value="Home"/>
         </properties>
       </component>
@@ -42,6 +43,7 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
+          <icon value="icons/viewM.png"/>
           <text value="View Movies"/>
         </properties>
       </component>
@@ -53,6 +55,7 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
+          <icon value="icons/movies.png"/>
           <text value="Add Movie"/>
         </properties>
       </component>
@@ -64,7 +67,8 @@
           <background color="-12828863"/>
           <font name="Courier New" size="18"/>
           <foreground color="-4486332"/>
-          <text value="Add Director"/>
+          <icon value="icons/director.png"/>
+          <text value="Directors"/>
         </properties>
       </component>
     </children>

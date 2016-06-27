@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-public class RegisterMovieForm extends JDialog {
+public class RegisterMovieForm extends JFrame {
     private JPanel rootPanel;
     private JTextField title;
     private JTextArea description;
@@ -43,10 +43,11 @@ public class RegisterMovieForm extends JDialog {
     private JComboBox directorComboBox;
     private final DirectorController directorController;
 
-    RegisterMovieForm(HomeMoviesForm parent) {
-        super(parent, "Register Movie", true);
+    RegisterMovieForm() {
+        super("Register Movie");
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
         imageText.setEditable(false);
         setResizable(false);
         launchImage();
@@ -82,16 +83,6 @@ public class RegisterMovieForm extends JDialog {
         controller = new MovieController();
         directorController = new DirectorController();
         populateComboBox();
-        if (directorComboBox.getItemCount() == 0) {
-            title.setEditable(false);
-            description.setEditable(false);
-            hoursLength.setEditable(false);
-            minutesLength.setEditable(false);
-            price.setEditable(false);
-            JOptionPane.showMessageDialog(this, "First, register a Director", "Alert", JOptionPane.ERROR_MESSAGE);
-
-        }
-
     }
 
     private void populateComboBox() {
