@@ -67,9 +67,13 @@ public class ViewUsersForm extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deleteUser();
-                populateTable("");
-                searchText.setText("");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, " Are You sure you want to Delete this user? ", " Warning! ", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    deleteUser();
+                    populateTable("");
+                    searchText.setText("");
+                }
             }
         });
     }
@@ -279,10 +283,10 @@ public class ViewUsersForm extends JFrame {
         rootPanel.add(deleteButton, new GridConstraints(3, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         Export = new JButton();
         Export.setBackground(new Color(-12828863));
-        Export.setFont(new Font("Courier New", Font.BOLD, 18));
+        Export.setFont(new Font("Courier New", Font.BOLD, 16));
         Export.setForeground(new Color(-4486332));
         Export.setIcon(new ImageIcon(getClass().getResource("/icons/spreadsheet-cell-row.png")));
-        Export.setText("Export User List");
+        Export.setText("Export Current User List");
         rootPanel.add(Export, new GridConstraints(4, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         Print = new JButton();
         Print.setBackground(new Color(-12828863));

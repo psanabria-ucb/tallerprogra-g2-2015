@@ -3,7 +3,7 @@
   <grid id="27dc6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1091" height="507"/>
+      <xy x="20" y="20" width="1169" height="507"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -97,10 +97,10 @@
             </constraints>
             <properties>
               <background color="-12828863"/>
-              <font name="Courier New" size="18" style="1"/>
+              <font name="Courier New" size="16" style="1"/>
               <foreground color="-4486332"/>
               <icon value="icons/spreadsheet-cell-row.png"/>
-              <text value="Export User List"/>
+              <text value="Export Current User List"/>
             </properties>
           </component>
           <component id="71863" class="javax.swing.JButton" binding="Print">

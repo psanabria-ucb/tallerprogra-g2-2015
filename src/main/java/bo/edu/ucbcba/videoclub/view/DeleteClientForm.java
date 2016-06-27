@@ -36,9 +36,13 @@ public class DeleteClientForm extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deleteClient();
-                populateTable("");
-                searchText.setText("");
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(null, " Are You sure you want to Delete this user? ", " Warning! ", dialogButton);
+                if (dialogResult == JOptionPane.YES_OPTION) {
+                    deleteClient();
+                    populateTable("");
+                    searchText.setText("");
+                }
             }
         });
     }
