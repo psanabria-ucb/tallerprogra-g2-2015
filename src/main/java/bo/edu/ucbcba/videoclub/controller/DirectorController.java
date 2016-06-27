@@ -127,7 +127,7 @@ public class DirectorController {
         }
 
         if(Validar(Fname,Lname)>0) {
-            throw new ValidationException("director already exists");
+            throw new ValidationException("the director already exists or no changes were detected");
         }
         director.setFirstName(Fname);
         director.setLastName(Lname);

@@ -47,6 +47,7 @@ public class RegisterMovieForm extends JDialog {
         super(parent, "Register Movie", true);
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
         imageText.setEditable(false);
         setResizable(false);
         launchImage();

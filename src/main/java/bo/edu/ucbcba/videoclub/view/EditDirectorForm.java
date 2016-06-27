@@ -25,6 +25,7 @@ public class EditDirectorForm extends JDialog {
         super(parent, "Edit Director");
         setContentPane(RootPanel);
         setSize(400, 200);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         firstName.setText(c.getFirstName());
         lastName.setText(c.getLastName());

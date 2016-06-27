@@ -42,6 +42,7 @@ public class ViewMoviesForm extends JDialog {
         super(parent, "Movies", true);
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         movieController = new MovieController();
         populateTable();
@@ -264,7 +265,7 @@ public class ViewMoviesForm extends JDialog {
      */
     private void $$$setupUI$$$() {
         rootPanel = new JPanel();
-        rootPanel.setLayout(new GridLayoutManager(7, 5, new Insets(0, 0, 0, 0), -1, -1));
+        rootPanel.setLayout(new GridLayoutManager(6, 5, new Insets(0, 0, 0, 0), -1, -1));
         rootPanel.setBackground(new Color(-12828863));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 6, new Insets(0, 0, 0, 0), -1, -1));
