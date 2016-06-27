@@ -27,6 +27,7 @@ public class DeleteClientForm extends JFrame {
     public DeleteClientForm(JFrame parent) {
         super("View Clients");
         setContentPane(rootPanel);
+        this.setLocationRelativeTo(null);
         setSize(1000, 600);
         pack();
         setResizable(false);

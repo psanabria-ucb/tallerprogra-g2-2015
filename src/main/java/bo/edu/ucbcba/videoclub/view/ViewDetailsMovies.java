@@ -25,6 +25,7 @@ public class ViewDetailsMovies extends JDialog {
         setContentPane(rootPanel);
         setSize(800, 500);
         setResizable(true);
+        this.setLocationRelativeTo(null);
         Title.setText(t);
         Image image = getToolkit().createImage(i);
         image = image.getScaledInstance(300, 300, image.SCALE_DEFAULT);

@@ -32,6 +32,7 @@ public class UserRegister extends JDialog {
         setContentPane(rootPanel);
         setBounds(200, 300, 1000, 800);
         setSize(1000, 800);
+        this.setLocationRelativeTo(null);
         pack();
         setResizable(false);
         launchImage();

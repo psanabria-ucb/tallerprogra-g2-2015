@@ -38,6 +38,7 @@ public class RegisterCompanyForm extends JDialog {
         super(parent, "Register Company");
         setContentPane(rootPanel);
         setSize(500, 600);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         launchImage();
         this.setLocationRelativeTo(null);

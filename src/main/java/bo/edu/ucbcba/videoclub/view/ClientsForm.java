@@ -33,6 +33,7 @@ public class ClientsForm extends JFrame {
         super("Clients");
         setContentPane(rootPanel);
         setSize(800, 600);
+        this.setLocationRelativeTo(null);
         //setBounds(200, 300, 600, 400);
         pack();
         setResizable(false);

@@ -31,6 +31,7 @@ public class LoginForm extends JFrame {
         super("Login | Sakila 2.0");
         setContentPane(rootPane);
         setSize(650, 320);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         userController = new UserController();
 

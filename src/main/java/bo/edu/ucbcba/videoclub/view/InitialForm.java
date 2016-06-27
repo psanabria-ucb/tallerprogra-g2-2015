@@ -36,6 +36,7 @@ public class InitialForm extends JFrame {
         setContentPane(rootPanel);
         setSize(700, 500);
         //setSize(600, 400);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         userController = new UserController();
         MoviesButton.addActionListener(new ActionListener() {

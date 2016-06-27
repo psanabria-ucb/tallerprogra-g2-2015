@@ -37,6 +37,7 @@ public class ViewUsersForm extends JFrame {
         super("View Clients");
         setContentPane(rootPanel);
         setSize(600, 400);
+        this.setLocationRelativeTo(null);
         pack();
         setResizable(false);
         launchImage();

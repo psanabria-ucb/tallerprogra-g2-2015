@@ -40,6 +40,7 @@ public class ChangePasswordAdmin extends JFrame {
         super("Changing Password");
         setContentPane(rootPane);
         setSize(700, 500);
+        this.setLocationRelativeTo(null);
         //setSize(600, 400);
         setResizable(false);
         launchImage();

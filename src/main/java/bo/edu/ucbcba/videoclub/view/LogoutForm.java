@@ -24,6 +24,7 @@ public class LogoutForm extends JFrame {
         super("Logged out | Sakila 2.0");
         setContentPane(rootPane);
         setSize(650, 320);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         launchImage();
         loginButton.addActionListener(new ActionListener() {

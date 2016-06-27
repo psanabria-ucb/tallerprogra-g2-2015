@@ -44,6 +44,7 @@ public class RegisterGamesForm extends JDialog {
         setSize(1000, 600);
         setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

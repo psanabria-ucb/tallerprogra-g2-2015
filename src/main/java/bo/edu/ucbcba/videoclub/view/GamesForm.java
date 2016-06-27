@@ -46,6 +46,7 @@ public class GamesForm extends JDialog {
         super(parent, "Games", true);
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         this.setLocationRelativeTo(null);
         launchImage();

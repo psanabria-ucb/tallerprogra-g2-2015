@@ -29,6 +29,7 @@ public class ClientRegister extends JDialog {
     public ClientRegister(JFrame parent) {
         super(parent, "Register Client", true);
         setContentPane(rootPanel);
+        this.setLocationRelativeTo(null);
         setBounds(200, 300, 800, 600);
         pack();
         setResizable(false);
