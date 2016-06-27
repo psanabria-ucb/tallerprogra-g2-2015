@@ -166,6 +166,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-4420796"/>
               <text value="Search by:"/>
             </properties>
           </component>
@@ -174,6 +175,7 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-4420796"/>
               <opaque value="false"/>
               <selected value="true"/>
               <text value="Name"/>
@@ -184,6 +186,7 @@
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-4420796"/>
               <opaque value="false"/>
               <text value="Company"/>
             </properties>
@@ -205,6 +208,7 @@
           <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-4420796"/>
           <text value="Order by:"/>
         </properties>
       </component>
@@ -238,6 +242,7 @@
           <grid row="3" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-4420796"/>
           <text value="Sense"/>
         </properties>
       </component>

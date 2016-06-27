@@ -1,5 +1,6 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.CompanyController;
 import bo.edu.ucbcba.videoclub.controller.Session;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -21,11 +22,13 @@ public class HomeGamesForm extends JFrame {
     private JButton addGameButton;
     private JButton homePageButton;
     private JButton addCompanyButton;
+    private CompanyController companyController;
 
     public HomeGamesForm(JFrame parent) {
         super("Games");
         setContentPane(rootPanel);
         setSize(1000, 600);
+        this.setLocationRelativeTo(null);
         setResizable(false);
         launchImage();
         listingGamesButton.addActionListener(new ActionListener() {
@@ -96,9 +99,15 @@ public class HomeGamesForm extends JFrame {
     }
 
     public void showNewGame() {
-        RegisterGamesForm form = new RegisterGamesForm(this);
-        form.setVisible(true);
-
+        companyController = new CompanyController();
+        if (companyController.aCompanyExists()) {
+            RegisterGamesForm form = new RegisterGamesForm(this);
+            form.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "You must register a company first");
+            RegisterCompanyForm registerCompanyForm = new RegisterCompanyForm(this);
+            registerCompanyForm.setVisible(true);
+        }
     }
 
     public void showHome() {

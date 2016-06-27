@@ -47,6 +47,7 @@ public class GamesForm extends JDialog {
         setContentPane(rootPanel);
         setSize(1000, 600);
         setResizable(false);
+        this.setLocationRelativeTo(null);
         launchImage();
         createButton.addActionListener(new ActionListener() {
             @Override
@@ -377,14 +378,17 @@ public class GamesForm extends JDialog {
         panel2.setVisible(true);
         rootPanel.add(panel2, new GridConstraints(3, 1, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
+        label9.setForeground(new Color(-4420796));
         label9.setText("Search by:");
         panel2.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nameRadioButton = new JRadioButton();
+        nameRadioButton.setForeground(new Color(-4420796));
         nameRadioButton.setOpaque(false);
         nameRadioButton.setSelected(true);
         nameRadioButton.setText("Name");
         panel2.add(nameRadioButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         companyRadioButton = new JRadioButton();
+        companyRadioButton.setForeground(new Color(-4420796));
         companyRadioButton.setOpaque(false);
         companyRadioButton.setText("Company");
         panel2.add(companyRadioButton, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -393,6 +397,7 @@ public class GamesForm extends JDialog {
         final Spacer spacer5 = new Spacer();
         panel2.add(spacer5, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JLabel label10 = new JLabel();
+        label10.setForeground(new Color(-4420796));
         label10.setText("Order by:");
         rootPanel.add(label10, new GridConstraints(3, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         OrderComboBox = new JComboBox();
@@ -410,6 +415,7 @@ public class GamesForm extends JDialog {
         final Spacer spacer7 = new Spacer();
         rootPanel.add(spacer7, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JLabel label11 = new JLabel();
+        label11.setForeground(new Color(-4420796));
         label11.setText("Sense");
         rootPanel.add(label11, new GridConstraints(3, 8, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         SenseComboBox = new JComboBox();
