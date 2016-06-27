@@ -1,5 +1,7 @@
 package bo.edu.ucbcba.videoclub.view;
 
+import bo.edu.ucbcba.videoclub.controller.DirectorController;
+import bo.edu.ucbcba.videoclub.model.Director;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -11,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by USER on 17/05/2016.
@@ -21,13 +25,14 @@ public class HomeMoviesForm extends JFrame {
     private JButton addButton;
     private JButton homeButton;
     private JButton addDirector;
+    private final DirectorController directorController;
 
     public HomeMoviesForm(InitialForm parent) {
         super("Home Movies");
         setContentPane(rootPanel);
         setSize(1000, 600);
         this.setLocationRelativeTo(null);
-
+        directorController = new DirectorController();
         setResizable(false);
         launchImage();
         addButton.addActionListener(new ActionListener() {
@@ -69,8 +74,17 @@ public class HomeMoviesForm extends JFrame {
     }
 
     private void launchRegister() {
-        RegisterMovieForm form = new RegisterMovieForm(this);
-        form.setVisible(true);
+
+        List<Director> directors = directorController.getAlldirectors();
+        if (directors.size() == 0) {
+            JOptionPane.showMessageDialog(this, "First, register a Director", "Alert", JOptionPane.ERROR_MESSAGE);
+            RegisterDirector form = new RegisterDirector();
+            form.setVisible(true);
+
+        } else {
+            RegisterMovieForm form = new RegisterMovieForm();
+            form.setVisible(true);
+        }
     }
 
     public void showHome() {
